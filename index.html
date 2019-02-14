@@ -1,15 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Memeolitics</title>
+    <link rel="stylesheet" href="css/main.css">
+    <title>Ini-Meme-Mine-Mo</title>
 </head>
-<body>
-    <h1>Hello Sprint 2</h1>
-    <canvas id="app-canvas">
 
-    </canvas>
+<body onload="init()">
+
+    <main class="wrapper grid justify-items-center">
+        <header class="main-header">
+            <h1>Ini-Meme-Mine-Mo</h1>
+        </header>
+        <div id="app">
+            <nav class="app-nav">
+                <a download="my-meme.jpg" onclick="onExportImg(event)" class="btn btn-export-img">
+                    Export
+                </a>
+            </nav>
+            <div class="canvas-container" width="640" height="480">
+                <canvas id="appCanvas" width="640" height="480">
+                    You see this text because your browser does not support HTML5Canvas.
+                </canvas>
+                <div draggable="true" contenteditable="true" class="edit-line id-1" style="top: 110px; left: 110px;">
+                    Use CSS Everyday
+                </div>
+                <div draggable="true" contenteditable="true" class="edit-line id-2">
+                    Use CSS Everynight
+                </div>
+            </div>
+        </div>
+
+        <div id="homepage">
+
+        </div>
+        <footer class="main-footer">
+            <h2>Ini-Meme-Mine-Mo Footer</h2>
+            <h5>Meme Rights &copy;</h5>
+        </footer>
+    </main>
+
+    <script src="js/util-service.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/image-service.js"></script>
+    <script src="js/editor-controller.js"></script>
+    <script src="js/main.js"></script>
 </body>
+
 </html>

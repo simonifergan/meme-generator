@@ -1,0 +1,80 @@
+@import url('reset.css');
+@import url('helpers.css');
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    color: blue;
+    cursor: pointer;
+}
+
+a:hover {
+    color: red;
+}
+
+/* Grid layout */
+
+main {
+    grid-template-areas: 
+    "header"
+    "main-content"
+    "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: 10px 1fr 100px;
+    grid-row-gap: 5px;
+}
+
+.main-header {
+    grid-area: header;
+    width: 100%;
+}
+
+.main-footer {
+    grid-area: footer;
+    width: 100%;
+}
+
+
+
+/* Start of Canvas CSS */
+
+#appCanvas {
+    border: 1px solid blue;
+    position: absolute;
+    top: 0;
+    left: 0;
+    grid-area: main-content;
+}
+
+.canvas-container {
+    position: relative;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.edit-line.id-1 {
+    background-color: red;
+}
+
+.edit-line {
+    cursor: pointer;
+    touch-action: none;
+    user-select: none;
+    position: absolute;
+}
+
+.edit-line.id-2 {
+    background-color: blue;
+}
+
+.edit-line:focus {
+    border: 2px dotted #333;
+    outline: none;
+}
+
+.edit-line:active {
+    border: 2px dashed #333;
+}
+
+/* End of Canvas CSS */
