@@ -51,17 +51,18 @@ main {
 
 .gallery-item {
     cursor: pointer;
-    border: 1px solid black;
     width: 200px;
+
 }
 
 .gallery-item img {
     width: 100%;
+    height: auto;
+
 }
 
-
-
 /* End of Gallery */
+
 
 /* Start of Canvas CSS */
 
@@ -83,9 +84,10 @@ main {
     user-select: none;
     position: absolute;   
     outline: none;
-    color: black;
+    color: #fff;
     background: none;
     border: none;
+    font-size: 32px;
 }
 
 .edit-line:active {
@@ -94,6 +96,10 @@ main {
 
 .edit-line:focus {
     border: 1px dashed black;
+}
+
+.edit-line.selected {
+    border: 1px dashed blue;
 }
 
 

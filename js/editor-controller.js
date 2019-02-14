@@ -6,10 +6,10 @@ var gCtx;
 var gImg;
 
 function initEditor(imgId) {
-    document.querySelector('#app').hidden = false;
+    document.querySelector('#app').style.display = 'flex';
     gCanvas = document.querySelector('#appCanvas');
     gCtx = gCanvas.getContext('2d');
-    let {src} = getImgById(imgId);
+    let { src } = getImgById(imgId);
     gImg = new Image();
     // let imgRatio = calculateAspectRatioFit(gImg.width, gImg.height, gCanvas.width, gCanvas.height);
     // console.log(imgRatio);
@@ -44,26 +44,28 @@ function onExportImg(ev) {
 function renderImageToCanvas() {
     let containerRect = document.querySelector('.canvas-container').getBoundingClientRect();
     let elLine = document.querySelectorAll('.edit-line');
-    console.log(containerRect);
     elLine.forEach(line => {
-        console.log(line);
-        let txt = line.innerHTML;
-        let fontSize = 16;
-        let {top, left} = line.getBoundingClientRect();
+        let txt = line.innerText;
+        let fontSize = parseInt(window.getComputedStyle(line, null).getPropertyValue('font-size'));
+        let { top, left } = line.getBoundingClientRect();
         let x = left - containerRect.left;
         let y = top - containerRect.top + fontSize;
 
         drawText(txt, x, y, fontSize);
         line.style.display = 'none';
     });
+    document.querySelector('.input-container').innerHTML =
+        `<div onmousemove="onInitDragEl(this)" draggable="true" contenteditable="true" class="edit-line" style="display: none; top: 155px; left: 155px">
+            Enter text here
+        </div>`;
 }
 
 function drawText(txt, divX, divY, fontSize) {
     gCtx.font = `${fontSize}px Impact`;
-    gCtx.strokeStyle = '#e3e3e3';
-    gCtx.lineWidth = Math.floor(fontSize / 10);
+    gCtx.strokeStyle = '#000';
+    gCtx.lineWidth = Math.round(fontSize / 10);
     gCtx.strokeText(`${txt}`, divX, divY);
-    gCtx.fillStyle = '#333';
+    gCtx.fillStyle = '#fff';
     gCtx.fillText(`${txt}`, divX, divY);
 }
 
@@ -109,80 +111,39 @@ function onInitDragEl(el) {
 }
 
 function onShowGallery() {
-    document.querySelector('#app').hidden = true;
+    document.querySelector('#app').style.display = 'none';
     document.querySelector('#gallery').hidden = false;
+    document.querySelectorAll('.edit-line').forEach(line => {
+        line.style.display = 'block';
+    })
 }
 
 function onAddLine() {
-    let line = `<div onmousemove="onInitDragEl(this)" draggable="true" contenteditable="true"
-                class="edit-line">Enter text here</div>`;
+    let line = `<div onclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" 
+                draggable="true" contenteditable="true" class="edit-line"
+                style="top: 155px; left: 155px">
+                    Enter text here
+                </div>`;
     document.querySelector('.input-container').innerHTML += line;
 }
-// // DRAG IMAGE --- SCRAP ---
-// var container = document.querySelector(".canvas-container");
-// var currLine;
 
-// var active = false;
-// var currentX;
-// var currentY;
-// var initialX;
-// var initialY;
-// var xOffset = 0;
-// var yOffset = 0;
+function onToggleSelected(ev, el) {
+    if (ev.ctrlKey) el.classList.toggle('selected');
+    else {
+        onRemoveSelected();
+        el.classList.toggle('selected');
+    }
+}
 
-// container.addEventListener("touchstart", startDrag, false);
-// container.addEventListener("touchend", endDrag, false);
-// container.addEventListener("touchmove", dragEl, false);
+function onRemoveSelected() {
+    document.querySelectorAll('edit-line').forEach(line => {
+        console.log(line);
+        line.classList.remove('selected');
+    })
+}
 
-// container.addEventListener("mousedown", startDrag, false);
-// container.addEventListener("mouseup", endDrag, false);
-// container.addEventListener("mousemove", dragEl, false);
-
-// function startDrag(ev) {
-//     ev.stopPropagation();
-//     if (ev.target.id === "appCanvas") return;
-//     if (ev.type === "touchstart") {
-//         initialX = ev.touches[0].clientX - xOffset;
-//         initialY = ev.touches[0].clientY - yOffset;
-//     } else {
-//         initialX = ev.clientX - xOffset;
-//         initialY = ev.clientY - yOffset;
-//     }
-
-//     currLine = ev.target;
-//     active = true;
-// }
-
-// function endDrag(ev) {
-//     initialX = currentX;
-//     initialY = currentY;
-//     currLine.style.top = parseInt(ev.target.style.top) + currentY + 'px';
-//     currLine.style.left = parseInt(ev.target.style.left) + currentX + 'px';
-//     renderElTranslate(0, 0, currLine);
-//     currLine = null;
-//     active = false;
-// }
-
-// function dragEl(ev) {
-//     if (active) {
-
-//         ev.preventDefault();
-
-//         if (ev.type === "touchmove") {
-//             currentX = ev.touches[0].clientX - initialX;
-//             currentY = ev.touches[0].clientY - initialY;
-//         } else {
-//             currentX = ev.clientX - initialX;
-//             currentY = ev.clientY - initialY;
-//         }
-
-//         xOffset = currentX;
-//         yOffset = currentY;
-
-//         renderElTranslate(currentX, currentY, currLine);
-//     }
-// }
-
-// function renderElTranslate(xPos, yPos, el) {
-//     el.style.transform = `translate3d(${xPos}px, ${yPos}px, ${0})`;
-// }
+function onChangeFontForSelected(val) {
+    document.querySelectorAll('.selected').forEach(line => {
+        line.style.fontSize = parseInt(val) + 'px';
+    });
+}
