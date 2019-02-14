@@ -31,27 +31,47 @@ main {
     width: 100%;
 }
 
+.main-content {
+    grid-area: main-content;
+    width: 100%;
+}
 .main-footer {
     grid-area: footer;
     width: 100%;
 }
 
+/* Start of Gallery */
 
+#gallery {
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+}
+
+.gallery-item {
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+/* End of Gallery */
 
 /* Start of Canvas CSS */
 
-#appCanvas {
+.canvas-container {
+
+    position: relative;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    top: 0;
+    left: 0;
     border: 1px solid blue;
+}
+
+#appCanvas {
+    margin: 5px 0;
     position: absolute;
     top: 0;
     left: 0;
-    grid-area: main-content;
 }
 
-.canvas-container {
-    position: relative;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
 
 .edit-line.id-1 {
     background-color: red;
@@ -68,13 +88,5 @@ main {
     background-color: blue;
 }
 
-.edit-line:focus {
-    border: 2px dotted #333;
-    outline: none;
-}
-
-.edit-line:active {
-    border: 2px dashed #333;
-}
 
 /* End of Canvas CSS */

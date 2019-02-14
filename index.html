@@ -15,26 +15,34 @@
         <header class="main-header">
             <h1>Ini-Meme-Mine-Mo</h1>
         </header>
-        <div id="app">
-            <nav class="app-nav">
-                <a download="my-meme.jpg" onclick="onExportImg(event)" class="btn btn-export-img">
-                    Export
-                </a>
-            </nav>
-            <div class="canvas-container" width="640" height="480">
-                <canvas id="appCanvas" width="640" height="480">
-                    You see this text because your browser does not support HTML5Canvas.
-                </canvas>
-                <div draggable="true" contenteditable="true" class="edit-line id-1" style="top: 110px; left: 110px;">
-                    Use CSS Everyday
-                </div>
-                <div draggable="true" contenteditable="true" class="edit-line id-2">
-                    Use CSS Everynight
+        <div class="main-content">
+
+            <div id="gallery grid">
+                <div class="gallery-container flex">
+                    <!-- generate gallery here -->
                 </div>
             </div>
-        </div>
 
-        <div id="homepage">
+            <div id="app" hidden>
+                <nav class="app-nav">
+                    <a download="my-meme.jpg" onclick="onExportImg(event)" class="btn btn-export-img">
+                        Export
+                    </a>
+                </nav>
+                <div class="canvas-container">
+                    <canvas id="appCanvas" width="640" height="480">
+                        You see this text because your browser does not support HTML5Canvas.
+                    </canvas>
+                    <div onmousemove="onInitDragEl(this)" draggable="true" contenteditable="true" class="edit-line id-1"
+                        style="top: 110px; left: 110px">
+                        Use CSS Everyday
+                    </div>
+                    <div onmousemove="onInitDragEl(this)" draggable="true" contenteditable="true"
+                        class="edit-line id-2">
+                        Use CSS Everynight
+                    </div>
+                </div>
+            </div>
 
         </div>
         <footer class="main-footer">
@@ -44,8 +52,8 @@
     </main>
 
     <script src="js/util-service.js"></script>
-    <script src="js/meme-service.js"></script>
-    <script src="js/image-service.js"></script>
+    <script src="js/gallery-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
     <script src="js/editor-controller.js"></script>
     <script src="js/main.js"></script>
 </body>
