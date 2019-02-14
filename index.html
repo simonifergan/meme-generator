@@ -32,8 +32,13 @@
             <div id="gallery">
                 <div class="gallery-search">
                     <label for="searchBar">Search:</label>
-                    <input oninput="onSearchInGallery(this.value)" id="searchBar" type="text" class="search-box">
+                    <input oninput="onSearchInGallery(this.value)" id="searchBar" type="text" class="search-box" list="mostFrequentSearch">
+                    <datalist id="mostFrequentSearch">
+                        <!-- generate options search options here -->
+                        <option value="Pukimonster">
+                    </datalist>
                 </div>
+                
                 <div class="gallery-container grid justify-items-center">
                     <!-- generate gallery here -->
                 </div>
@@ -85,6 +90,7 @@
     <script src="js/util-service.js"></script>
     <script src="js/gallery-service.js"></script>
     <script src="js/gallery-controller.js"></script>
+    <script src="js/canvas-controller.js"></script>
     <script src="js/editor-controller.js"></script>
     <script src="js/main.js"></script>
 </body>

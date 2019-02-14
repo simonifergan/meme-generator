@@ -18,7 +18,6 @@ function initEditor(imgId) {
     let { src } = getItemById(imgId);
     gImg = new Image();
     setCanvasSize();
-    // TODO: calculate aspect ratio
     let canvasContainer = document.querySelector('.canvas-container');
     canvasContainer.style.width = gCanvas.width + 'px';
     canvasContainer.style.height = gCanvas.height + 'px';
@@ -28,8 +27,10 @@ function initEditor(imgId) {
 
 function setCanvasSize() {
 
+    // TODO: calculate aspect ratio and change canvas accordingly
 
 }
+
 // Load image and draw it functions
 // Todo: Modal that says: wait until image loads.
 function setImgSrc(src) {
@@ -42,7 +43,7 @@ function drawImg() {
 };
 
 
-// Render divs to canvas and export as img
+// Render divs to canvas and export it as img (jpg)
 
 function onExportImg(ev) {
     renderImageToCanvas()
@@ -50,75 +51,8 @@ function onExportImg(ev) {
     ev.target.href = `${imgData}`;
 }
 
-function renderImageToCanvas() {
-    let containerRect = document.querySelector('.canvas-container').getBoundingClientRect();
-    let elLine = document.querySelectorAll('.actual-text');
-    elLine.forEach(line => {
-        let txt = line.innerText;
-        let fontSize = parseInt(window.getComputedStyle(line, null).getPropertyValue('font-size'));
-        let { top, left } = line.getBoundingClientRect();
-        let x = left - containerRect.left;
-        let y = top - containerRect.top + fontSize;
-
-        drawText(txt, x, y, fontSize);
-        line.style.display = 'none';
-    });
-    document.querySelector('.input-container').innerHTML = `<div onclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" draggable="true"
-                                                                class="edit-line line-id-${gNextInputId} flex align-center" style="display: none; top: 155px; left: 155px">
-                                                                <span class="actual-text" contenteditable="true">Enter text here</span>
-                                                                <button onclick="onRemoveLine(${gNextInputId++})" class="btn btn-delete">&times;</button>
-                                                            </div>`;
-}
-
-function drawText(txt, divX, divY, fontSize) {
-    gCtx.font = `${fontSize}px Impact`;
-    gCtx.strokeStyle = '#000';
-    gCtx.lineWidth = Math.floor(fontSize / 10);
-    gCtx.strokeText(`${txt}`, divX, divY);
-    gCtx.fillStyle = '#fff';
-    gCtx.fillText(`${txt}`, divX, divY);
-}
 
 
-
-// New drag attempt
-
-function onInitDragEl(el) {
-    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    el.onmousedown = onDragDown;
-
-
-    function onDragDown(ev) {
-        ev = ev || window.event;
-       
-        pos3 = ev.clientX;
-        pos4 = ev.clientY;
-        document.onmouseup = onStopDrag;
-
-        // call a function whenever the cursor moves:
-        document.onmousemove = onDragEl;
-    }
-
-    function onDragEl(ev) {
-        ev = ev || window.event;
-        ev.preventDefault();
-
-        // calculate the new cursor position:
-        pos1 = pos3 - ev.clientX;
-        pos2 = pos4 - ev.clientY;
-        pos3 = ev.clientX;
-        pos4 = ev.clientY;
-
-        // set the element's new position:
-        el.style.top = (el.offsetTop - pos2) + "px";
-        el.style.left = (el.offsetLeft - pos1) + "px";
-    }
-
-    function onStopDrag() {
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
-}
 
 function onShowGallery() {
     document.querySelector('#app').style.display = 'none';

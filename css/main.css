@@ -73,7 +73,6 @@ main {
 .main-content {
     grid-area: main-content;
     width: 100%;
-
 }
 
 /* Start Main-Footer */
@@ -93,6 +92,10 @@ main {
 
 /* Start of Gallery */
 
+#searchBar {
+    cursor: text;
+}
+
 .gallery-container {
     grid-template-columns: repeat(4, 180px);
   
@@ -101,8 +104,6 @@ main {
 .gallery-item {
     cursor: pointer;
 }
-
-
 
 .hexagon {
     position: relative;
@@ -139,8 +140,6 @@ main {
     border-radius: 5px;
     order: 1;
 }
-
-
 
 .canvas-container {
     position: relative;
