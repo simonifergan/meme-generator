@@ -4,19 +4,20 @@
 var gCanvas;
 var gCtx;
 var gImg;
+var gNextInputId;
 
-const INPUT_LINE_TEMPLATE = `<div onclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" draggable="true"
-                        contenteditable="true" class="edit-line" style="display: none; top: 155px; left: 155px">
-                            Enter text here
-                        </div>`;
+
 
 
 function initEditor(imgId) {
+    gNextInputId = 2;
+
     document.querySelector('#app').style.display = 'flex';
     gCanvas = document.querySelector('#appCanvas');
     gCtx = gCanvas.getContext('2d');
     let { src } = getItemById(imgId);
     gImg = new Image();
+    setCanvasSize();
     // TODO: calculate aspect ratio
     let canvasContainer = document.querySelector('.canvas-container');
     canvasContainer.style.width = gCanvas.width + 'px';
@@ -24,6 +25,11 @@ function initEditor(imgId) {
     setImgSrc(src);
 }
 
+
+function setCanvasSize() {
+
+
+}
 // Load image and draw it functions
 // Todo: Modal that says: wait until image loads.
 function setImgSrc(src) {
@@ -46,7 +52,7 @@ function onExportImg(ev) {
 
 function renderImageToCanvas() {
     let containerRect = document.querySelector('.canvas-container').getBoundingClientRect();
-    let elLine = document.querySelectorAll('.edit-line');
+    let elLine = document.querySelectorAll('.actual-text');
     elLine.forEach(line => {
         let txt = line.innerText;
         let fontSize = parseInt(window.getComputedStyle(line, null).getPropertyValue('font-size'));
@@ -57,7 +63,11 @@ function renderImageToCanvas() {
         drawText(txt, x, y, fontSize);
         line.style.display = 'none';
     });
-    document.querySelector('.input-container').innerHTML = INPUT_LINE_TEMPLATE;
+    document.querySelector('.input-container').innerHTML = `<div onclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" draggable="true"
+                                                                class="edit-line line-id-${gNextInputId} flex align-center" style="display: none; top: 155px; left: 155px">
+                                                                <span class="actual-text" contenteditable="true">Enter text here</span>
+                                                                <button onclick="onRemoveLine(${gNextInputId++})" class="btn btn-delete">&times;</button>
+                                                            </div>`;
 }
 
 function drawText(txt, divX, divY, fontSize) {
@@ -80,11 +90,11 @@ function onInitDragEl(el) {
 
     function onDragDown(ev) {
         ev = ev || window.event;
-        // ev.preventDefault();
-        // get the mouse cursor position at startup:
+       
         pos3 = ev.clientX;
         pos4 = ev.clientY;
         document.onmouseup = onStopDrag;
+
         // call a function whenever the cursor moves:
         document.onmousemove = onDragEl;
     }
@@ -119,10 +129,10 @@ function onShowGallery() {
 }
 
 function onAddLine() {
-    let line = `<div onclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" 
-                draggable="true" contenteditable="true" class="edit-line"
-                style="top: 155px; left: 155px">
-                    Enter text here
+    let line = `<div onclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" draggable="true"
+                    class="edit-line line-id-${gNextInputId} flex align-center" style="top: 155px; left: 155px">
+                    <span class="actual-text" contenteditable="true">Enter text here</span>
+                    <button onclick="onRemoveLine('${gNextInputId++}')" class="btn btn-delete">&times;</button>
                 </div>`;
     document.querySelector('.input-container').innerHTML += line;
 }
@@ -147,4 +157,9 @@ function onChangeFontForSelected(val) {
     document.querySelectorAll('.edit-line.selected').forEach(line => {
         line.style.fontSize = parseInt(val) + 'px';
     });
+}
+
+function onRemoveLine(id) {
+    let el = document.querySelector(`.edit-line.line-id-${id}`);
+    el.remove();
 }

@@ -1,6 +1,16 @@
 @import url('reset.css');
 @import url('helpers.css');
 
+/* Fonts */
+@font-face {
+    font-family: Lato, sans-serif;
+    src: url('../fonts/Lato/Lato-Regular.ttf');
+}
+
+html {
+    font-size: 16px;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -35,10 +45,27 @@ main {
     grid-area: main-header;
     width: 100%;
     background-color: #1e272e;
+    font-family: Lato;
 }
 
 .header-nav > * {
     margin: 0 5px;
+}
+
+.logo {
+    color: #e3e3e3;
+    font-size: 1.375rem;
+    margin: 0 20px;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    transition: color .3s;
+}
+
+.nav-link:hover {
+    color: #2eb398;
 }
 
 /* End Main-Header */
@@ -67,20 +94,37 @@ main {
 /* Start of Gallery */
 
 .gallery-container {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-row-gap: 10px;
+    grid-template-columns: repeat(4, 180px);
+  
 }
 
 .gallery-item {
     cursor: pointer;
-    background-size: center;
-    background-image: url('../img/0.jpg');
 }
 
-.gallery-item img {
-    width: 100%;
-    height: auto;
 
+
+.hexagon {
+    position: relative;
+    height: 205px;
+    width: 180px;
+}
+  .hexagon-before {
+    position: absolute;
+    content: '';
+    background-image: url('../img/0.jpg');
+    background-size: cover;
+    top: 4px;  /* border width */
+    left: 4px;  /* border width */
+    height: calc(100% - 8px);  /* 100% - (2 * border width) */
+    width: calc(100% - 8px);  /* 100% - (2 * border width) */
+    
+}
+
+  .hexagon, .hexagon-before {
+    /* -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); */
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    
 }
 
 /* End of Gallery */
@@ -120,46 +164,37 @@ main {
     background: none;
     border: none;
     font-size: 32px;
+    -webkit-text-stroke: 1px black;
 }
 
-.edit-line:active {
-    border: 3px dashed red;
+.edit-line > button {
+    margin-left: 5px;
 }
 
-.edit-line:focus {
-    border: 2px dashed black;
+.edit-line .btn-delete {
+    visibility: hidden;
 }
+.actual-text {
+    outline: none;
+}
+
+/* .actual-text:focus {
+    border: 1px dashed #1e272e;
+} */
 
 .edit-line.selected {
-    border: 3px dashed blue;
+    border: 3px dashed #0fbcf9;
 }
 
-
+.edit-line.selected .btn-delete {
+    visibility: visible;
+}
 /* End of App CSS */
 
+/* Buttons */
 
-/* hexagon */
-
-.hexagon {
-    position: relative;
-    height: 210px;
-    width: 200px;
-    background: white;
-}
-  .hexagon-before {
-    position: absolute;
-    content: '';
-    background-image: url('../img/0.jpg');
-    background-size: cover;
-    top: 4px;  /* border width */
-    left: 4px;  /* border width */
-    height: calc(100% - 8px);  /* 100% - (2 * border width) */
-    width: calc(100% - 8px);  /* 100% - (2 * border width) */
-    
-}
-
-  .hexagon, .hexagon-before {
-    /* -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); */
-    clip-path: polygon(50% 0%, 100% 25%, 100% 80%, 50% 100%, 0% 80%, 0% 25%);
-    
+.btn {
+    cursor: pointer;
+    border: none;
+    padding: 5px;
 }
