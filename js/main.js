@@ -1,5 +1,4 @@
 function init() {
-    initEditor();
     initImgs();
     renderGallery();
 }

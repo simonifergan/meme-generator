@@ -22,7 +22,7 @@ main {
     "main-content"
     "footer";
     grid-template-columns: 1fr;
-    grid-template-rows: 10px 1fr 100px;
+    grid-template-rows: 10px minmax(1fr, 80vh) 100px;
     grid-row-gap: 5px;
 }
 
@@ -34,7 +34,9 @@ main {
 .main-content {
     grid-area: main-content;
     width: 100%;
+
 }
+
 .main-footer {
     grid-area: footer;
     width: 100%;
@@ -42,50 +44,56 @@ main {
 
 /* Start of Gallery */
 
-#gallery {
-    grid-template-columns: 1fr 1fr 1fr;
-    width: 100%;
+.gallery-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-row-gap: 10px;
 }
 
 .gallery-item {
     cursor: pointer;
     border: 1px solid black;
+    width: 200px;
 }
+
+.gallery-item img {
+    width: 100%;
+}
+
+
 
 /* End of Gallery */
 
 /* Start of Canvas CSS */
 
 .canvas-container {
-
     position: relative;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    top: 0;
-    left: 0;
-    border: 1px solid blue;
 }
 
 #appCanvas {
-    margin: 5px 0;
     position: absolute;
     top: 0;
     left: 0;
 }
 
-
-.edit-line.id-1 {
-    background-color: red;
-}
 
 .edit-line {
     cursor: pointer;
     touch-action: none;
     user-select: none;
-    position: absolute;
+    position: absolute;   
+    outline: none;
+    color: black;
+    background: none;
+    border: none;
 }
 
-.edit-line.id-2 {
-    background-color: blue;
+.edit-line:active {
+    border: 3px dashed red;
+}
+
+.edit-line:focus {
+    border: 1px dashed black;
 }
 
 

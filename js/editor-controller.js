@@ -5,14 +5,20 @@ var gCanvas;
 var gCtx;
 var gImg;
 
-function initEditor() {
+function initEditor(imgId) {
+    document.querySelector('#app').hidden = false;
     gCanvas = document.querySelector('#appCanvas');
     gCtx = gCanvas.getContext('2d');
+    let {src} = getImgById(imgId);
     gImg = new Image();
-    setImgSrc('./meme.jpg');
+    // let imgRatio = calculateAspectRatioFit(gImg.width, gImg.height, gCanvas.width, gCanvas.height);
+    // console.log(imgRatio);
+    // gCanvas.width = imgRatio.width;
+    // gCanvas.height = imgRatio.height;
     let canvasContainer = document.querySelector('.canvas-container');
     canvasContainer.style.width = gCanvas.width + 'px';
     canvasContainer.style.height = gCanvas.height + 'px';
+    setImgSrc(src);
 }
 
 // Load image and draw it functions
@@ -44,7 +50,7 @@ function renderImageToCanvas() {
         let txt = line.innerHTML;
         let fontSize = 16;
         let {top, left} = line.getBoundingClientRect();
-        let x = left - containerRect.left - 33.5;
+        let x = left - containerRect.left;
         let y = top - containerRect.top + fontSize;
 
         drawText(txt, x, y, fontSize);
@@ -72,7 +78,7 @@ function onInitDragEl(el) {
 
     function onDragDown(ev) {
         ev = ev || window.event;
-        ev.preventDefault();
+        // ev.preventDefault();
         // get the mouse cursor position at startup:
         pos3 = ev.clientX;
         pos4 = ev.clientY;
@@ -102,6 +108,16 @@ function onInitDragEl(el) {
     }
 }
 
+function onShowGallery() {
+    document.querySelector('#app').hidden = true;
+    document.querySelector('#gallery').hidden = false;
+}
+
+function onAddLine() {
+    let line = `<div onmousemove="onInitDragEl(this)" draggable="true" contenteditable="true"
+                class="edit-line">Enter text here</div>`;
+    document.querySelector('.input-container').innerHTML += line;
+}
 // // DRAG IMAGE --- SCRAP ---
 // var container = document.querySelector(".canvas-container");
 // var currLine;

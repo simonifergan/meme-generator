@@ -1,12 +1,12 @@
-var gImgs;
+var gGallery;
 
 function initImgs() {
-    gImgs = createImgs();
+    gGallery = createImgs();
 }
 
 function createImgs() {
     let imgs = [];
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 9; i++) {
         let src = `./img/${i}.jpg`;
         let keyTags = ['Pukimonster'];
         let img = createImg(src, keyTags)
@@ -25,5 +25,9 @@ function createImg(src = './img/error.png', keyTags = []) {
 }
 
 function getImgsToDisplay() {
-    return gImgs.slice();
+    return gGallery.slice();
+}
+
+function getImgById(id) {
+    return gGallery.find(img => img.id === id);
 }

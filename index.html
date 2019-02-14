@@ -12,34 +12,45 @@
 <body onload="init()">
 
     <main class="wrapper grid justify-items-center">
+        <!-- Main Header -->
         <header class="main-header">
             <h1>Ini-Meme-Mine-Mo</h1>
         </header>
+
+        <!-- Main Content -->
         <div class="main-content">
 
-            <div id="gallery grid">
-                <div class="gallery-container flex">
+            <!-- Gallery Contaier -->
+            <div id="gallery" class="">
+                <div class="gallery-container grid justify-items-center">
                     <!-- generate gallery here -->
                 </div>
             </div>
 
-            <div id="app" hidden>
+            <!-- App Container -->
+            <div id="app" class="flex column justify-content-center align-center" hidden>
+
                 <nav class="app-nav">
+                    <button onclick="onShowGallery()" class="btn btn-home">Gallery</button>
+                    <button onclick="onAddLine()" class="btn btn-add-line">＋</button>
                     <a download="my-meme.jpg" onclick="onExportImg(event)" class="btn btn-export-img">
                         Export
                     </a>
                 </nav>
+
+                <!-- canvas container -->
                 <div class="canvas-container">
+                    
                     <canvas id="appCanvas" width="640" height="480">
                         You see this text because your browser does not support HTML5Canvas.
                     </canvas>
-                    <div onmousemove="onInitDragEl(this)" draggable="true" contenteditable="true" class="edit-line id-1"
-                        style="top: 110px; left: 110px">
-                        Use CSS Everyday
-                    </div>
-                    <div onmousemove="onInitDragEl(this)" draggable="true" contenteditable="true"
-                        class="edit-line id-2">
-                        Use CSS Everynight
+
+                    <div class="input-container">
+                        <div onmousemove="onInitDragEl(this)" draggable="true" contenteditable="true" class="edit-line"
+                            style="top: 50%; left: 50%">
+                            Enter text here
+                        </div>
+                        <!-- Generate more input boxes here -->
                     </div>
                 </div>
             </div>
