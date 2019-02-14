@@ -14,22 +14,34 @@ a:hover {
     color: red;
 }
 
-/* Grid layout */
+.wrapper {
+    max-width: 980px;
+    margin: 0 auto;
+}
+/* Page layout */
 
 main {
     grid-template-areas: 
-    "header"
+    "main-header"
     "main-content"
-    "footer";
+    "main-footer";
     grid-template-columns: 1fr;
-    grid-template-rows: 10px minmax(1fr, 80vh) 100px;
+    grid-template-rows: 100px 1fr 100px;
     grid-row-gap: 5px;
 }
 
+/* Start Main-Header */
 .main-header {
-    grid-area: header;
+    grid-area: main-header;
     width: 100%;
+    background-color: #1e272e;
 }
+
+.header-nav > * {
+    margin: 0 5px;
+}
+
+/* End Main-Header */
 
 .main-content {
     grid-area: main-content;
@@ -37,10 +49,20 @@ main {
 
 }
 
+/* Start Main-Footer */
+
 .main-footer {
-    grid-area: footer;
+    grid-area: main-footer;
+    width: 100%;
+    background-color: #2d3436;
+}
+
+.contact-container {
+    background-color: #636e72;
     width: 100%;
 }
+
+/* End Main-Footer */
 
 /* Start of Gallery */
 
@@ -51,8 +73,8 @@ main {
 
 .gallery-item {
     cursor: pointer;
-    width: 200px;
-
+    background-size: center;
+    background-image: url('../img/0.jpg');
 }
 
 .gallery-item img {
@@ -64,7 +86,17 @@ main {
 /* End of Gallery */
 
 
-/* Start of Canvas CSS */
+/* Start of App CSS */
+
+.editor-menu {
+    background-color: #636e72;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    order: 1;
+}
+
+
 
 .canvas-container {
     position: relative;
@@ -95,12 +127,39 @@ main {
 }
 
 .edit-line:focus {
-    border: 1px dashed black;
+    border: 2px dashed black;
 }
 
 .edit-line.selected {
-    border: 1px dashed blue;
+    border: 3px dashed blue;
 }
 
 
-/* End of Canvas CSS */
+/* End of App CSS */
+
+
+/* hexagon */
+
+.hexagon {
+    position: relative;
+    height: 210px;
+    width: 200px;
+    background: white;
+}
+  .hexagon-before {
+    position: absolute;
+    content: '';
+    background-image: url('../img/0.jpg');
+    background-size: cover;
+    top: 4px;  /* border width */
+    left: 4px;  /* border width */
+    height: calc(100% - 8px);  /* 100% - (2 * border width) */
+    width: calc(100% - 8px);  /* 100% - (2 * border width) */
+    
+}
+
+  .hexagon, .hexagon-before {
+    /* -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); */
+    clip-path: polygon(50% 0%, 100% 25%, 100% 80%, 50% 100%, 0% 80%, 0% 25%);
+    
+}

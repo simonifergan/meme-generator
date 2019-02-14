@@ -5,16 +5,19 @@ var gCanvas;
 var gCtx;
 var gImg;
 
+const INPUT_LINE_TEMPLATE = `<div onclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" draggable="true"
+                        contenteditable="true" class="edit-line" style="display: none; top: 155px; left: 155px">
+                            Enter text here
+                        </div>`;
+
+
 function initEditor(imgId) {
     document.querySelector('#app').style.display = 'flex';
     gCanvas = document.querySelector('#appCanvas');
     gCtx = gCanvas.getContext('2d');
-    let { src } = getImgById(imgId);
+    let { src } = getItemById(imgId);
     gImg = new Image();
-    // let imgRatio = calculateAspectRatioFit(gImg.width, gImg.height, gCanvas.width, gCanvas.height);
-    // console.log(imgRatio);
-    // gCanvas.width = imgRatio.width;
-    // gCanvas.height = imgRatio.height;
+    // TODO: calculate aspect ratio
     let canvasContainer = document.querySelector('.canvas-container');
     canvasContainer.style.width = gCanvas.width + 'px';
     canvasContainer.style.height = gCanvas.height + 'px';
@@ -54,16 +57,13 @@ function renderImageToCanvas() {
         drawText(txt, x, y, fontSize);
         line.style.display = 'none';
     });
-    document.querySelector('.input-container').innerHTML =
-        `<div onmousemove="onInitDragEl(this)" draggable="true" contenteditable="true" class="edit-line" style="display: none; top: 155px; left: 155px">
-            Enter text here
-        </div>`;
+    document.querySelector('.input-container').innerHTML = INPUT_LINE_TEMPLATE;
 }
 
 function drawText(txt, divX, divY, fontSize) {
     gCtx.font = `${fontSize}px Impact`;
     gCtx.strokeStyle = '#000';
-    gCtx.lineWidth = Math.round(fontSize / 10);
+    gCtx.lineWidth = Math.floor(fontSize / 10);
     gCtx.strokeText(`${txt}`, divX, divY);
     gCtx.fillStyle = '#fff';
     gCtx.fillText(`${txt}`, divX, divY);
@@ -143,7 +143,8 @@ function onRemoveSelected() {
 }
 
 function onChangeFontForSelected(val) {
-    document.querySelectorAll('.selected').forEach(line => {
+    document.querySelector('.span-font-slider').innerText = val + 'px';
+    document.querySelectorAll('.edit-line.selected').forEach(line => {
         line.style.fontSize = parseInt(val) + 'px';
     });
 }

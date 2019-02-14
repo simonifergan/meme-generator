@@ -1,22 +1,22 @@
 var gGallery;
 
 function initImgs() {
-    gGallery = createImgs();
+    gGallery = createGallery();
 }
 
-function createImgs() {
+function createGallery() {
     let imgs = [];
     for (let i = 0; i < 9; i++) {
         let src = `./img/${i}.jpg`;
         let keyTags = ['Pukimonster'];
-        let img = createImg(src, keyTags)
+        let img = createItem(src, keyTags)
         imgs.push(img);
     }
 
     return imgs;
 }
 
-function createImg(src = './img/error.png', keyTags = []) {
+function createItem(src = './img/error.png', keyTags = []) {
     return {
         id: generateId(),
         src: src,
@@ -24,10 +24,10 @@ function createImg(src = './img/error.png', keyTags = []) {
     }
 }
 
-function getImgsToDisplay() {
+function getGallryToDisplay() {
     return gGallery.slice();
 }
 
-function getImgById(id) {
+function getItemById(id) {
     return gGallery.find(img => img.id === id);
 }

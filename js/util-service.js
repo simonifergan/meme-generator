@@ -8,3 +8,7 @@ function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
 
     return { width: srcWidth*ratio, height: srcHeight*ratio };
  }
+
+ function calcAspectRatio(width, height) {
+     return width / height;
+ }
