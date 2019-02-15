@@ -47,6 +47,7 @@
             <!-- App Container -->
             <div id="app" class="flex justify-content-center align-center" style="display: none;">
 
+                <!-- Editor Menu -->
                 <aside class="editor-menu flex column justify-content-center align-center">
                     <button onclick="onShowGallery()" class="btn btn-home">Back to Gallery</button>
                     <button onclick="onAddLine()" class="btn btn-add-line">Add Text</button>
@@ -69,6 +70,11 @@
                             class="edit-line line-id-1 flex align-center" style="top: 155px; left: 155px">
                             <span class="actual-text" contenteditable="true">Enter text here</span>
                             <button onclick="onRemoveLine(1)" class="btn btn-delete">&times;</button>
+                        </div>
+                        <div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" draggable="true"
+                            class="edit-line line-id-2 flex align-center" style="top: 240px; left: 155px">
+                            <span class="actual-text" contenteditable="true">Enter text here</span>
+                            <button onclick="onRemoveLine(2)" class="btn btn-delete">&times;</button>
                         </div>
                         <!-- Generate more input boxes here -->
                     </div>

@@ -126,7 +126,7 @@ main {
 }
 
   .hexagon, .hexagon-before {
-    /* -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); */
+    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     
 }
@@ -154,6 +154,7 @@ main {
 .canvas-container {
     position: relative;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    border: 1 px solid #636e72;
 }
 
 #appCanvas {
@@ -183,13 +184,10 @@ main {
 .edit-line .btn-delete {
     visibility: hidden;
 }
+
 .actual-text {
     outline: none;
 }
-
-/* .actual-text:focus {
-    border: 1px dashed #1e272e;
-} */
 
 .actual-text:focus {
     border: 3px dotted black;
@@ -209,4 +207,5 @@ main {
     cursor: pointer;
     border: none;
     padding: 5px;
+    margin: 5px 0;
 }

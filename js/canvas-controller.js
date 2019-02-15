@@ -1,4 +1,9 @@
-function renderImageToCanvas() {
+function setCanvasSize() {
+
+
+}
+
+function renderContentToCanvas() {
     let containerRect = document.querySelector('.canvas-container').getBoundingClientRect();
     let elLine = document.querySelectorAll('.actual-text');
     elLine.forEach(line => {
@@ -9,13 +14,10 @@ function renderImageToCanvas() {
         let y = top - containerRect.top + fontSize;
 
         drawText(txt, x, y, fontSize);
-        line.style.display = 'none';
+        line.remove();
     });
-    document.querySelector('.input-container').innerHTML = `<div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" draggable="true"
-                                                                class="edit-line line-id-${gNextInputId} flex align-center" style="display: none; top: 155px; left: 155px">
-                                                                <span class="actual-text" contenteditable="true">Enter text here</span>
-                                                                <button onclick="onRemoveLine(${gNextInputId++})" class="btn btn-delete">&times;</button>
-                                                            </div>`;
+    document.querySelector('.input-container').innerHTML = getInputLineHtml();
+    document.querySelector(`.edit-line`).style.display = 'none';
 }
 
 function drawText(txt, divX, divY, fontSize) {
@@ -36,7 +38,6 @@ function onInitDragEl(el) {
     var currClientY = 0;
     el.onmousedown = onDragDown;
 
-
     function onDragDown(ev = window.event) {
         currClientX = ev.clientX;
         currClientY = ev.clientY;
@@ -46,6 +47,12 @@ function onInitDragEl(el) {
 
     function onDragEl(ev = window.event) {
         ev.preventDefault();
+        // let elCanvasContainer = document.querySelector('.canvas-container');
+        // if (ev.clientX <= elCanvasContainer.offsetLeft 
+        //     || ev.clientX >= gCanvas.width + elCanvasContainer.offsetLeft  
+        //     || ev.clientY <= elCanvasContainer.offsetTop
+        //     || ev.clientY >= gCanvas.height + elCanvasContainer.offsetTop) return;
+
         
         initPosX = currClientX - ev.clientX;
         initPosY = currClientY - ev.clientY;

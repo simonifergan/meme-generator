@@ -9,8 +9,10 @@ var gNextInputId;
 
 
 
+
+
 function initEditor(imgId) {
-    gNextInputId = 2;
+    gNextInputId = 3;
 
     document.querySelector('#app').style.display = 'flex';
     gCanvas = document.querySelector('#appCanvas');
@@ -25,11 +27,7 @@ function initEditor(imgId) {
 }
 
 
-function setCanvasSize() {
 
-    // TODO: calculate aspect ratio and change canvas accordingly
-
-}
 
 // Load image and draw it functions
 // Todo: Modal that says: wait until image loads.
@@ -46,7 +44,7 @@ function drawImg() {
 // Render divs to canvas and export it as img (jpg)
 
 function onExportImg(ev) {
-    renderImageToCanvas()
+    renderContentToCanvas()
     let imgData = gCanvas.toDataURL();
     ev.target.href = `${imgData}`;
 }
@@ -63,12 +61,7 @@ function onShowGallery() {
 }
 
 function onAddLine() {
-    let line = `<div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" draggable="true"
-                    class="edit-line line-id-${gNextInputId} flex align-center" style="top: 155px; left: 155px">
-                    <span class="actual-text" contenteditable="true">Enter text here</span>
-                    <button onclick="onRemoveLine('${gNextInputId++}')" class="btn btn-delete">&times;</button>
-                </div>`;
-    document.querySelector('.input-container').innerHTML += line;
+    document.querySelector('.input-container').innerHTML += getInputLineHtml();
 }
 
 function onToggleSelected(ev, el) {
@@ -80,8 +73,7 @@ function onToggleSelected(ev, el) {
 }
 
 function onRemoveSelected() {
-    document.querySelectorAll('edit-line').forEach(line => {
-        console.log(line);
+    document.querySelectorAll('.edit-line').forEach(line => {
         line.classList.remove('selected');
     })
 }
@@ -97,3 +89,11 @@ function onRemoveLine(id) {
     let el = document.querySelector(`.edit-line.line-id-${id}`);
     el.remove();
 }
+
+function getInputLineHtml() {
+    return `<div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" draggable="true"
+                class="edit-line line-id-${gNextInputId} flex align-center" style="top: 155px; left: 155px">
+                <span class="actual-text" contenteditable="true">Enter text here</span>
+                <button onclick="onRemoveLine('${gNextInputId++}')" class="btn btn-delete">&times;</button>
+            </div>`;
+} 
