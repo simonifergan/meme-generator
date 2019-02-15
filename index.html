@@ -18,11 +18,13 @@
             <nav class="header-nav flex justify-content-center align-center">
                 <a href="#" class="nav-link">Portfolio</a>
                 <a href="#" class="nav-link">About</a>
-                <h1 class="logo">Ini-Meme-Mine-Mo</h1>
+                <a href="./" class="nav-link">
+                    <h1 class="logo">Ini-Meme-Mine-Mo</h1>
+                </a>
                 <a href="#" class="nav-link">Pressme</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </nav>
-    
+
         </header>
 
         <!-- Main Content -->
@@ -30,15 +32,20 @@
 
             <!-- Gallery Contaier -->
             <div id="gallery">
-                <div class="gallery-search">
-                    <label for="searchBar">Search:</label>
-                    <input oninput="onSearchInGallery(this.value)" id="searchBar" type="text" class="search-box" list="mostFrequentSearch">
+
+                <!-- Gallery Search Bar -->
+                <div class="gallery-search flex justify-content-center align-center">
+                    <label for="searchBar">Search:&nbsp;</label>
+                    <input autofocus oninput="onSearchInGallery(this.value)" id="searchBar" type="text" class="search-box"
+                        list="mostFrequentSearch">
                     <datalist id="mostFrequentSearch">
                         <!-- generate options search options here -->
                         <option value="Pukimonster">
+                        <option value="Zahav">
+                        <option value="Banana">
                     </datalist>
                 </div>
-                
+
                 <div class="gallery-container grid">
                     <!-- generate gallery here -->
                 </div>
@@ -46,13 +53,14 @@
 
             <!-- App Container -->
             <div id="app" class="flex justify-content-center align-center" style="display: none;">
+                <button onclick="onShowGallery()" class="btn btn-home">Back to Gallery</button>
 
                 <!-- Editor Menu -->
                 <aside class="editor-menu flex column justify-content-center align-center">
-                    <button onclick="onShowGallery()" class="btn btn-home">Back to Gallery</button>
                     <button onclick="onAddLine()" class="btn btn-add-line">Add Text</button>
                     <label for="fontSlider">Font Size: <span class="span-font-slider">32px</span></label>
-                    <input onchange="onChangeFontForSelected(this.value)" type="range" id="fontSlider" min="16" max="64" value="32">
+                    <input onchange="onChangeFontForSelected(this.value)" type="range" id="fontSlider" min="16" max="64"
+                        value="32">
                     <a download="my-meme.jpg" onclick="onExportImg(event)" class="btn btn-export-img">
                         Export
                     </a>
@@ -66,13 +74,15 @@
                     </canvas>
 
                     <div class="input-container">
-                        <div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" draggable="true"
-                            class="edit-line line-id-1 flex align-center" style="top: 155px; left: 155px">
+                        <div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)"
+                            draggable="true" class="edit-line line-id-1 flex align-center"
+                            style="top: 155px; left: 155px">
                             <span class="actual-text" contenteditable="true">Enter text here</span>
                             <button onclick="onRemoveLine(1)" class="btn btn-delete">&times;</button>
                         </div>
-                        <div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" draggable="true"
-                            class="edit-line line-id-2 flex align-center" style="top: 240px; left: 155px">
+                        <div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)"
+                            draggable="true" class="edit-line line-id-2 flex align-center"
+                            style="top: 240px; left: 155px">
                             <span class="actual-text" contenteditable="true">Enter text here</span>
                             <button onclick="onRemoveLine(2)" class="btn btn-delete">&times;</button>
                         </div>

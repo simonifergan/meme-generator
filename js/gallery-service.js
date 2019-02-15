@@ -8,7 +8,13 @@ function createGallery() {
     let imgs = [];
     for (let i = 0; i < 9; i++) {
         let src = `./img/${i}.jpg`;
-        let keywords = ['Pukimonster'];
+        let keywords = ['Pukimonster', 'Lichmit', 'Banana'];
+        let img = createItem(src, keywords)
+        imgs.push(img);
+    }
+    for (let i = 0; i < 9; i++) {
+        let src = `./img/${i}.jpg`;
+        let keywords = ['Abadi', 'Chalumi', 'Zahav'];
         let img = createItem(src, keywords)
         imgs.push(img);
     }
@@ -24,7 +30,7 @@ function createItem(src = './img/error.png', keywords = []) {
     }
 }
 
-function getGallryToDisplay() {
+function getGalleryToDisplay() {
     return gGallery.slice();
 }
 

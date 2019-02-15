@@ -94,10 +94,21 @@ main {
 
 #searchBar {
     cursor: text;
+    width: 300px;
+    height: 2rem;
+    border-radius: 3px;
+    border: 1px solid #222f3e;
+    outline: none;
+}
+
+#searchBar:focus {
+    border: 1px solid #54a0ff;
 }
 
 .gallery-container {
-    grid-template-columns: repeat(6, 180px);
+    grid-template-columns: repeat(12, 90px);
+    grid-auto-rows: 180px;
+    margin: 30px 0;
 }
 
 .gallery-item {
@@ -114,7 +125,8 @@ main {
     height: 205px;
     width: 180px;
 }
-  .hexagon-before {
+
+.hexagon-before {
     position: absolute;
     content: '';
     background-size: cover;
@@ -122,19 +134,17 @@ main {
     left: 4px;  /* border width */
     height: calc(100% - 8px);  /* 100% - (2 * border width) */
     width: calc(100% - 8px);  /* 100% - (2 * border width) */
-    
 }
 
-  .hexagon, .hexagon-before {
+.hexagon, .hexagon-before {
     -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    
 }
 
-.gallery-item:first-child, .gallery-item:nth-child(9n) {
+.gallery-item:first-child, .gallery-item:nth-child(19n) {
     grid-column-start: 2;
 }
-.gallery-item:nth-child(5n) {
+.gallery-item:nth-child(9n) {
     grid-column-start: 1;
 }
 

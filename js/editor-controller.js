@@ -7,10 +7,6 @@ var gImg;
 var gNextInputId;
 
 
-
-
-
-
 function initEditor(imgId) {
     gNextInputId = 3;
 
@@ -19,15 +15,10 @@ function initEditor(imgId) {
     gCtx = gCanvas.getContext('2d');
     let { src } = getItemById(imgId);
     gImg = new Image();
-    setCanvasSize();
-    let canvasContainer = document.querySelector('.canvas-container');
-    canvasContainer.style.width = gCanvas.width + 'px';
-    canvasContainer.style.height = gCanvas.height + 'px';
     setImgSrc(src);
+    setCanvasSize();
+ 
 }
-
-
-
 
 // Load image and draw it functions
 // Todo: Modal that says: wait until image loads.
@@ -36,22 +27,16 @@ function setImgSrc(src) {
     gImg.src = src;
 };
 
-function drawImg() {
-    gCtx.drawImage(gImg, 0, 0, gCanvas.width, gCanvas.height);
-};
 
 
 // Render divs to canvas and export it as img (jpg)
-
 function onExportImg(ev) {
     renderContentToCanvas()
     let imgData = gCanvas.toDataURL();
     ev.target.href = `${imgData}`;
 }
 
-
-
-
+// Switch back from gallery to editor
 function onShowGallery() {
     document.querySelector('#app').style.display = 'none';
     document.querySelector('#gallery').hidden = false;
@@ -60,10 +45,12 @@ function onShowGallery() {
     })
 }
 
+// Add line to editor
 function onAddLine() {
     document.querySelector('.input-container').innerHTML += getInputLineHtml();
 }
 
+// Toggle box if is selected on dblclick
 function onToggleSelected(ev, el) {
     if (ev.ctrlKey) el.classList.toggle('selected');
     else {
@@ -78,6 +65,7 @@ function onRemoveSelected() {
     })
 }
 
+// Changes the font for all the selected boxes
 function onChangeFontForSelected(val) {
     document.querySelector('.span-font-slider').innerText = val + 'px';
     document.querySelectorAll('.edit-line.selected').forEach(line => {
@@ -85,11 +73,13 @@ function onChangeFontForSelected(val) {
     });
 }
 
+// Removes target line
 function onRemoveLine(id) {
     let el = document.querySelector(`.edit-line.line-id-${id}`);
     el.remove();
 }
 
+// A pattern for how each input line on the editor should look like
 function getInputLineHtml() {
     return `<div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" draggable="true"
                 class="edit-line line-id-${gNextInputId} flex align-center" style="top: 155px; left: 155px">

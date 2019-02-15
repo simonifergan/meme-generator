@@ -1,8 +1,19 @@
 function setCanvasSize() {
-
-
+    gCanvas.width = window.innerWidth * 0.5;
+    gCanvas.height = window.innerHeight * 0.8;
+    calculateAspectRatioFit(gCanvas.width, gCanvas.height)
+    let canvasContainer = document.querySelector('.canvas-container');
+    canvasContainer.style.width = gCanvas.width + 'px';
+    canvasContainer.style.height = gCanvas.height + 'px';
 }
 
+// Draw image to canvas
+function drawImg() {
+    gCtx.drawImage(gImg, 0, 0, gCanvas.width, gCanvas.height);
+};
+
+
+// Draw editor content to the canvas to prepare for export as an image file
 function renderContentToCanvas() {
     let containerRect = document.querySelector('.canvas-container').getBoundingClientRect();
     let elLine = document.querySelectorAll('.actual-text');
