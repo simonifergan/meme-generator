@@ -39,7 +39,7 @@
                     </datalist>
                 </div>
                 
-                <div class="gallery-container grid justify-items-center">
+                <div class="gallery-container grid">
                     <!-- generate gallery here -->
                 </div>
             </div>
@@ -65,7 +65,7 @@
                     </canvas>
 
                     <div class="input-container">
-                        <div onclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" draggable="true"
+                        <div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" draggable="true"
                             class="edit-line line-id-1 flex align-center" style="top: 155px; left: 155px">
                             <span class="actual-text" contenteditable="true">Enter text here</span>
                             <button onclick="onRemoveLine(1)" class="btn btn-delete">&times;</button>

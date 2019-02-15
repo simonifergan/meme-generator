@@ -11,7 +11,7 @@ function renderImageToCanvas() {
         drawText(txt, x, y, fontSize);
         line.style.display = 'none';
     });
-    document.querySelector('.input-container').innerHTML = `<div onclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" draggable="true"
+    document.querySelector('.input-container').innerHTML = `<div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" draggable="true"
                                                                 class="edit-line line-id-${gNextInputId} flex align-center" style="display: none; top: 155px; left: 155px">
                                                                 <span class="actual-text" contenteditable="true">Enter text here</span>
                                                                 <button onclick="onRemoveLine(${gNextInputId++})" class="btn btn-delete">&times;</button>

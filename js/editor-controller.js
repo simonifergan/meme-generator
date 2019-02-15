@@ -63,7 +63,7 @@ function onShowGallery() {
 }
 
 function onAddLine() {
-    let line = `<div onclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" draggable="true"
+    let line = `<div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" draggable="true"
                     class="edit-line line-id-${gNextInputId} flex align-center" style="top: 155px; left: 155px">
                     <span class="actual-text" contenteditable="true">Enter text here</span>
                     <button onclick="onRemoveLine('${gNextInputId++}')" class="btn btn-delete">&times;</button>

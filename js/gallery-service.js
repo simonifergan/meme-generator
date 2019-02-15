@@ -8,19 +8,19 @@ function createGallery() {
     let imgs = [];
     for (let i = 0; i < 9; i++) {
         let src = `./img/${i}.jpg`;
-        let keyTags = ['Pukimonster'];
-        let img = createItem(src, keyTags)
+        let keywords = ['Pukimonster'];
+        let img = createItem(src, keywords)
         imgs.push(img);
     }
 
     return imgs;
 }
 
-function createItem(src = './img/error.png', keyTags = []) {
+function createItem(src = './img/error.png', keywords = []) {
     return {
         id: generateId(),
         src: src,
-        keyTags: keyTags,
+        keywords: keywords,
     }
 }
 
