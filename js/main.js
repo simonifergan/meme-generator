@@ -1,8 +1,4 @@
 function init() {
-    initImgs();
+    initGallery();
     renderGallery();
-}
-
-function onDiv(ev){
-    console.log(ev);
 }

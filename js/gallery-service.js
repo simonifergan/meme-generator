@@ -1,6 +1,6 @@
 var gGallery;
 
-function initImgs() {
+function initGallery() {
     gGallery = createGallery();
 }
 

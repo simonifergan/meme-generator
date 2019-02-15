@@ -5,12 +5,13 @@ var gCanvas;
 var gCtx;
 var gImg;
 var gNextInputId;
+var gImgRatio;
 
 
 function initEditor(imgId) {
     gNextInputId = 3;
 
-    document.querySelector('#app').style.display = 'flex';
+    document.querySelector('#app').style.display = 'grid';
     gCanvas = document.querySelector('#appCanvas');
     gCtx = gCanvas.getContext('2d');
     let { src } = getItemById(imgId);
@@ -19,6 +20,21 @@ function initEditor(imgId) {
     setCanvasSize();
  
 }
+
+function setCanvasSize() {
+    gImgRatio = calcAspectRatio(gCanvas.width, gCanvas.height, gImg.width, gImg.height);
+    // gCanvas.width = window.innerWidth * gImgRatio;
+    // gCanvas.height = window.innerHeight / gImgRatio;
+    let canvasContainer = document.querySelector('.canvas-container');
+    canvasContainer.style.width = gCanvas.width * gImgRatio + 'px';
+    canvasContainer.style.height = gCanvas.height + 'px';
+}
+
+// Draw image to canvas
+function drawImg() {
+    gCtx.clearRect(0,0, gCanvas.width, gCanvas.height);
+    gCtx.drawImage(gImg, 0, 0, gCanvas.width * gImgRatio, gCanvas.height);
+};
 
 // Load image and draw it functions
 // Todo: Modal that says: wait until image loads.
@@ -38,7 +54,7 @@ function onExportImg(ev) {
 
 // Switch back from gallery to editor
 function onShowGallery() {
-    document.querySelector('#app').style.display = 'none';
+    document.querySelector('#app').style = "display: none;";
     document.querySelector('#gallery').hidden = false;
     document.querySelectorAll('.edit-line').forEach(line => {
         line.style.display = 'block';
@@ -81,7 +97,8 @@ function onRemoveLine(id) {
 
 // A pattern for how each input line on the editor should look like
 function getInputLineHtml() {
-    return `<div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" draggable="true"
+    return `<div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" draggable="true" 
+                onclick="event.stopPropagation();"
                 class="edit-line line-id-${gNextInputId} flex align-center" style="top: 155px; left: 155px">
                 <span class="actual-text" contenteditable="true">Enter text here</span>
                 <button onclick="onRemoveLine('${gNextInputId++}')" class="btn btn-delete">&times;</button>

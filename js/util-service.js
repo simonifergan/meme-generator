@@ -19,6 +19,8 @@ function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
     return { width: srcWidth*ratio, height: srcHeight*ratio };
  }
 
- function calcAspectRatio(width, height) {
-     return width / height;
+ function calcAspectRatio(srcWidth, srcHeight, maxWidth, maxHeight) {
+    
+    return Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
+
  }

@@ -1,16 +1,4 @@
-function setCanvasSize() {
-    gCanvas.width = window.innerWidth * 0.5;
-    gCanvas.height = window.innerHeight * 0.8;
-    calculateAspectRatioFit(gCanvas.width, gCanvas.height)
-    let canvasContainer = document.querySelector('.canvas-container');
-    canvasContainer.style.width = gCanvas.width + 'px';
-    canvasContainer.style.height = gCanvas.height + 'px';
-}
 
-// Draw image to canvas
-function drawImg() {
-    gCtx.drawImage(gImg, 0, 0, gCanvas.width, gCanvas.height);
-};
 
 
 // Draw editor content to the canvas to prepare for export as an image file
@@ -57,7 +45,7 @@ function onInitDragEl(el) {
     }
 
     function onDragEl(ev = window.event) {
-        ev.preventDefault();
+        // ev.preventDefault();
         // let elCanvasContainer = document.querySelector('.canvas-container');
         // if (ev.clientX <= elCanvasContainer.offsetLeft 
         //     || ev.clientX >= gCanvas.width + elCanvasContainer.offsetLeft  

@@ -52,8 +52,9 @@
             </div>
 
             <!-- App Container -->
-            <div id="app" class="flex justify-content-center align-center" style="display: none;">
-                <button onclick="onShowGallery()" class="btn btn-home">Back to Gallery</button>
+            <div id="app" class="grid" style="display: none">
+
+                <button onclick="onShowGallery()" class="btn btn-go-gallery">Back to Gallery</button>
 
                 <!-- Editor Menu -->
                 <aside class="editor-menu flex column justify-content-center align-center">
@@ -67,20 +68,20 @@
                 </aside>
 
                 <!-- canvas container -->
-                <div class="canvas-container">
+                <div class="canvas-container" onclick="onRemoveSelected()">
 
                     <canvas id="appCanvas" width="640" height="480">
                         You see this text because your browser does not support HTML5Canvas.
                     </canvas>
 
                     <div class="input-container">
-                        <div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)"
+                        <div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" onclick="event.stopPropagation();"
                             draggable="true" class="edit-line line-id-1 flex align-center"
                             style="top: 155px; left: 155px">
                             <span class="actual-text" contenteditable="true">Enter text here</span>
                             <button onclick="onRemoveLine(1)" class="btn btn-delete">&times;</button>
                         </div>
-                        <div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)"
+                        <div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" onclick="event.stopPropagation();"
                             draggable="true" class="edit-line line-id-2 flex align-center"
                             style="top: 240px; left: 155px">
                             <span class="actual-text" contenteditable="true">Enter text here</span>
