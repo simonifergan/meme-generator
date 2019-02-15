@@ -10,7 +10,6 @@ var gImgRatio;
 
 function initEditor(imgId) {
     gNextInputId = 3;
-
     document.querySelector('#app').style.display = 'grid';
     gCanvas = document.querySelector('#appCanvas');
     gCtx = gCanvas.getContext('2d');
@@ -18,7 +17,6 @@ function initEditor(imgId) {
     gImg = new Image();
     setImgSrc(src);
     setCanvasSize();
- 
 }
 
 function setCanvasSize() {

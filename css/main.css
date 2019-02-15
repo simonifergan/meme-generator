@@ -24,19 +24,30 @@ a:hover {
     color: red;
 }
 
+.btn {
+    cursor: pointer;
+    border: none;
+    padding: 5px;
+    margin: 5px 0;
+    background: none;
+    outline: none;
+}
+
+/* Page layout */
+
 .wrapper {
     max-width: 980px;
     margin: 0 auto;
 }
-/* Page layout */
 
 main {
     grid-template-areas: 
     "main-header"
     "main-content"
+    "appendix-content"
     "main-footer";
     grid-template-columns: 1fr;
-    grid-template-rows: 100px 1fr 100px;
+    grid-template-rows: 100px 1fr 40px 100px;
     grid-row-gap: 5px;
 }
 
@@ -74,21 +85,6 @@ main {
     grid-area: main-content;
     width: 100%;
 }
-
-/* Start Main-Footer */
-
-.main-footer {
-    grid-area: main-footer;
-    width: 100%;
-    background-color: #2d3436;
-}
-
-.contact-container {
-    background-color: #636e72;
-    width: 100%;
-}
-
-/* End Main-Footer */
 
 /* Start of Gallery */
 
@@ -174,7 +170,6 @@ main {
     font-size: 1.25rem;
 }
 
-
 .canvas-container {
     grid-area: canvas-container;
     position: relative;
@@ -187,6 +182,8 @@ main {
     top: 0;
     left: 0;
 }
+
+    /* Editor */
 
 .editor-menu {
     grid-area: editor-menu;
@@ -222,6 +219,7 @@ main {
 
 .actual-text:focus {
     border: 3px dotted black;
+    cursor: text;
 }
 .edit-line.selected {
     border: 3px dashed #0fbcf9;
@@ -230,13 +228,46 @@ main {
 .edit-line.selected .btn-delete {
     visibility: visible;
 }
+
+.btn-add-line {
+    background-color: #8395a7;
+    border-radius: 2px;
+    border-bottom: 1px solid #c8d6e5;
+    transition: background-color .3s;
+}
+
+.btn-add-line:hover {
+    background-color: #c8d6e5;
+    border-bottom: 1px solid #8395a7;
+}
+
+.btn-add-line:active {
+    box-shadow: inset 0px 1px 4px 0px black;
+}
 /* End of App CSS */
 
-/* Buttons */
+/* Start of appendix section */
 
-.btn {
-    cursor: pointer;
-    border: none;
-    padding: 5px;
-    margin: 5px 0;
+section.appendix-container {
+    grid-area: appendix-content;
+    width: 100%;
 }
+
+#about {
+    background-color: #1dd1a1;
+}
+
+#contact {
+    background-color: #636e72;
+}
+
+/* Start Main-Footer */
+
+.main-footer {
+    grid-area: main-footer;
+    width: 100%;
+    background-color: #2d3436;
+}
+
+
+/* End Main-Footer */
