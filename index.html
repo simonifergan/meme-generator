@@ -49,6 +49,11 @@
                 <div class="gallery-container grid">
                     <!-- generate gallery here -->
                 </div>
+
+                <div class="select-page-container flex justify-content-center align-center">
+                    <!-- Render pages button -->
+                </div>
+
             </div>
 
             <!-- App Container -->
@@ -68,28 +73,28 @@
                 </aside>
 
                 <!-- canvas container -->
-                <div class="canvas-container" onclick="onRemoveSelected()">
-
-                    <canvas id="appCanvas" width="640" height="480">
-                        You see this text because your browser does not support HTML5Canvas.
-                    </canvas>
-
+                <div class="canvas-container flex" onclick="onRemoveSelected()">
+                    <img class="canvas-image"/>
+                    
                     <div class="input-container">
                         <div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" onclick="event.stopPropagation();"
-                            draggable="true" class="edit-line line-id-1 flex align-center"
-                            style="top: 155px; left: 155px">
-                            <span class="actual-text" contenteditable="true">Enter text here</span>
-                            <button onclick="onRemoveLine(1)" class="btn btn-delete">&times;</button>
-                        </div>
-                        <div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" onclick="event.stopPropagation();"
-                            draggable="true" class="edit-line line-id-2 flex align-center"
-                            style="top: 240px; left: 155px">
-                            <span class="actual-text" contenteditable="true">Enter text here</span>
-                            <button onclick="onRemoveLine(2)" class="btn btn-delete">&times;</button>
-                        </div>
-                        <!-- Generate more input boxes here -->
+                        draggable="true" class="edit-line line-id-1 flex align-center"
+                        style="top: 155px; left: 155px">
+                        <span class="actual-text" contenteditable="true">Enter text here</span>
+                        <button onclick="onRemoveLine(1)" class="btn btn-delete">&times;</button>
                     </div>
+                    <div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" onclick="event.stopPropagation();"
+                    draggable="true" class="edit-line line-id-2 flex align-center"
+                    style="top: 240px; left: 155px">
+                    <span class="actual-text" contenteditable="true">Enter text here</span>
+                    <button onclick="onRemoveLine(2)" class="btn btn-delete">&times;</button>
                 </div>
+                <!-- Generate more input boxes here -->
+            </div>
+            <canvas id="appCanvas">
+                You see this text because your browser does not support HTML5Canvas.
+            </canvas>
+        </div>
             </div>
 
         </div>
@@ -113,7 +118,7 @@
     </main>
 
     <script src="js/util-service.js"></script>
-    <script src="js/gallery-service.js"></script>
+    <script src="js/image-service.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/canvas-controller.js"></script>
     <script src="js/editor-controller.js"></script>

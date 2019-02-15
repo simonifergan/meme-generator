@@ -1,4 +1,4 @@
 function init() {
+    initImages();
     initGallery();
-    renderGallery();
 }

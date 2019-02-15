@@ -102,21 +102,21 @@ main {
 }
 
 .gallery-container {
-    grid-template-columns: repeat(12, 90px);
+    grid-template-columns: repeat(5, 90px);
     grid-auto-rows: 180px;
     margin: 30px 0;
 }
 
-.gallery-item {
-    cursor: pointer;
-    transition: background-color .3s;
+/* .gallery-item:first-child, .gallery-item:nth-child(19n) {
+    grid-column-start: 2;
 }
-
-.gallery-item:hover {
-    background-color: #2eb398;
-}
+.gallery-item:nth-child(5n) {
+    grid-column-start: 1;
+} */
 
 .hexagon {
+    cursor: pointer;
+    transition: background-color .3s;
     position: relative;
     height: 205px;
     width: 180px;
@@ -126,6 +126,7 @@ main {
     position: absolute;
     content: '';
     background-size: cover;
+    background-position: center;
     top: 4px;  /* border width */
     left: 4px;  /* border width */
     height: calc(100% - 8px);  /* 100% - (2 * border width) */
@@ -137,11 +138,27 @@ main {
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 
-.gallery-item:first-child, .gallery-item:nth-child(19n) {
-    grid-column-start: 2;
+.hexagon:hover {
+    background-color: #2eb398;
 }
-.gallery-item:nth-child(9n) {
-    grid-column-start: 1;
+
+
+@media (min-width: 750px) {
+    .gallery-container {
+        grid-template-columns: repeat(12, 90px);
+        grid-auto-rows: 180px;
+        margin: 30px 0;
+    }
+    
+    .gallery-item:first-child, .gallery-item:nth-child(18n) {
+        grid-column-start: 2;
+    }
+    .gallery-item:nth-child(9n) {
+        grid-column-start: 1;
+    }
+}
+@media (min-width: 980px) {
+
 }
 
 /* End of Gallery */
@@ -174,13 +191,18 @@ main {
     grid-area: canvas-container;
     position: relative;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    border: 1 px solid #636e72;
+    width: 100%;
+}
+.canvas-container img {
+    width: 100%;
+    height: auto;
 }
 
 #appCanvas {
-    position: relative;
-    top: 0;
-    left: 0;
+    position: fixed;
+    z-index: -1;
+    left: 10000000000000px;
+    top: 100000000000000px;
 }
 
     /* Editor */
@@ -190,6 +212,10 @@ main {
     background-color: #636e72;
     border-radius: 5px;
     order: 1;
+}
+
+.input-container {
+    position: relative;
 }
 
 .edit-line {

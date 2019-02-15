@@ -15,7 +15,7 @@ function renderContentToCanvas() {
         drawText(txt, x, y, fontSize);
         line.remove();
     });
-    document.querySelector('.input-container').innerHTML = getInputLineHtml();
+    document.querySelector('.input-container').innerHTML += getInputLineHtml();
     document.querySelector(`.edit-line`).style.display = 'none';
 }
 

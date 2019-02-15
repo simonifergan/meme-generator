@@ -3,9 +3,9 @@
 // Globals
 var gCanvas;
 var gCtx;
-var gImg;
+var gSelectedImg;
 var gNextInputId;
-var gImgRatio;
+
 
 
 function initEditor(imgId) {
@@ -13,38 +13,49 @@ function initEditor(imgId) {
     document.querySelector('#app').style.display = 'grid';
     gCanvas = document.querySelector('#appCanvas');
     gCtx = gCanvas.getContext('2d');
-    let { src } = getItemById(imgId);
-    gImg = new Image();
+    let { src } = getImageById(imgId);
+    gSelectedImg = new Image();
+    
     setImgSrc(src);
-    setCanvasSize();
-}
 
-function setCanvasSize() {
-    gImgRatio = calcAspectRatio(gCanvas.width, gCanvas.height, gImg.width, gImg.height);
-    // gCanvas.width = window.innerWidth * gImgRatio;
-    // gCanvas.height = window.innerHeight / gImgRatio;
-    let canvasContainer = document.querySelector('.canvas-container');
-    canvasContainer.style.width = gCanvas.width * gImgRatio + 'px';
-    canvasContainer.style.height = gCanvas.height + 'px';
 }
-
-// Draw image to canvas
-function drawImg() {
-    gCtx.clearRect(0,0, gCanvas.width, gCanvas.height);
-    gCtx.drawImage(gImg, 0, 0, gCanvas.width * gImgRatio, gCanvas.height);
-};
 
 // Load image and draw it functions
 // Todo: Modal that says: wait until image loads.
 function setImgSrc(src) {
-    gImg.onload = drawImg;
-    gImg.src = src;
+    gSelectedImg.onload = onImgLoad;
+    gSelectedImg.src = src;
 };
+
+function onImgLoad() {
+    document.querySelector('.canvas-image').src = gSelectedImg.src;
+    // setCanvasSize();
+    // drawImg();
+}
+
+function setCanvasSize() {
+    let elCanvasContainer = document.querySelector('.canvas-container');
+    let aspectRatio = gSelectedImg.height / gSelectedImg.width;
+    gCanvas.width = elCanvasContainer.offsetWidth;
+    gCanvas.height = elCanvasContainer.offsetHeight;
+}
+
+// Draw image to canvas
+function drawImg() {
+    let aspectRatio = gSelectedImg.height / gSelectedImg.width;
+    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+    gCtx.drawImage(gSelectedImg, 0, 0, gCanvas.width, gCanvas.height);
+};
+
 
 
 
 // Render divs to canvas and export it as img (jpg)
 function onExportImg(ev) {
+    let elCanvasContainer = document.querySelector('.canvas-container');
+    gCanvas.width = elCanvasContainer.offsetWidth;
+    gCanvas.height = elCanvasContainer.offsetHeight;
+    gCtx.drawImage(gSelectedImg, 0, 0, gCanvas.width, gCanvas.height);
     renderContentToCanvas()
     let imgData = gCanvas.toDataURL();
     ev.target.href = `${imgData}`;
