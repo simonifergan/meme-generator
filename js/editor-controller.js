@@ -205,7 +205,7 @@ function onTextMove(dir) {
     gSelectedText.y += yDistance;
     gPrevTextColor = gSelectedText.color;
     gSelectedText.color = '#ee5253';
-    setTimeout((txt, color)=> {txt.color = color;}, 300,gSelectedText, gPrevTextColor);
+    setTimeout((txt, color)=> {txt.color = color;}, 150,gSelectedText, gPrevTextColor);
 }
 
 function onChangeFontSize(fontSize) {
@@ -225,7 +225,7 @@ function onSelectText(ev) {
     let mouseY = parseInt(ev.clientY - offsetY);
 
     gSelectedText = getTextByLocation(mouseX, mouseY);
-    if (gSelectedText) gSelectedText.color = '#0abde3';
+    selectText();
     selectTextForEdit();
 }
 
@@ -237,7 +237,7 @@ function selectTextForEdit() {
     }
     else {
         elInput.value = 'Click on text to edit.'
-        getTextsToDisplay().forEach(txt => {txt.color = '#fff'});
+        deselectAllTexts();
     }
 
 
@@ -246,15 +246,25 @@ function selectTextForEdit() {
 // On input change - update text
 function onChangeText(val) {
     if (!gSelectedText) return;
+    deselectAllTexts();
     gSelectedText.txt = val;
+    gSelectedText.color
     renderTexts();
 }
 function onExportImg(ev) {
     // Make sure all text is white regardless of selected or moved/dragged
-    getTextsToDisplay().forEach(txt => {txt.color = '#fff';});
-    drawToCanvas();
+    deselectAllTexts();
     let imgData = gCanvas.toDataURL();
     ev.target.href = `${imgData}`;
+}
+
+function selectText() {
+    if (gSelectText) gSelectedText.color = '#0abde3';
+}
+
+function deselectAllTexts() {
+    getTextsToDisplay().forEach(txt => {txt.color = '#fff';});
+    drawToCanvas();
 }
 
 

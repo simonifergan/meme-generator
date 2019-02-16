@@ -292,15 +292,23 @@ main {
 .btn-go-gallery {
     grid-area: btn-back;
     position: relative;
+    color: #e3e3e3;
+    font-size: 1.25rem;
     background-color: #10ac84;
+    transition: all .3s;
 }
 
-.btn-go-gallery::after {
+
+.btn-go-gallery::before {
     content: "⇦";
     position: absolute;
     left: 0.3125rem;
     top: 0.03125rem;
     font-size: 1.25rem;
+}
+.btn-go-gallery:hover {
+    background-color: #feca57;
+    color: #333;
 }
 
 .canvas-container {
@@ -330,7 +338,7 @@ main {
 
 .editor-menu {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-columns: 1fr .5fr 1fr; 
     grid-column-gap: 5px;
     justify-items: center;
     margin-bottom: 20px;
@@ -403,6 +411,14 @@ main {
 }
 .editor-menu .btn:hover {
     color: black;
+}
+.btn-change-text {
+    background-color: #222f3e;
+    transition: all .3s;
+}
+.btn-change-text:hover,.btn-change-text:active {
+    background-color: #8395a7;
+    color: white;
 }
 .btn-add-line {
     font-size: 1.25rem;
@@ -525,7 +541,7 @@ section.appendix-container {
     .profile-title {
         margin-bottom: 20px;
         font-size: 1.125rem;
-        color: #10ac84;
+        color: #0e795e;
     }
     .profile-text {
         color: #d7fcf5;
