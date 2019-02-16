@@ -51,6 +51,7 @@ main {
     "main-footer";
     grid-template-columns: 1fr;
     grid-template-rows: 100px 1fr auto 100px;
+    overflow: hidden;
 }
 
 /* Start Main-Header */
@@ -452,6 +453,7 @@ section.appendix-container {
     /* About article */
     
     #about {
+        border-top: 2px solid #576574;
         padding: 70px 0;
         background-color: #1dd1a1;
         font-family: Lato, sans-serif;
@@ -462,6 +464,7 @@ section.appendix-container {
     .profile-image.hexagon {
         max-height: 205px;
         max-width: 180px;
+        flex-grow: 1;
     }
     .profile-image .hexagon-before {
         background-image: url('../img/about/profilepicture.jpg');
