@@ -7,7 +7,7 @@ function initMeme(imgId) {
         txts: [],
     }
     gMeme.selectedImg.src = getImageById(imgId).src;
-    initCanvas();
+    gMeme.selectedImg.onload = initCanvas;
 }
 
 
@@ -19,6 +19,7 @@ function addText(x = parseInt(gCanvas.width / 2), y = parseInt(gCanvas.height / 
         y: y,
         color: '#fff',
         fontSize: 30,
+        isSelected: true,
     });
     console.log(gMeme);
 }
@@ -27,10 +28,11 @@ function addText(x = parseInt(gCanvas.width / 2), y = parseInt(gCanvas.height / 
 function getTextByLocation(x, y) {
     return gMeme.txts.find(txt => {
         console.log(txt.x, txt.y);
-        let txtWidth = txt.x + (txt.txt.length + txt.fontSize);
+        let txtWidth = txt.x + gCtx.measureText(txt.txt).width;
         let txtHeight = txt.y - txt.fontSize;
+        console.log(x, txt.x, x, txtWidth, y, txt.y, y, txtHeight)
         console.log(x >= txt.x, x <= txtWidth, y >= txt.y, y <= txtHeight)
-        return x >= txt.x && x <= txtWidth && y >= txt.y && y <= txtHeight;
+        return x >= txt.x && x <= txtWidth && y <= txt.y && y >= txtHeight;
     });
 }
 // return (x >= text.x && x <= text.x + text.width && y >= text.y - text.height && y <= text.y);

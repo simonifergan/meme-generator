@@ -1,13 +1,22 @@
+// Global Variables
+
+// To render canvas
 var gCanvas;
 var gCurrImg;
 var gCtx;
 var gSelectedImg;
 
+
 // For dragging text
 var gCurrText;
-var gStartX;
-var gStartY;
+var gMouseX;
+var gMouseY;
 
+// Current selected text
+var gSelectedText;
+
+
+// Editor Functions
 function initCanvas() {
     document.querySelector('#app').style.display = 'grid';
     gCanvas = document.getElementById("appCanvas");
@@ -20,10 +29,13 @@ function initCanvas() {
 }
 
 function resizeCanvas() {
-    let elCanvasContainer = document.querySelector(".canvas-container")
-    // let aspect = gCanvas.height / gCanvas.width;
-    gCanvas.width = elCanvasContainer.offsetWidth;
-    gCanvas.height = elCanvasContainer.offsetHeight;
+    let elCanvasContainer = document.querySelector(".canvas-container");
+    // gCanvas.width = elCanvasContainer.offsetWidth;
+    // gCanvas.height = elCanvasContainer.offsetHeight;
+    var aspectRatio = gSelectedImg.width / gSelectedImg.height;
+    gCanvas.width = elCanvasContainer.clientWidth;
+    gCanvas.height = gCanvas.width / aspectRatio;
+    elCanvasContainer.height = gCanvas.height;
 }
 
 
@@ -34,6 +46,11 @@ function drawImage() {
 
 function drawText() {
     gMeme.txts.forEach(txt => {
+        if (txt.isSelected) {
+            let txtWidth = txt.x + gCtx.measureText(txt.txt).width;
+            let txtHeight = txt.y - txt.fontSize;
+            // gCtx. 
+        }
         gCtx.font = `${txt.fontSize}px Impact`;
         gCtx.strokeStyle = '#000';
         gCtx.lineWidth = Math.floor(txt.fontSize / 10);
@@ -59,13 +76,13 @@ function onStartDrag(ev) {
     let offsetX = gCanvas.offsetLeft;
     let offsetY = gCanvas.offsetTop;
 
-    console.log('Canvas offsent', offsetX, offsetY);
-    console.log('client pos', ev.clientX, ev.clientY);
-    gStartX = parseInt(ev.clientX - offsetX);
-    gStartY = parseInt(ev.clientY - offsetY);
-    console.log('calculation of exactly where on canvas', gStartX, gStartY);
+    // console.log('Canvas offsent', offsetX, offsetY);
+    // console.log('client pos', ev.clientX, ev.clientY);
+    gMouseX = parseInt(ev.clientX - offsetX);
+    gMouseY = parseInt(ev.clientY - offsetY);
+    // console.log('calculation of exactly where on canvas', gMouseX, gMouseY);
     // console.log('I AM CLICKING HERE', x, y);
-    gCurrText = getTextByLocation(gStartX, gStartY);
+    gCurrText = getTextByLocation(gMouseX, gMouseY);
     console.log(ev);
     console.log('FOUND YOU', gCurrText);
 }
@@ -74,20 +91,20 @@ function onDragText(ev) {
     if (!gCurrText) {
         return;
     }
+    ev.stopPropagation();
     ev.preventDefault();
     let offsetX = gCanvas.offsetLeft;
     let offsetY = gCanvas.offsetTop;
     let mouseX = parseInt(ev.clientX - offsetX);
     let mouseY = parseInt(ev.clientY - offsetY);
 
-    // Put your mousemove stuff here
-    var distanceX = mouseX - gStartX;
-    var distanceY = mouseY - gStartY;
-    gStartX = mouseX;
-    gStartY = mouseY;
+    var dragDistanceX = mouseX - gMouseX;
+    var dragDistanceY = mouseY - gMouseY;
+    gMouseX = mouseX;
+    gMouseY = mouseY;
 
-    gCurrText.x += distanceX;
-    gCurrText.y += distanceY;
+    gCurrText.x += dragDistanceX;
+    gCurrText.y += dragDistanceY;
 }
 
 function onStopDrag(ev) {
@@ -121,17 +138,18 @@ function onChangeFontForSelected(ev, fontSize) {
 }
 
 function onSelectText(ev) {
+    let offsetX = gCanvas.offsetLeft;
+    let offsetY = gCanvas.offsetTop;
 
+    let mouseX = parseInt(ev.clientX - offsetX);
+    let mouseY  = parseInt(ev.clientY - offsetY);
+
+    gCurrText = getTextByLocation(mouseX, mouseY);
+    if (gCurrText.isSelected) gCurrText.isSelected = true;
+    else if (gCurrText) gCurrText.isSelected = false;
 }
 
 function onExportImg(ev) {
-    // let elCanvasContainer = document.querySelector('.canvas-container');
-    // gCanvas.width = elCanvasContainer.offsetWidth;
-    // gCanvas.height = elCanvasContainer.offsetHeight;
-    // gCtx.fillStyle = '#000';
-    // gCtx.rect(0,0, gCanvas.width, gCanvas.height)
-    // gCtx.drawImage(gSelectedImg, 0, 0, gCanvas.width, gCanvas.height);
-    // renderContentToCanvas()
     let imgData = gCanvas.toDataURL();
     ev.target.href = `${imgData}`;
 }
@@ -140,7 +158,4 @@ function onExportImg(ev) {
 function onShowGallery() {
     document.querySelector('#app').style = "display: none;";
     document.querySelector('#gallery').hidden = false;
-    // document.querySelectorAll('.edit-line').forEach(line => {
-    //     line.style.display = 'block';
-    // })
 }
