@@ -228,6 +228,7 @@ function onShowGallery() {
     gIsEditing = false;
     document.querySelector('#app').style = "display: none;";
     document.querySelector('#gallery').hidden = false;
+    document.querySelector('#appendix').hidden = false;
 }
 
 function onChangeText(val) {

@@ -19,7 +19,7 @@ function addText(x = parseInt(gCanvas.width / 2), y = parseInt(gCanvas.height / 
         x: x - gCtx.measureText('Enter Text Here').width,
         y: y,
         color: '#fff',
-        fontSize: 30,
+        fontSize: 20,
         isSelected: true,
     });
 

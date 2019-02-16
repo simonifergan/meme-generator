@@ -39,6 +39,7 @@ function onChangePage(pageNum) {
 
 function onStartEditor(imgId) {
     document.querySelector('#gallery').hidden = true;
+    document.querySelector('#appendix').hidden = true;
     initMeme(imgId);
 
 }
