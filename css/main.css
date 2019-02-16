@@ -95,24 +95,14 @@ main {
     border-radius: 3px;
     border: 1px solid #222f3e;
     outline: none;
+    padding-left: 5px;
 }
 
 #searchBar:focus {
     border: 1px solid #54a0ff;
 }
 
-.gallery-container {
-    grid-template-columns: repeat(5, 90px);
-    grid-auto-rows: 180px;
-    margin: 30px 0;
-}
 
-/* .gallery-item:first-child, .gallery-item:nth-child(19n) {
-    grid-column-start: 2;
-}
-.gallery-item:nth-child(5n) {
-    grid-column-start: 1;
-} */
 
 .hexagon {
     cursor: pointer;
@@ -142,7 +132,20 @@ main {
     background-color: #2eb398;
 }
 
-
+@media (max-width: 750px) {
+    .gallery-container {
+        grid-template-columns: repeat(5, 90px);
+        grid-auto-rows: 180px;
+        margin: 30px 0;
+    }
+    
+    .gallery-item:first-child {
+        grid-column-start: 1;
+    }
+    .gallery-item:nth-child(5n), .gallery-item:nth-child(13n) {
+        grid-column-start: 2;
+    }
+}
 @media (min-width: 750px) {
     .gallery-container {
         grid-template-columns: repeat(12, 90px);
@@ -191,11 +194,10 @@ main {
     grid-area: canvas-container;
     position: relative;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    width: 100%;
 }
 .canvas-container img {
     width: 100%;
-    height: auto;
+    object-fit: contain;
 }
 
 #appCanvas {
@@ -214,9 +216,7 @@ main {
     order: 1;
 }
 
-.input-container {
-    position: relative;
-}
+
 
 .edit-line {
     cursor: pointer;

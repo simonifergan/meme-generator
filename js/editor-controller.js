@@ -33,19 +33,19 @@ function onImgLoad() {
     // drawImg();
 }
 
-function setCanvasSize() {
-    let elCanvasContainer = document.querySelector('.canvas-container');
-    let aspectRatio = gSelectedImg.height / gSelectedImg.width;
-    gCanvas.width = elCanvasContainer.offsetWidth;
-    gCanvas.height = elCanvasContainer.offsetHeight;
-}
+// function setCanvasSize() {
+//     let elCanvasContainer = document.querySelector('.canvas-container');
+//     let aspectRatio = gSelectedImg.height / gSelectedImg.width;
+//     gCanvas.width = elCanvasContainer.offsetWidth;
+//     gCanvas.height = elCanvasContainer.offsetHeight;
+// }
 
-// Draw image to canvas
-function drawImg() {
-    let aspectRatio = gSelectedImg.height / gSelectedImg.width;
-    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
-    gCtx.drawImage(gSelectedImg, 0, 0, gCanvas.width, gCanvas.height);
-};
+// // Draw image to canvas
+// function drawImg() {
+//     let aspectRatio = gSelectedImg.height / gSelectedImg.width;
+//     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+//     gCtx.drawImage(gSelectedImg, 0, 0, gCanvas.width, gCanvas.height);
+// };
 
 
 
@@ -55,6 +55,8 @@ function onExportImg(ev) {
     let elCanvasContainer = document.querySelector('.canvas-container');
     gCanvas.width = elCanvasContainer.offsetWidth;
     gCanvas.height = elCanvasContainer.offsetHeight;
+    gCtx.fillStyle = '#000';
+    gCtx.rect(0,0, gCanvas.width, gCanvas.height)
     gCtx.drawImage(gSelectedImg, 0, 0, gCanvas.width, gCanvas.height);
     renderContentToCanvas()
     let imgData = gCanvas.toDataURL();
