@@ -209,6 +209,10 @@ main {
     order: 1;
 }
 
+.editor-menu > label {
+    color: white;
+}
+
 
 #currTextInput {
     cursor: text;
@@ -223,7 +227,6 @@ main {
 #currTextInput:focus {
     border: 1px solid #54a0ff;
 }
-
 
 
 /* Buttons FOR EDITOR */

@@ -16,7 +16,7 @@ function addText(x = parseInt(gCanvas.width / 2), y = parseInt(gCanvas.height / 
     gMeme.txts.push({
         id: generateId(),
         txt: 'Enter Text Here',
-        x: x,
+        x: x - gCtx.measureText('Enter Text Here').width,
         y: y,
         color: '#fff',
         fontSize: 30,
@@ -25,6 +25,11 @@ function addText(x = parseInt(gCanvas.width / 2), y = parseInt(gCanvas.height / 
 
     // // save meme to SESSION storage only on ADDTEXT
     // setToStorage(MEME_KEY, gMeme, true);
+}
+
+function deleteText(id) {
+    let idx = gMeme.txts.findIndex(txt => txt.id === id);
+    if (idx !== -1) gMeme.txts.splice(idx, 1);
 }
 
 

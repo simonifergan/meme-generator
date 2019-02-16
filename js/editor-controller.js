@@ -96,14 +96,18 @@ function renderTexts() {
         strHTMLS.push(`<option value=""> -- No texts were created -- </option>`);
     } else {
         strHTMLS.push(`<option value=""> -- Select Text From Below -- </option>`);
-        strHTMLS.push(...texts.map(txt => {
-            return `<option value="${txt.id}">${txt.txt}</option>`;
+        strHTMLS.push(...texts.map((txt, idx) => {
+            return `<option value="${txt.id}">${idx + 1}. ${txt.txt}</option>`;
         }));
     }
 
     elSelect.innerHTML = strHTMLS.join('');
 }
 
+function onChangeSelectedText(id) {
+    gSelectedText = getTextById(id);
+    selectTextForEdit();
+}
 // END OF SELECT BOX ------------ //
 
 function onAddText() {
@@ -111,6 +115,14 @@ function onAddText() {
     renderTexts();
 }
 
+function onDeleteText() {
+    if (!gSelectedText) return;
+    deleteText(gSelectedText.id);
+    onChangeSelectedText('');
+    renderTexts();
+}
+
+// Mouse events
 function onStartDrag(ev) {
     ev.preventDefault();
     let offsetX = gCanvas.offsetLeft;
@@ -120,7 +132,6 @@ function onStartDrag(ev) {
     gMouseY = parseInt(ev.clientY - offsetY);
 
     gDragText = getTextByLocation(gMouseX, gMouseY);
-
 }
 
 function onDragText(ev) {
@@ -165,6 +176,16 @@ function onTextMove(dir) {
             xDistance += 10;
             break;
     }
+
+    // Check borders pre-assignment
+    let newX = gSelectedText.x + xDistance;
+    let newY = gSelectedText.y + yDistance;
+    if (newX <= 0 ||
+        newX + gCtx.measureText(gSelectedText.txt).width >= gCanvas.width || 
+        newY - gSelectedText.fontSize <= 0 
+        || newY >= gCanvas.height) return;
+
+    // Assign new location
     gSelectedText.x += xDistance;
     gSelectedText.y += yDistance;
 }

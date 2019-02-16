@@ -64,8 +64,9 @@
                 <!-- Editor Menu -->
                 <aside class="editor-menu flex column justify-content-center align-center">
                     <button class="btn btn-add-line" onclick="onAddText()">Add Text</button>
+                    <button class="btn btn-delete-text" onclick="onDeleteText()">Delete Text</button>
                     <label for="selectTextBox">Choose a text to edit:</label>
-                    <select id="selectTextBox" onchange="onChangeText(this.value)">
+                    <select id="selectTextBox" onchange="onChangeSelectedText(this.value)">
                         <!-- Render options here -->
                     </select>
                     <div class="keypad-container grid">
@@ -133,7 +134,6 @@
     <script src="js/image-service.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>
-    <script src="js/canvas-controller.js"></script>
     <script src="js/editor-controller.js"></script>
     <script src="js/main.js"></script>
 </body>
