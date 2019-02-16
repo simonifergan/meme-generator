@@ -74,6 +74,7 @@ function drawText() {
 }
 
 function drawToCanvas() {
+    if (!gIsEditing) return;
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
     drawImage();
     drawText();
@@ -244,6 +245,7 @@ function selectTextForEdit() {
 
 // On input change - update text
 function onChangeText(val) {
+    if (!gSelectedText) return;
     gSelectedText.txt = val;
     renderTexts();
 }
@@ -265,4 +267,3 @@ function onShowGallery() {
     document.querySelector('#contact').style.display = 'flex';
     document.querySelector('.main-header').classList.toggle('editor-mode');
 }
-

@@ -170,6 +170,10 @@ main {
 
 /* Start of Gallery */
 
+.gallery-search {
+    margin-top: 10px;
+}
+
 #searchBar {
     cursor: text;
     width: 300px;
@@ -177,7 +181,6 @@ main {
     border-radius: 3px;
     border: 1px solid #222f3e;
     outline: none;
-    margin-top: 10px;
     padding-left: 5px;
 }
 
@@ -404,12 +407,12 @@ main {
 .btn-add-line {
     font-size: 1.25rem;
     background-color: #01a3a4;
-    border-bottom: 1px solid #c8d6e5;
+    border-bottom: 1px solid #00d2d3;
     transition: all .3s;
 }
 .btn-add-line:hover {
     background-color: #00d2d3;
-    border-bottom: 1px solid #8395a7;
+    border-bottom: 1px solid #01a3a4;
 }
 .btn-add-line:active {
     box-shadow: inset 0px 1px 4px 0px black;
@@ -464,16 +467,15 @@ main {
     border-radius: 2px;
     color: white;
     background: #10ac84;
+    border-bottom: 1px solid #1dd1a1;
     font-size: 1.125em;
     transition: all .3s;
 }
-.btn-export-img::before {
-    content: "⤓";
-    padding-right: 2px;
-}
+
 .btn-export-img:hover {
     color: #333;
     background-color: #1dd1a1;
+    border-bottom: 1px solid #10ac84;
 }
 
 /* End of App CSS */
@@ -574,11 +576,34 @@ body.show-screen {
 .modal-content {
     font-family: Lato, sans-serif;
     position: fixed;
-    background-color: #c2c2c2;
-    height: 100vh;
-    width: 100vw;
+    top: 50%;
+    background-color: #01a3a4;
     box-shadow: 0 0 6px 1px #1d1d1d;
     justify-content: center;
+}
+
+.float-search-container  {
+    padding: 15px;
+}
+
+.btn-search-modal {
+    font-size: 1.25rem;
+    color: #ff9f43;
+    background: none;
+    transition: color .3s;
+}
+.btn-search-modal:hover {
+    color: #feca57 ;
+}
+
+.btn-search-keyword {
+    background: transparent;
+    color: #e3e3e3;
+    text-transform: capitalize;
+    transition: color .3s;
+}
+.btn-search-keyword:hover {
+    color: #feca57;
 }
 
 @media (min-width: 750px) {

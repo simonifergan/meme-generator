@@ -13,8 +13,8 @@
 <body onload="init()">
 
     <!-- Modal, because every project needs one -->
-    <div class="modal-screen">
-        <div class="modal-content">
+    <div class="modal-screen" onclick="onToggleModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
 
             <div class="float-search-container flex wrap space-between">
                 <!-- Generate frequent searches here -->
@@ -84,8 +84,8 @@
 
                 <!-- Editor Menu -->
                 <aside class="editor-menu flex column justify-content-center align-center">
-                    <button class="btn btn-add-line" onclick="onAddText()">Add Text</button>
-                    <button class="btn btn-delete-line" onclick="onDeleteText()">Delete Text</button>
+                    <button class="btn btn-add-line" onclick="onAddText()"><i class="fas fa-plus"></i></button>
+                    <button class="btn btn-delete-line" onclick="onDeleteText()"><i class="fas fa-trash-alt"></i></button>
                     <div class="choose-text-container">
                         <!-- generate text buttons here for mobile -->
                     </div>
@@ -104,7 +104,7 @@
                         value="30">
                     <input id="currTextInput" oninput="onChangeText(this.value)" value="Click on text to edit.">
                     <a download="my-meme.jpg" onclick="onExportImg(event)" class="btn btn-export-img">
-                        Export
+                        <i class="fas fa-download"></i> Export
                     </a>
                 </aside>
 
@@ -156,7 +156,6 @@
     <script src="js/image-service.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/search-service.js"></script>
-    <script src="js/modal-controller.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/editor-controller.js"></script>
     <script src="js/main-controller.js"></script>

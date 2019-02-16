@@ -30,7 +30,7 @@ function updateFrequentSearch(selectedKey) {
     gFrequentSearches.forEach((value, key) => {
         if (key !== selectedKey) {
             gFrequentSearches.set(key, value - 1);
-            if (gFrequentSearches.get(key) < 0) gFrequentSearches.delete(key);
+            if (gFrequentSearches.get(key) <= 0) gFrequentSearches.delete(key);
         } else gFrequentSearches.set(key, value + 1);
     });
 }
