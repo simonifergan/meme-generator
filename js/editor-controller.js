@@ -50,7 +50,7 @@ function addListenersToCanvas() {
 function resizeCanvas() {
     let elCanvasContainer = document.querySelector(".canvas-container");
     var aspectRatio = gSelectedImg.width / gSelectedImg.height;
-    gCanvas.width = elCanvasContainer.clientWidth;
+    gCanvas.width = elCanvasContainer.clientWidth; 
     gCanvas.height = gCanvas.width / aspectRatio;
     elCanvasContainer.height = gCanvas.height;
 }

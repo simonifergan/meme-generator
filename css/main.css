@@ -175,9 +175,10 @@ main {
     "btn-back"
     "canvas-container"
     "editor-menu";
-    grid-template-rows: auto auto auto;
     justify-content: center;
+    grid-template-rows: auto auto auto;
     grid-row-gap: 5px;
+    background-color: #576574;
 }
 
 .btn-go-gallery {
@@ -205,10 +206,7 @@ main {
     border-radius: 5px;
 }
 
-#appCanvas {
- border: 1px solid black;
- border-radius: 2px;
-}
+
 
 @media (min-width: 750px) {
     #app {
@@ -216,6 +214,7 @@ main {
         "btn-back btn-back"
         "canvas-container editor-menu";
         grid-template-columns: 2fr 1fr;
+        grid-column-gap: 5px;
     }
 }
     /* Editor items */
