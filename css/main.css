@@ -3,9 +3,10 @@
 
 /* Fonts */
 @font-face {
-    font-family: Lato, sans-serif;
+    font-family: Lato;
     src: url('../fonts/Lato/Lato-Regular.ttf');
 }
+
 
 html {
     font-size: 16px;
@@ -209,14 +210,31 @@ main {
     order: 1;
 }
 
+.editor-menu > * {
+    font-family: Lato, sans-serif;
+    margin-bottom: 0.625rem;
+}
 .editor-menu > label {
     color: white;
 }
 
+#selectTextBox {
+    cursor: text;
+    width: 80%;
+    height: 2rem;
+    border-radius: 3px;
+    border: 1px solid #222f3e;
+    outline: none;
+    padding-left: 5px;
+}
+
+#selectTextBox:focus {
+    border: 1px solid #54a0ff;
+}
 
 #currTextInput {
     cursor: text;
-    width: 300px;
+    width: 80%;
     height: 2rem;
     border-radius: 3px;
     border: 1px solid #222f3e;
@@ -230,11 +248,18 @@ main {
 
 
 /* Buttons FOR EDITOR */
+
+.editor-menu .btn {
+    color: white;
+    border-radius: 2px;
+}
+.editor-menu .btn:hover {
+    color: black;
+}
 .btn-add-line {
     background-color: #8395a7;
-    border-radius: 2px;
     border-bottom: 1px solid #c8d6e5;
-    transition: background-color .3s;
+    transition: all .3s;
 }
 .btn-add-line:hover {
     background-color: #c8d6e5;
@@ -245,10 +270,10 @@ main {
 }
 
 .btn-delete-line {
-    border-radius: 2px;
+
     background-color: #ee5253;
     border-bottom: 1px solid #ff6b6b;
-    transition: background-color .3s;
+    transition: all .3s;
 }
 .btn-delete-line:hover {
     background-color: #ff6b6b;
@@ -263,6 +288,14 @@ main {
     .btn-move-text {
         font-size: 1.25rem;
         border-radius: 2px;
+        background-color: #222f3e;
+        transition: all .3s;
+    }
+    .btn-move-text:hover{
+        background-color: #c8d6e5;
+    }
+    .btn-move-text:active {
+        box-shadow: inset 0 0 3px 2px black;
     }
     .btn-move-text.up {
         grid-column: 2;
@@ -279,9 +312,6 @@ main {
     .btn-move-text.right {
         grid-column: 3;
         grid-row: 2;
-    }
-    .btn-move-text:active {
-        box-shadow: inset 0px 1px 4px 0px black;
     }
 
 .btn-export-img {
