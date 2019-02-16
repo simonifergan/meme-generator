@@ -74,7 +74,10 @@
                 <aside class="editor-menu flex column align-center">
                     <button class="btn btn-add-line" onclick="onAddText()">Add Text</button>
                     <button class="btn btn-delete-line" onclick="onDeleteText()">Delete Text</button>
-                    <label for="selectTextBox">Choose Text to Edit:</label>
+                    <div class="choose-text-container">
+                        <!-- generate text buttons here for mobile -->
+                    </div>
+                    <label class="select-box-label" for="selectTextBox">Choose Text to Edit:</label>
                     <select id="selectTextBox" onchange="onChangeSelectedText(this.value)">
                         <!-- Render options here -->
                     </select>

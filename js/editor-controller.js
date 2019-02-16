@@ -86,6 +86,11 @@ function drawToCanvas() {
 
 // ---------- SELECT BOX
 function renderTexts() {
+    // if on mobile skip this section and go to renderTextsForMobile
+    if (document.body.clientWidth <= 850) {
+        renderTextsForMobile();
+        return;
+    }
     let elSelect = document.querySelector('#selectTextBox');
     let texts = getTextsToDisplay();
     let strHTMLS = [];
@@ -100,6 +105,18 @@ function renderTexts() {
     }
 
     elSelect.innerHTML = strHTMLS.join('');
+}
+
+function renderTextsForMobile() {
+    let elContainer = document.querySelector('.choose-text-container');
+    let texts = getTextsToDisplay();
+    let strHTMLS = texts.map((txt, idx) => {
+        return `<button onclick="onChangeSelectedText('${txt.id}')" class="btn btn-change-text">
+                ${idx + 1}
+                </button>`;
+    });
+    elContainer.innerHTML = strHTMLS.join('');
+
 }
 
 function onChangeSelectedText(id) {

@@ -129,6 +129,9 @@ main {
     .main-header.editor-mode {
         height: 60px
     }
+    .trigram-container {
+        top: 60px;
+    }
 }
 @media (min-width: 751px) {
     .main-header {
@@ -309,7 +312,7 @@ main {
 
 
 
-@media (min-width: 750px) {
+@media (min-width: 850px) {
     #app {
         grid-template-areas: 
         "btn-back btn-back"
@@ -321,6 +324,10 @@ main {
 }
     /* Editor items */
 
+.editor-menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+}
 
 .editor-menu > * {
     font-family: Lato, sans-serif;
@@ -330,20 +337,35 @@ main {
     color: white;
 }
 
-#selectTextBox {
-    cursor: text;
-    width: 80%;
-    height: 2rem;
-    border-radius: 3px;
-    border: 1px solid #222f3e;
-    outline: none;
-    padding-left: 5px;
+#selectTextBox, .select-box-label {
+    display: none;
 }
 
-#selectTextBox:focus {
-    border: 1px solid #54a0ff;
+@media (min-width: 850px) {
+    .editor-menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .select-box-label {
+        display: block;
+    }
+    #selectTextBox {
+        display: block;
+        cursor: text;
+        width: 80%;
+        height: 2rem;
+        border-radius: 3px;
+        border: 1px solid #222f3e;
+        outline: none;
+        padding-left: 5px;
+    }
+    
+    #selectTextBox:focus {
+        border: 1px solid #54a0ff;
+    }
 }
-
 #currTextInput {
     cursor: text;
     width: 80%;
@@ -369,6 +391,7 @@ main {
     color: black;
 }
 .btn-add-line {
+    font-size: 1.25rem;
     background-color: #01a3a4;
     border-bottom: 1px solid #c8d6e5;
     transition: all .3s;
@@ -382,7 +405,7 @@ main {
 }
 
 .btn-delete-line {
-
+    font-size: 1.25rem;
     background-color: #ee5253;
     border-bottom: 1px solid #ff6b6b;
     transition: all .3s;
@@ -430,12 +453,12 @@ main {
     border-radius: 2px;
     color: white;
     background: #10ac84;
+    font-size: 1.125em;
     transition: all .3s;
 }
 .btn-export-img::before {
     content: "⤓";
     padding-right: 2px;
-    font-size: 1.125em;
 }
 .btn-export-img:hover {
     color: #333;
