@@ -124,8 +124,12 @@ main {
     color: #2eb398;
 }
 
-
-@media (min-width: 750px) {
+@media (max-width: 750px) {
+    .main-header.editor-mode {
+        display: none;
+    }
+}
+@media (min-width: 751px) {
     .main-header {
         justify-content: center;
         position: relative;

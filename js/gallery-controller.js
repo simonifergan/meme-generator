@@ -27,6 +27,7 @@ function onStartEditor(imgId) {
     document.querySelector('#gallery').hidden = true;
     document.querySelector('#about').style.display = 'none';
     document.querySelector('#contact').style.display = 'none';
+    document.querySelector('.main-header').classList.toggle('.editor-mode');
     initMeme(imgId);
 
 }
