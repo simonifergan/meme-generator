@@ -1,5 +1,6 @@
 @import url('reset.css');
 @import url('helpers.css');
+@import url('https://use.fontawesome.com/releases/v5.7.2/css/all.css');
 
 /* Fonts */
 @font-face {
@@ -546,3 +547,46 @@ section.appendix-container {
 
 
 /* End Main-Footer */
+
+
+/* MODAL */
+
+body.show-screen {
+    overflow: hidden;
+}
+
+.modal-screen {
+    z-index: 1;
+    background-color: #5c5959da;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .6s;
+}
+
+.modal-screen.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    font-family: Lato, sans-serif;
+    position: fixed;
+    background-color: #c2c2c2;
+    height: 100vh;
+    width: 100vw;
+    box-shadow: 0 0 6px 1px #1d1d1d;
+    justify-content: center;
+}
+
+@media (min-width: 750px) {
+    .modal-content {
+        position: static;
+        margin: 30px auto;
+        width: 50%;
+        height: 50%;
+        justify-content: space-around;
+    }
+}

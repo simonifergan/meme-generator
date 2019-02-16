@@ -1,40 +1,8 @@
-const FREQUENT_SEARCHES_KEY = 'frequentSearches';
-var gFrequentSearches;
 
 function initGallery() {
-    gFrequentSearches = createFrequentSearch();
+   
     renderGallery();
     renderFrequentSearches();
-}
-
-function createFrequentSearch() {
-    let frequentSearches = getFromStorage(FREQUENT_SEARCHES_KEY, false);
-    if (!frequentSearches) {
-        frequentSearches = new Map();
-        frequentSearches.set('storm', getRandomIntInclusive(17, 32));
-        frequentSearches.set('earth', getRandomIntInclusive(14, 32));
-        frequentSearches.set('air', getRandomIntInclusive(16, 32));
-        frequentSearches.set('fire', getRandomIntInclusive(17, 32));
-        frequentSearches.set('thunder', getRandomIntInclusive(1, 32));
-        frequentSearches.set('water', getRandomIntInclusive(1, 32));
-        frequentSearches.set('lava', getRandomIntInclusive(15, 32));
-        frequentSearches.set('banana', 26);
-        frequentSearches.set('pukimonster', 40);
-    }
-    return frequentSearches;
-}
-
-function renderFrequentSearches() {
-    console.log('I AM HERE', gFrequentSearches)
-    let elContainer = document.querySelector('.float-search-container');
-    let strHtmls = [];
-    gFrequentSearches.forEach((value, key) => {
-        let fontSize = (value >= 16) ? value : 16; // minimum font-size will be 16, the rest will get font-size through count
-        strHtmls.push(`<button class="btn btn-search-keyword" style="font-size: ${fontSize}px;">${key}</button>`);
-
-    })
-
-    elContainer.innerHTML = strHtmls.join('');
 }
 
 function renderGallery(gallery = getImagesToDisplay()) {
@@ -51,9 +19,36 @@ function renderGallery(gallery = getImagesToDisplay()) {
 }
 
 
-function onChangePage(pageNum) {
-    gCurrPageIdx = pageNum;
-    renderGallery();
+function renderFrequentSearches() {
+    let frequentSearches = getFrequentSearchesToDisplay();
+    let elContainer = document.querySelector('.float-search-container');
+    let strHtmls = [];
+    frequentSearches.forEach((value, key) => {
+        let fontSize = (value >= 16) ? value : 16; // minimum font-size will be 16, the rest will get font-size through count
+        strHtmls.push(
+            `<button class="btn btn-search-keyword" style="font-size: ${fontSize}px;" onclick="onFrequentSearchClick('${key}')">
+                ${key}
+            </button>`
+        );
+
+    })
+
+    elContainer.innerHTML = strHtmls.join('');
+}
+
+function onFrequentSearchClick(key) {
+    updateFrequentSearch(key);
+    onCloseModal();
+    onSearchInGallery(key);
+}
+
+
+function onSearchInGallery(value) {
+    gCurrPageIdx = 0;
+    let gallery = getImagesToDisplay();
+    // Filters the gallery to find keywords which contain the search str
+    gallery = gallery.filter(item => item.keywords.findIndex(key => key.toLowerCase().includes(value.toLowerCase())) !== -1);
+    renderGallery(gallery);
 }
 
 function onStartEditor(imgId) {
@@ -65,10 +60,3 @@ function onStartEditor(imgId) {
 
 }
 
-function onSearchInGallery(value) {
-    gCurrPageIdx = 0;
-    let gallery = getImagesToDisplay();
-    // Filters the gallery to find keywords which contain the search str
-    gallery = gallery.filter(item => item.keywords.findIndex(key => key.toLowerCase().includes(value.toLowerCase())) !== -1);
-    renderGallery(gallery);
-}

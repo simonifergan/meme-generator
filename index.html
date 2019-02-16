@@ -12,11 +12,21 @@
 
 <body onload="init()">
 
-    <div class="screen"></div>
+    <!-- Modal, because every project needs one -->
+    <div class="modal-screen">
+        <div class="modal-content">
+
+            <div class="float-search-container flex wrap space-between">
+                <!-- Generate frequent searches here -->
+            </div>
+
+        </div>
+    </div>
 
     <main class="grid justify-items-center">
         <!-- Main Header -->
         <header class="main-header flex justify-content-center align-center">
+            <!-- Desktop nav bar -->
             <nav class="header-nav flex justify-content-center align-center">
                 <a href="#" class="nav-link">Portfolio</a>
                 <a href="#about" class="nav-link">About</a>
@@ -26,7 +36,10 @@
                 <a href="#" class="nav-link">Pressme</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </nav>
+
             <button class="btn btn-offscreen-toggle" onclick="onOffscreenToggle()">☰</button>
+
+            <!-- Mobile offscreen nav bar -->
             <nav class="trigram-container flex column" onclick="event.stopPropagation()">
                 <a href="#" class="offscreen-link">Portfolio</a>
                 <a href="#about" class="offscreen-link">About</a>
@@ -53,19 +66,14 @@
                         <option value="Zahav">
                         <option value="Banana">
                     </datalist>
+                    <button class="btn btn-search-modal" onclick="onToggleModal()"><i class="fas fa-search"></i></button>
                 </div>
 
-                <div class="float-search-container flex wrap space-between">
-                    <!-- Generate frequent searches here -->
-                </div>
 
                 <div class="gallery-container grid">
                     <!-- generate gallery here -->
                 </div>
 
-                <div class="select-page-container flex justify-content-center align-center">
-                    <!-- Render pages button -->
-                </div>
 
             </div>
 
@@ -147,6 +155,8 @@
     <script src="js/util-service.js"></script>
     <script src="js/image-service.js"></script>
     <script src="js/meme-service.js"></script>
+    <script src="js/search-service.js"></script>
+    <script src="js/modal-controller.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/editor-controller.js"></script>
     <script src="js/main-controller.js"></script>
