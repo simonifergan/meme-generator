@@ -7,7 +7,6 @@ var gCtx;
 var gIsEditing;
 var gSelectedImg;
 
-
 // For dragging text
 var gDragText;
 var gMouseX;
@@ -228,7 +227,7 @@ function onShowGallery() {
     gIsEditing = false;
     document.querySelector('#app').style = "display: none;";
     document.querySelector('#gallery').hidden = false;
-    document.querySelector('#appendix').hidden = false;
+    // document.querySelector('#appendix').hidden = false;
 }
 
 function onChangeText(val) {

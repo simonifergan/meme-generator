@@ -12,17 +12,26 @@
 
 <body onload="init()">
 
+    <div class="screen"></div>
+
     <main class="grid justify-items-center">
         <!-- Main Header -->
-        <header class="main-header flex column justify-content-center align-center">
+        <header class="main-header flex justify-content-center align-center">
             <nav class="header-nav flex justify-content-center align-center">
                 <a href="#" class="nav-link">Portfolio</a>
-                <a href="#" class="nav-link">About</a>
-                <a href="./" class="nav-link">
+                <a href="#about" class="nav-link">About</a>
+                <a href="./">
                     <h1 class="logo">Ini-Meme-Mine-Mo</h1>
                 </a>
                 <a href="#" class="nav-link">Pressme</a>
                 <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <button class="btn btn-offscreen-toggle" onclick="onOffscreenToggle()">☰</button>
+            <nav class="trigram-container flex column" onclick="event.stopPropagation()">
+                <a href="#" class="offscreen-link">Portfolio</a>
+                <a href="#about" class="offscreen-link">About</a>
+                <a href="#" class="offscreen-link">Pressme</a>
+                <a href="#contact" class="offscreen-link">Contact</a>
             </nav>
 
         </header>
@@ -88,25 +97,9 @@
                 <div class="canvas-container flex">
                     <canvas id="appCanvas">
                         You see this text because your browser does not support HTML5Canvas.
+                        <!-- This is where black magic happens -->
                     </canvas>
-                    <!-- <img class="canvas-image"/>
-                    
-                    <div class="input-container">
-                        <div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" onclick="event.stopPropagation();"
-                        draggable="true" class="edit-line line-id-1 flex align-center"
-                        style="top: 155px; left: 155px">
-                        <span class="actual-text" contenteditable="true">Enter text here</span>
-                        <button onclick="onRemoveLine(1)" class="btn btn-delete">&times;</button>
-                    </div>
-                    <div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" onclick="event.stopPropagation();"
-                    draggable="true" class="edit-line line-id-2 flex align-center"
-                    style="top: 240px; left: 155px">
-                    <span class="actual-text" contenteditable="true">Enter text here</span>
-                    <button onclick="onRemoveLine(2)" class="btn btn-delete">&times;</button>
-                </div> -->
-                    <!-- Generate more input boxes here -->
                 </div>
-                <!-- off-screen canvas for rendering -->
             </div>
         </div>
 
@@ -114,9 +107,14 @@
 
 
 
-        <section id="appendix" class="appendix-container">
-            <article id="about">
-                <h1>About me</h1>
+        <section class="appendix-container">
+            <article id="about" class="flex justify-content-center align-center">
+                <div class="profile-image hexagon">
+                    <div class="hexagon-before"></div>
+                </div>
+                <p class="about-text">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum ullam sequi similique beatae animi, necessitatibus odit totam quae nobis unde dolores consequuntur sapiente, amet minima explicabo exercitationem molestiae ipsam repudiandae!
+                </p>
             </article>
             <article id="contact" class="contact-contaier">
                 <h1>contact form</h1>
@@ -135,6 +133,7 @@
     <script src="js/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/editor-controller.js"></script>
+    <script src="js/main-controller.js"></script>
     <script src="js/main.js"></script>
 </body>
 
