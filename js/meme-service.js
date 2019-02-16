@@ -31,18 +31,19 @@ function addText(x = parseInt(gCanvas.width / 2), y = parseInt(gCanvas.height / 
 function getAllTexts() {
     return gMeme.txts;
 }
-// Hittest for the text
+
+function getTextById(id) {
+    return gMeme.txts.find(txt => txt.id === id)
+}
+
+// Hittest-box for the text
 function getTextByLocation(x, y) {
     return gMeme.txts.find(txt => {
-        // console.log(txt.x, txt.y);
         let txtWidth = txt.x + gCtx.measureText(txt.txt).width;
         let txtHeight = txt.y - txt.fontSize;
-        // console.log(x, txt.x, x, txtWidth, y, txt.y, y, txtHeight)
-        // console.log(x >= txt.x, x <= txtWidth, y >= txt.y, y <= txtHeight)
         return x >= txt.x && x <= txtWidth && y <= txt.y && y >= txtHeight;
     });
 }
-// return (x >= text.x && x <= text.x + text.width && y >= text.y - text.height && y <= text.y);
 
 function moveText(xD, yD) {
     console.log('hello');
@@ -52,4 +53,8 @@ function moveText(xD, yD) {
 
 function getMemeImage() {
     return gMeme.selectedImg;
+}
+
+function getTextsToDisplay() {
+    return gMeme.txts.slice();
 }

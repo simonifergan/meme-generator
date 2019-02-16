@@ -29,7 +29,6 @@ a:hover {
     border: none;
     padding: 5px;
     margin: 5px 0;
-    background: none;
     outline: none;
 }
 
@@ -211,44 +210,23 @@ main {
 }
 
 
-
-.edit-line {
-    cursor: pointer;
-    touch-action: none;
-    user-select: none;
-    position: absolute;   
-    outline: none;
-    color: #fff;
-    background: none;
-    border: none;
-    font-size: 32px;
-    -webkit-text-stroke: 1px black;
-}
-
-.edit-line > button {
-    margin-left: 5px;
-}
-
-.edit-line .btn-delete {
-    visibility: hidden;
-}
-
-.actual-text {
-    outline: none;
-}
-
-.actual-text:focus {
-    border: 3px dotted black;
+#currTextInput {
     cursor: text;
-}
-.edit-line.selected {
-    border: 3px dashed #0fbcf9;
+    width: 300px;
+    height: 2rem;
+    border-radius: 3px;
+    border: 1px solid #222f3e;
+    outline: none;
+    padding-left: 5px;
 }
 
-.edit-line.selected .btn-delete {
-    visibility: visible;
+#currTextInput:focus {
+    border: 1px solid #54a0ff;
 }
 
+
+
+/* Buttons FOR EDITOR */
 .btn-add-line {
     background-color: #8395a7;
     border-radius: 2px;
@@ -264,6 +242,45 @@ main {
 .btn-add-line:active {
     box-shadow: inset 0px 1px 4px 0px black;
 }
+
+.keypad-container {
+    grid-template: repeat(3, 1fr) / repeat(3,1fr);
+}
+    .btn-move-text {
+        font-size: 1.25rem;
+        border-radius: 2px;
+    }
+    .btn-move-text.up {
+        grid-column: 2;
+        grid-row: 1;
+    }
+    .btn-move-text.down {
+        grid-column: 2;
+        grid-row: 3;
+    }
+    .btn-move-text.left {
+        grid-column: 1;
+        grid-row: 2;
+    }
+    .btn-move-text.right {
+        grid-column: 3;
+        grid-row: 2;
+    }
+    .btn-move-text:active {
+        box-shadow: inset 0px 1px 4px 0px black;
+    }
+
+.btn-export-img {
+    border-radius: 2px;
+    color: white;
+    background: #10ac84;
+    transition: all .3s;
+}
+.btn-export-img:hover {
+    color: #333;
+    background-color: #1dd1a1;
+}
+
 /* End of App CSS */
 
 /* Start of appendix section */

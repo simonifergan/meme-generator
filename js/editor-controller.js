@@ -26,10 +26,26 @@ function initCanvas() {
     gCtx = gCanvas.getContext('2d');
     gSelectedImg = getMemeImage();
 
+
     resizeCanvas();
+    addListenersToCanvas()
+    renderTexts();
     requestAnimationFrame(drawToCanvas);
 }
 
+function addListenersToCanvas() {
+    // Mouse events
+    gCanvas.addEventListener('mousedown', onStartDrag);
+    gCanvas.addEventListener('mousemove', onDragText);
+    gCanvas.addEventListener('mouseup', onStopDrag);
+    gCanvas.addEventListener('click', onSelectText);
+
+    // Touch events
+    // gCanvas.addEventListener('touchstart', onStartDrag);
+    // gCanvas.addEventListener('touchmove', onDragText);
+    // gCanvas.addEventListener('touchend', onStopDrag);
+    // gCanvas.addEventListener('dblclick', onSelectText);
+}
 function resizeCanvas() {
     let elCanvasContainer = document.querySelector(".canvas-container");
     // gCanvas.width = elCanvasContainer.offsetWidth;
@@ -69,8 +85,30 @@ function drawToCanvas() {
     drawText();
     requestAnimationFrame(drawToCanvas);
 }
+
+// ---------- SELECT BOX
+function renderTexts() {
+    let elSelect = document.querySelector('#selectTextBox');
+    let texts = getTextsToDisplay();
+    let strHTMLS = [];
+
+    if (texts.length <= 0) {
+        strHTMLS.push(`<option value=""> -- No texts were created -- </option>`);
+    } else {
+        strHTMLS.push(`<option value=""> -- Select Text From Below -- </option>`);
+        strHTMLS.push(...texts.map(txt => {
+            return `<option value="${txt.id}">${txt.txt}</option>`;
+        }));
+    }
+
+    elSelect.innerHTML = strHTMLS.join('');
+}
+
+// END OF SELECT BOX ------------ //
+
 function onAddText() {
     addText();
+    renderTexts();
 }
 
 function onStartDrag(ev) {
@@ -109,7 +147,8 @@ function onStopDrag(ev) {
 }
 
 // Movement controls
-function onTextMove(dir, txt) {
+function onTextMove(dir) {
+    if (!gSelectedText) return;
     let xDistance = 0;
     let yDistance = 0;
     switch (dir) {
@@ -126,21 +165,30 @@ function onTextMove(dir, txt) {
             xDistance += 10;
             break;
     }
-    moveText(xDistance, yDistance)
+    gSelectedText.x += xDistance;
+    gSelectedText.y += yDistance;
 }
 
-function onChangeFontForSelected(ev, fontSize) {
-    gMeme.txts[0].fontSize = fontSize;
+function onChangeFontForSelected(fontSize) {
+    document.querySelector('.span-font-slider').innerHTML = fontSize;
+    if (gSelectedText) {
+        gSelectedText.fontSize = fontSize;
+    }
 }
 
+// If text was passed through selectBox - find it by id, otherwise find it with mouse click
 function onSelectText(ev) {
+
     let offsetX = gCanvas.offsetLeft;
     let offsetY = gCanvas.offsetTop;
 
     let mouseX = parseInt(ev.clientX - offsetX);
-    let mouseY  = parseInt(ev.clientY - offsetY);
+    let mouseY = parseInt(ev.clientY - offsetY);
 
     gSelectedText = getTextByLocation(mouseX, mouseY);
+
+    selectTextForEdit();
+
 }
 
 function onExportImg(ev) {
@@ -149,7 +197,10 @@ function onExportImg(ev) {
 }
 
 function selectTextForEdit() {
-    document.querySelector('#currTextInput').value = gSelectedText.txt;
+    let elInput = document.querySelector('#currTextInput');
+    if (gSelectedText) elInput.value = gSelectedText.txt;
+    else elInput.value = 'Click on text to edit.'
+
 }
 
 // Switch back from gallery to editor
@@ -161,4 +212,5 @@ function onShowGallery() {
 
 function onChangeText(val) {
     gSelectedText.txt = val;
+    renderTexts();
 }
