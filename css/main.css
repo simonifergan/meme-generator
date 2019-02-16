@@ -126,7 +126,7 @@ main {
 
 @media (max-width: 750px) {
     .main-header.editor-mode {
-        display: none;
+        height: 60px
     }
 }
 @media (min-width: 751px) {
@@ -214,6 +214,7 @@ main {
         grid-template-columns: repeat(6, 65px);
         grid-auto-rows: 130px;
         margin: 30px 0;
+        justify-content: center;
     }
    
     .gallery-item:first-child {
@@ -237,6 +238,7 @@ main {
         grid-template-columns: repeat(12, 70px);
         grid-auto-rows: 140px;
         margin: 30px 0;
+        justify-content: center;
     }
     .gallery-item:first-child, .gallery-item:nth-child(18n) {
         grid-column-start: 2;

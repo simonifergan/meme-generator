@@ -229,7 +229,7 @@ function onShowGallery() {
     document.querySelector('#gallery').hidden = false;
     document.querySelector('#about').style.display = 'flex';
     document.querySelector('#contact').style.display = 'flex';
-    document.querySelector('.main-header').classList.toggle('.editor-mode');
+    document.querySelector('.main-header').classList.toggle('editor-mode');
 }
 
 function onChangeText(val) {
