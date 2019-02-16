@@ -1,13 +1,24 @@
-
+const MEME_KEY = 'lastMeme';
 var gMeme;
 
 function initMeme(imgId) {
-    gMeme = {
-        selectedImg: new Image(),
-        txts: [],
-    }
+    gMeme = createMeme(imgId);
+
     gMeme.selectedImg.src = getImageById(imgId).src;
     gMeme.selectedImg.onload = initCanvas;
+}
+
+function createMeme(imgId) {
+    // let meme = getFromStorage(MEME_KEY, true);
+    // if (meme) return meme;
+
+    // meme = getFromStorage(MEME_KEY, false);
+    // if (meme) return meme;
+
+    return {
+        selectedImg: imgId,
+        txts: [],
+    };
 }
 
 
@@ -21,9 +32,15 @@ function addText(x = parseInt(gCanvas.width / 2), y = parseInt(gCanvas.height / 
         fontSize: 30,
         isSelected: true,
     });
-    console.log(gMeme);
+
+    // // save meme to SESSION storage only on ADDTEXT
+    // setToStorage(MEME_KEY, gMeme, true);
 }
 
+
+function getAllTexts() {
+    return gMeme.txts;
+}
 // Hittest for the text
 function getTextByLocation(x, y) {
     return gMeme.txts.find(txt => {
@@ -43,6 +60,6 @@ function moveText(xD, yD) {
     gMeme.txts[0].y += yD;
 }
 
-function getMemeImage() {
+function getMemeImageId() {
     return gMeme.selectedImg;
 }

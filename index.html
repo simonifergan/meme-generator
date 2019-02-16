@@ -73,6 +73,7 @@
                     <label for="fontSlider">Font Size: <span class="span-font-slider">32px</span></label>
                     <input onchange="onChangeFontForSelected(this.value)" type="range" id="fontSlider" min="16" max="64"
                         value="32">
+                    <input oninput="onChangeText()" value="">
                     <a download="my-meme.jpg" onclick="onExportImg(event)" class="btn btn-export-img">
                         Export
                     </a>
@@ -82,7 +83,7 @@
                 <div class="canvas-container flex">
                     <canvas id="appCanvas" onmousedown="onStartDrag(event)" onmousemove="onDragText(event)"
                         onmouseup="onStopDrag(event)"
-                        onclick="console.log(event.target.offsetTop, event.target.offsetLeft); onSelectText(event)">
+                        ondblclick="console.log(event.target.offsetTop, event.target.offsetLeft); onSelectText(event)">
                         You see this text because your browser does not support HTML5Canvas.
                     </canvas>
                     <!-- <img class="canvas-image"/>
