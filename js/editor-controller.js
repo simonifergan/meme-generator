@@ -227,7 +227,8 @@ function onShowGallery() {
     gIsEditing = false;
     document.querySelector('#app').style = "display: none;";
     document.querySelector('#gallery').hidden = false;
-    // document.querySelector('#appendix').hidden = false;
+    document.querySelector('#about').style.display = 'flex';
+    document.querySelector('#contact').style.display = 'flex';
 }
 
 function onChangeText(val) {

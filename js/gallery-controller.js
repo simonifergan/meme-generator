@@ -25,7 +25,8 @@ function onChangePage(pageNum) {
 
 function onStartEditor(imgId) {
     document.querySelector('#gallery').hidden = true;
-    // document.querySelector('#appendix').hidden = true;
+    document.querySelector('#about').style.display = 'none';
+    document.querySelector('#contact').style.display = 'none';
     initMeme(imgId);
 
 }

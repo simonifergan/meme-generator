@@ -6,7 +6,10 @@
     font-family: Lato;
     src: url('../fonts/Lato/Lato-Regular.ttf');
 }
-
+@font-face {
+    font-family: Maven Pro;
+    src: url('../fonts/MavenPro/MavenPro-Regular.ttf');
+}
 
 html {
     font-size: 16px;
@@ -65,7 +68,7 @@ main {
 .trigram-container {
     text-align: center;
     position: fixed;
-    height: calc(100vh - 100px);
+    height: 100vh;
     width: 60vw;
     top: 100px;
     right: 0;
@@ -89,6 +92,13 @@ main {
     color: white;
     font-size: 1.25rem;
     margin-right: 10px;
+    min-width: 48px;
+    min-height: 48px;
+    box-shadow: 0 0px 2px 1px #c8d6e5;
+    transition: all .3s;
+}
+.btn-offscreen-toggle:hover {
+    background-color: #8395a7;
 }
 
 .trigram-container.show {
@@ -436,7 +446,16 @@ section.appendix-container {
     /* About article */
     
     #about {
+        padding: 70px 0;
         background-color: #1dd1a1;
+        font-family: Lato, sans-serif;
+    }
+    .about-container {
+        max-width: 820px;
+    }
+    .profile-image.hexagon {
+        max-height: 205px;
+        max-width: 180px;
     }
     .profile-image .hexagon-before {
         background-image: url('../img/about/profilepicture.jpg');
@@ -444,6 +463,29 @@ section.appendix-container {
     }
     .profile-image:hover {
         background-color: transparent;
+    }
+    .about-text {
+        font-family: Lato, sans-serif;
+        max-width: 580px;
+        margin-left: 20px;
+    }
+    .profile-name, .profile-title {
+        font-family: Maven Pro, sans-serif;
+    }
+    .profile-name {
+        color: #e3e3e3;
+        font-size: 1.875rem;
+        margin-bottom: 10px;
+    }
+    .profile-title {
+        margin-bottom: 20px;
+        font-size: 1.125rem;
+        color: #10ac84;
+    }
+    .profile-text {
+        color: #d7fcf5;
+        line-height: 1.3;
+        padding-right: 5px;
     }
 
 
