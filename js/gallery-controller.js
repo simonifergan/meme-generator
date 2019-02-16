@@ -1,7 +1,21 @@
-
+const FREQUENT_SEARCHES_KEY = 'frequentSearches';
+var gFrequentSearches;
 
 function initGallery() {
+    gFrequentSearches = createFrequentSearch();
     renderGallery();
+}
+
+function createFrequentSearch() {
+    let frequentSearches = getFromStorage(FREQUENT_SEARCHES_KEY, false);
+    if (!frequentSearches){
+        frequentSearches = [
+           {txt: 'storm', count: getRandomIntInclusive(17,32)}, {txt: 'earth', count: getRandomIntInclusive(14,32)}, {txt: 'air', count: getRandomIntInclusive(16,32)},
+           {txt: 'fire', count: getRandomIntInclusive(17,32)}, {txt: 'thunder', count: getRandomIntInclusive(1,32)}, {txt: 'water', count: getRandomIntInclusive(1,32)},
+           {txt: 'lava', count: getRandomIntInclusive(15,32)},
+       ]
+    }
+    return frequentSearches;
 }
 
 function renderGallery(gallery = getImagesToDisplay()) {

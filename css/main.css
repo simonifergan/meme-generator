@@ -129,7 +129,7 @@ main {
     .main-header.editor-mode {
         height: 60px
     }
-    .trigram-container {
+    .main-header.editor-mode .trigram-container {
         top: 60px;
     }
 }
@@ -329,6 +329,7 @@ main {
     grid-template-columns: 1fr 1fr 1fr; 
     grid-column-gap: 5px;
     justify-items: center;
+    margin-bottom: 20px;
 }
 
 .editor-menu > * {
@@ -341,6 +342,12 @@ main {
 
 #selectTextBox, .select-box-label {
     display: none;
+}
+
+#fontSlider {
+    background: transparent;
+    cursor: pointer;
+    outline: none;
 }
 
 @media (min-width: 850px) {

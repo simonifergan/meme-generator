@@ -14,6 +14,7 @@ var gMouseY;
 
 // Current selected text
 var gSelectedText;
+var gPrevTextColor;
 
 
 // Editor Functions
@@ -62,11 +63,6 @@ function drawImage() {
 
 function drawText() {
     gMeme.txts.forEach(txt => {
-        if (txt.isSelected) {
-            let txtWidth = txt.x + gCtx.measureText(txt.txt).width;
-            let txtHeight = txt.y - txt.fontSize;
-            // gCtx. 
-        }
         gCtx.font = `${txt.fontSize}px Impact`;
         gCtx.strokeStyle = '#000';
         gCtx.lineWidth = Math.floor(txt.fontSize / 10);
@@ -165,6 +161,8 @@ function onDragText(ev) {
 
     gDragText.x += dragDistanceX;
     gDragText.y += dragDistanceY;
+    gPrevTextColor = gDragText.color;
+    gDragText.color = '#ee5253';
 }
 
 function onStopDrag(ev) {
@@ -172,7 +170,7 @@ function onStopDrag(ev) {
     gDragText = false;
 }
 
-// Movement controls
+// Movement controls for keypad
 function onTextMove(dir) {
     if (!gSelectedText) return;
     let xDistance = 0;
@@ -203,6 +201,9 @@ function onTextMove(dir) {
     // Assign new location
     gSelectedText.x += xDistance;
     gSelectedText.y += yDistance;
+    gPrevTextColor = gSelectedText.color;
+    gSelectedText.color = '#ee5253';
+    setTimeout((txt, color)=> {txt.color = color;}, 300,gSelectedText, gPrevTextColor);
 }
 
 function onChangeFontForSelected(fontSize) {
@@ -222,22 +223,38 @@ function onSelectText(ev) {
     let mouseY = parseInt(ev.clientY - offsetY);
 
     gSelectedText = getTextByLocation(mouseX, mouseY);
-
+    if (gSelectedText) gSelectedText.color = '#0abde3';
     selectTextForEdit();
+}
+
+// Show the selected text respectively in the input box
+function selectTextForEdit() {
+    let elInput = document.querySelector('#currTextInput');
+    if (gSelectedText) {
+        elInput.value = gSelectedText.txt;
+        
+    }
+    else {
+        elInput.value = 'Click on text to edit.'
+        getTextsToDisplay().forEach(txt => {txt.color = '#fff'});
+    }
+
 
 }
 
+// On input change - update text
+function onChangeText(val) {
+    gSelectedText.txt = val;
+    renderTexts();
+}
 function onExportImg(ev) {
+    // Make sure all text is white regardless of selected or moved/dragged
+    getTextsToDisplay().forEach(txt => {txt.color = '#fff';});
+    drawToCanvas();
     let imgData = gCanvas.toDataURL();
     ev.target.href = `${imgData}`;
 }
 
-function selectTextForEdit() {
-    let elInput = document.querySelector('#currTextInput');
-    if (gSelectedText) elInput.value = gSelectedText.txt;
-    else elInput.value = 'Click on text to edit.'
-
-}
 
 // Switch back from gallery to editor
 function onShowGallery() {
@@ -249,7 +266,3 @@ function onShowGallery() {
     document.querySelector('.main-header').classList.toggle('editor-mode');
 }
 
-function onChangeText(val) {
-    gSelectedText.txt = val;
-    renderTexts();
-}
