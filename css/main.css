@@ -192,19 +192,13 @@ main {
 
 .canvas-container {
     grid-area: canvas-container;
-    position: relative;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
-.canvas-container img {
-    width: 100%;
-    object-fit: contain;
-}
+
 
 #appCanvas {
-    position: fixed;
-    z-index: -1;
-    left: 10000000000000px;
-    top: 100000000000000px;
+ border: 1px solid black;
+ border-radius: 2px;
 }
 
     /* Editor */

@@ -36,8 +36,8 @@
                 <!-- Gallery Search Bar -->
                 <div class="gallery-search flex justify-content-center align-center">
                     <label for="searchBar">Search:&nbsp;</label>
-                    <input autofocus oninput="onSearchInGallery(this.value)" id="searchBar" type="text" class="search-box"
-                        list="mostFrequentSearch">
+                    <input autofocus oninput="onSearchInGallery(this.value)" id="searchBar" type="text"
+                        class="search-box" list="mostFrequentSearch">
                     <datalist id="mostFrequentSearch">
                         <!-- generate options search options here -->
                         <option value="Pukimonster">
@@ -62,8 +62,14 @@
                 <button onclick="onShowGallery()" class="btn btn-go-gallery">Back to Gallery</button>
 
                 <!-- Editor Menu -->
-                <aside class="editor-menu flex column justify-content-center align-center">
-                    <button onclick="onAddLine()" class="btn btn-add-line">Add Text</button>
+                <aside class="editor-menu flex justify-content-center align-center">
+                    <button class="btn btn-add-line" onclick="onAddText()">Add Text</button>
+                    <div class="keypad-container grid">
+                        <button class="btn btn-move-text" onclick="onTextMove('up')">Up</button>
+                        <button class="btn btn-move-text" onclick="onTextMove('down')">Down</button>
+                        <button class="btn btn-move-text" onclick="onTextMove('left')">Left</button>
+                        <button class="btn btn-move-text" onclick="onTextMove('right')">Right</button>
+                    </div>
                     <label for="fontSlider">Font Size: <span class="span-font-slider">32px</span></label>
                     <input onchange="onChangeFontForSelected(this.value)" type="range" id="fontSlider" min="16" max="64"
                         value="32">
@@ -73,8 +79,11 @@
                 </aside>
 
                 <!-- canvas container -->
-                <div class="canvas-container flex" onclick="onRemoveSelected()">
-                    <img class="canvas-image"/>
+                <div class="canvas-container">
+                    <canvas id="appCanvas">
+                        You see this text because your browser does not support HTML5Canvas.
+                    </canvas>
+                    <!-- <img class="canvas-image"/>
                     
                     <div class="input-container">
                         <div ondblclick="onToggleSelected(event, this)" onmousemove="onInitDragEl(this)" onclick="event.stopPropagation();"
@@ -88,19 +97,16 @@
                     style="top: 240px; left: 155px">
                     <span class="actual-text" contenteditable="true">Enter text here</span>
                     <button onclick="onRemoveLine(2)" class="btn btn-delete">&times;</button>
+                </div> -->
+                    <!-- Generate more input boxes here -->
                 </div>
-                <!-- Generate more input boxes here -->
+                <!-- off-screen canvas for rendering -->
             </div>
-            <!-- off-screen canvas for rendering -->
-            <canvas id="appCanvas">
-                You see this text because your browser does not support HTML5Canvas.
-            </canvas>
         </div>
-            </div>
 
         </div>
-        
-    
+
+
 
         <section class="appendix-container">
             <article id="about">
@@ -111,7 +117,7 @@
             </article>
         </section>
 
-    
+
         <footer class="main-footer">
             <h2>Ini-Meme-Mine-Mo Footer</h2>
             <h5>Meme Rights &copy;</h5>
@@ -120,6 +126,7 @@
 
     <script src="js/util-service.js"></script>
     <script src="js/image-service.js"></script>
+    <script src="js/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/canvas-controller.js"></script>
     <script src="js/editor-controller.js"></script>

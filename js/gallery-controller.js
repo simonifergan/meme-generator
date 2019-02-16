@@ -39,7 +39,7 @@ function onChangePage(pageNum) {
 
 function onStartEditor(imgId) {
     document.querySelector('#gallery').hidden = true;
-    initEditor(imgId);
+    initMeme(imgId);
 
 }
 
