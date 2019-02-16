@@ -9,7 +9,7 @@ var gSelectedImg;
 
 
 // For dragging text
-var gCurrDragText;
+var gDragText;
 var gMouseX;
 var gMouseY;
 
@@ -24,10 +24,10 @@ function initCanvas() {
     gCanvas = document.getElementById("appCanvas");
     gCanvas.addEventListener('selectstart', function (e) { e.preventDefault(); return false; }, false);
     gCtx = gCanvas.getContext('2d');
-    gSelectedImg = new Image();
-    gSelectedImg.src = getImageById(getMemeImageId()).src;
-    gSelectedImg.onload = resizeCanvas;
-    
+    gSelectedImg = getMemeImage();
+
+    resizeCanvas();
+    requestAnimationFrame(drawToCanvas);
 }
 
 function resizeCanvas() {
@@ -38,7 +38,6 @@ function resizeCanvas() {
     gCanvas.width = elCanvasContainer.clientWidth;
     gCanvas.height = gCanvas.width / aspectRatio;
     elCanvasContainer.height = gCanvas.height;
-    drawToCanvas();
 }
 
 
@@ -49,14 +48,10 @@ function drawImage() {
 
 function drawText() {
     gMeme.txts.forEach(txt => {
-        // draw rectangle around text when it is selected
         if (txt.isSelected) {
             let txtWidth = txt.x + gCtx.measureText(txt.txt).width;
             let txtHeight = txt.y - txt.fontSize;
-            gCtx.save();
-            gCtx.strokeStyle = '#2e86de';
-            gCtx.strokeRect(txt.x + 5, txt.y + 5, txtWidth + 5, txtHeight + 5);
-            gCtx.restore();
+            // gCtx. 
         }
         gCtx.font = `${txt.fontSize}px Impact`;
         gCtx.strokeStyle = '#000';
@@ -83,22 +78,17 @@ function onStartDrag(ev) {
     let offsetX = gCanvas.offsetLeft;
     let offsetY = gCanvas.offsetTop;
 
-    // console.log('Canvas offsent', offsetX, offsetY);
-    // console.log('client pos', ev.clientX, ev.clientY);
     gMouseX = parseInt(ev.clientX - offsetX);
     gMouseY = parseInt(ev.clientY - offsetY);
-    // console.log('calculation of exactly where on canvas', gMouseX, gMouseY);
-    // console.log('I AM CLICKING HERE', x, y);
-    gCurrDragText = getTextByLocation(gMouseX, gMouseY);
-    console.log(ev);
-    console.log('FOUND YOU', gCurrDragText);
+
+    gDragText = getTextByLocation(gMouseX, gMouseY);
+
 }
 
 function onDragText(ev) {
     ev.preventDefault();
-    if (!gCurrDragText) {
-        return;
-    } else selectTextForEdit();
+    if (!gDragText) return;
+
     let offsetX = gCanvas.offsetLeft;
     let offsetY = gCanvas.offsetTop;
     let mouseX = parseInt(ev.clientX - offsetX);
@@ -109,13 +99,13 @@ function onDragText(ev) {
     gMouseX = mouseX;
     gMouseY = mouseY;
 
-    gCurrDragText.x += dragDistanceX;
-    gCurrDragText.y += dragDistanceY;
+    gDragText.x += dragDistanceX;
+    gDragText.y += dragDistanceY;
 }
 
 function onStopDrag(ev) {
     ev.preventDefault();
-    gCurrDragText = false;
+    gDragText = false;
 }
 
 // Movement controls
@@ -144,26 +134,23 @@ function onChangeFontForSelected(ev, fontSize) {
 }
 
 function onSelectText(ev) {
-    ev.stopPropagation();
     let offsetX = gCanvas.offsetLeft;
     let offsetY = gCanvas.offsetTop;
 
     let mouseX = parseInt(ev.clientX - offsetX);
     let mouseY  = parseInt(ev.clientY - offsetY);
 
-    gCurrDragText = getTextByLocation(mouseX, mouseY);
-    if (gCurrDragText.isSelected) gCurrDragText.isSelected = true;
-    else if (gCurrDragText) gCurrDragText.isSelected = false;
-    else getAllTexts().forEach(txt => txt.isSelected = false);
+    gSelectedText = getTextByLocation(mouseX, mouseY);
 }
 
 function onExportImg(ev) {
-   
     let imgData = gCanvas.toDataURL();
     ev.target.href = `${imgData}`;
 }
 
-function selectTextForEdit() {}
+function selectTextForEdit() {
+    document.querySelector('#currTextInput').value = gSelectedText.txt;
+}
 
 // Switch back from gallery to editor
 function onShowGallery() {
@@ -172,3 +159,6 @@ function onShowGallery() {
     document.querySelector('#gallery').hidden = false;
 }
 
+function onChangeText(val) {
+    gSelectedText.txt = val;
+}

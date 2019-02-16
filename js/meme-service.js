@@ -2,23 +2,13 @@ const MEME_KEY = 'lastMeme';
 var gMeme;
 
 function initMeme(imgId) {
-    gMeme = createMeme(imgId);
+    gMeme = {
+        selectedImg: new Image(),
+        txts: [],
+    }
 
     gMeme.selectedImg.src = getImageById(imgId).src;
     gMeme.selectedImg.onload = initCanvas;
-}
-
-function createMeme(imgId) {
-    // let meme = getFromStorage(MEME_KEY, true);
-    // if (meme) return meme;
-
-    // meme = getFromStorage(MEME_KEY, false);
-    // if (meme) return meme;
-
-    return {
-        selectedImg: imgId,
-        txts: [],
-    };
 }
 
 
@@ -44,11 +34,11 @@ function getAllTexts() {
 // Hittest for the text
 function getTextByLocation(x, y) {
     return gMeme.txts.find(txt => {
-        console.log(txt.x, txt.y);
+        // console.log(txt.x, txt.y);
         let txtWidth = txt.x + gCtx.measureText(txt.txt).width;
         let txtHeight = txt.y - txt.fontSize;
-        console.log(x, txt.x, x, txtWidth, y, txt.y, y, txtHeight)
-        console.log(x >= txt.x, x <= txtWidth, y >= txt.y, y <= txtHeight)
+        // console.log(x, txt.x, x, txtWidth, y, txt.y, y, txtHeight)
+        // console.log(x >= txt.x, x <= txtWidth, y >= txt.y, y <= txtHeight)
         return x >= txt.x && x <= txtWidth && y <= txt.y && y >= txtHeight;
     });
 }
@@ -60,6 +50,6 @@ function moveText(xD, yD) {
     gMeme.txts[0].y += yD;
 }
 
-function getMemeImageId() {
+function getMemeImage() {
     return gMeme.selectedImg;
 }
