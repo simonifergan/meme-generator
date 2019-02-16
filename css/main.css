@@ -574,7 +574,7 @@ body.show-screen {
 }
 
 .modal-screen {
-    z-index: 1;
+    z-index: 2;
     background-color: #5c5959da;
     position: fixed;
     height: 100vh;
@@ -590,16 +590,18 @@ body.show-screen {
 }
 
 .modal-content {
+    padding: 0 15px;
     font-family: Lato, sans-serif;
     position: fixed;
-    top: 50%;
+    width: 100vw;
+    height: 100vh;
     background-color: #01a3a4;
     box-shadow: 0 0 6px 1px #1d1d1d;
     justify-content: center;
 }
 
 .float-search-container  {
-    padding: 15px;
+    margin-top: 25px;
 }
 
 .btn-search-modal {
@@ -613,6 +615,7 @@ body.show-screen {
 }
 
 .btn-search-keyword {
+    padding: 5px;
     background: transparent;
     color: #e3e3e3;
     text-transform: capitalize;
@@ -622,7 +625,22 @@ body.show-screen {
     color: #feca57;
 }
 
+.btn-close-modal {
+    background: none;
+    font-size: 1.25rem;
+    color: #ee5253;
+    float: right;
+    margin-bottom: 20px;
+    transition: color .3s;
+}
+.btn-close-modal:hover {
+    color: #ff6b6b;
+}
+
 @media (min-width: 750px) {
+    .float-search-container  {
+        padding: 20px;
+    }
     .modal-content {
         position: static;
         margin: 30px auto;

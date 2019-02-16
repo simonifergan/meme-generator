@@ -50,7 +50,7 @@ function addListenersToCanvas() {
 function resizeCanvas() {
     let elCanvasContainer = document.querySelector(".canvas-container");
     var aspectRatio = gSelectedImg.width / gSelectedImg.height;
-    gCanvas.width = elCanvasContainer.clientWidth; 
+    gCanvas.width = elCanvasContainer.clientWidth;
     gCanvas.height = gCanvas.width / aspectRatio;
     elCanvasContainer.height = gCanvas.height;
 }
@@ -196,8 +196,8 @@ function onTextMove(dir) {
     let newX = gSelectedText.x + xDistance;
     let newY = gSelectedText.y + yDistance;
     if (newX <= 0 ||
-        newX + gCtx.measureText(gSelectedText.txt).width >= gCanvas.width || 
-        newY - gSelectedText.fontSize <= 0 
+        newX + gCtx.measureText(gSelectedText.txt).width >= gCanvas.width ||
+        newY - gSelectedText.fontSize <= 0
         || newY >= gCanvas.height) return;
 
     // Assign new location
@@ -205,7 +205,7 @@ function onTextMove(dir) {
     gSelectedText.y += yDistance;
     gPrevTextColor = gSelectedText.color;
     gSelectedText.color = '#ee5253';
-    setTimeout((txt, color)=> {txt.color = color;}, 150,gSelectedText, gPrevTextColor);
+    setTimeout((txt, color) => { txt.color = color; }, 150, gSelectedText, gPrevTextColor);
 }
 
 function onChangeFontSize(fontSize) {
@@ -225,7 +225,7 @@ function onSelectText(ev) {
     let mouseY = parseInt(ev.clientY - offsetY);
 
     gSelectedText = getTextByLocation(mouseX, mouseY);
-    selectText();
+    if (gSelectedText) gSelectedText.color = '#0abde3';
     selectTextForEdit();
 }
 
@@ -237,7 +237,7 @@ function selectTextForEdit() {
     }
     else {
         elInput.value = 'Click on text to edit.'
-        deselectAllTexts();
+        getTextsToDisplay().forEach(txt => { txt.color = '#fff' });
     }
 
 
@@ -246,25 +246,15 @@ function selectTextForEdit() {
 // On input change - update text
 function onChangeText(val) {
     if (!gSelectedText) return;
-    deselectAllTexts();
     gSelectedText.txt = val;
-    gSelectedText.color
     renderTexts();
 }
 function onExportImg(ev) {
     // Make sure all text is white regardless of selected or moved/dragged
-    deselectAllTexts();
+    getTextsToDisplay().forEach(txt => { txt.color = '#fff'; });
+    drawToCanvas();
     let imgData = gCanvas.toDataURL();
     ev.target.href = `${imgData}`;
-}
-
-function selectText() {
-    if (gSelectText) gSelectedText.color = '#0abde3';
-}
-
-function deselectAllTexts() {
-    getTextsToDisplay().forEach(txt => {txt.color = '#fff';});
-    drawToCanvas();
 }
 
 
