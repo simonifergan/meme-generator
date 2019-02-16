@@ -327,6 +327,8 @@ main {
 .editor-menu {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; 
+    grid-column-gap: 5px;
+    justify-items: center;
 }
 
 .editor-menu > * {
@@ -374,6 +376,7 @@ main {
     border: 1px solid #222f3e;
     outline: none;
     padding-left: 5px;
+    grid-column: span 2;
 }
 
 #currTextInput:focus {
