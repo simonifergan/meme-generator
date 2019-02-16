@@ -55,7 +55,7 @@
                     </datalist>
                 </div>
 
-                <div class="gallery-frequent-search flex justify-content-center align-center">
+                <div class="float-search-container flex wrap space-between">
                     <!-- Generate frequent searches here -->
                 </div>
 
@@ -92,7 +92,7 @@
                         <button class="btn btn-move-text right" onclick="onTextMove('right')">⇨</button>
                     </div>
                     <label for="fontSlider">Font Size: <span class="span-font-slider">20px</span></label>
-                    <input onchange="onChangeFontForSelected(this.value)" type="range" id="fontSlider" min="16" max="64"
+                    <input onchange="onChangeFontSize(this.value)" type="range" id="fontSlider" min="16" max="64"
                         value="30">
                     <input id="currTextInput" oninput="onChangeText(this.value)" value="Click on text to edit.">
                     <a download="my-meme.jpg" onclick="onExportImg(event)" class="btn btn-export-img">

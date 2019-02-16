@@ -80,11 +80,11 @@ function drawToCanvas() {
     requestAnimationFrame(drawToCanvas);
 }
 
-// ---------- SELECT BOX
+// ---------- SELECT TEXT FUNCS
 function renderTexts() {
-    // if on mobile skip this section and go to renderTextsForMobile
+    // if on mobile skip this section and go to renderMobileTextSelectors
     if (document.body.clientWidth <= 850) {
-        renderTextsForMobile();
+        renderMobileTextSelectors();
         return;
     }
     let elSelect = document.querySelector('#selectTextBox');
@@ -103,7 +103,8 @@ function renderTexts() {
     elSelect.innerHTML = strHTMLS.join('');
 }
 
-function renderTextsForMobile() {
+// When invoked the meme editor will have buttons to select texts instead of a select element
+function renderMobileTextSelectors() {
     let elContainer = document.querySelector('.choose-text-container');
     let texts = getTextsToDisplay();
     let strHTMLS = texts.map((txt, idx) => {
@@ -119,7 +120,7 @@ function onChangeSelectedText(id) {
     gSelectedText = getTextById(id);
     selectTextForEdit();
 }
-// END OF SELECT BOX ------------ //
+// END OF SELECT TEXT FUNCS ------------ //
 
 function onAddText() {
     addText();
@@ -133,7 +134,7 @@ function onDeleteText() {
     renderTexts();
 }
 
-// Mouse events
+// Canvas mouse events
 function onStartDrag(ev) {
     ev.preventDefault();
     let offsetX = gCanvas.offsetLeft;
@@ -206,14 +207,14 @@ function onTextMove(dir) {
     setTimeout((txt, color)=> {txt.color = color;}, 300,gSelectedText, gPrevTextColor);
 }
 
-function onChangeFontForSelected(fontSize) {
+function onChangeFontSize(fontSize) {
     document.querySelector('.span-font-slider').innerHTML = fontSize;
     if (gSelectedText) {
         gSelectedText.fontSize = fontSize;
     }
 }
 
-// If text was passed through selectBox - find it by id, otherwise find it with mouse click
+// If text was passed through selectBox/buttons - find it by id, otherwise find it with mouse click
 function onSelectText(ev) {
 
     let offsetX = gCanvas.offsetLeft;
@@ -232,7 +233,6 @@ function selectTextForEdit() {
     let elInput = document.querySelector('#currTextInput');
     if (gSelectedText) {
         elInput.value = gSelectedText.txt;
-        
     }
     else {
         elInput.value = 'Click on text to edit.'
