@@ -40,16 +40,15 @@ function addListenersToCanvas() {
     gCanvas.addEventListener('mouseup', onStopDrag);
     gCanvas.addEventListener('click', onSelectText);
 
-    // Touch events
+    // TODO: Touch events
     // gCanvas.addEventListener('touchstart', onStartDrag);
     // gCanvas.addEventListener('touchmove', onDragText);
     // gCanvas.addEventListener('touchend', onStopDrag);
     // gCanvas.addEventListener('dblclick', onSelectText);
 }
+
 function resizeCanvas() {
     let elCanvasContainer = document.querySelector(".canvas-container");
-    // gCanvas.width = elCanvasContainer.offsetWidth;
-    // gCanvas.height = elCanvasContainer.offsetHeight;
     var aspectRatio = gSelectedImg.width / gSelectedImg.height;
     gCanvas.width = elCanvasContainer.clientWidth;
     gCanvas.height = gCanvas.width / aspectRatio;

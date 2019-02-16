@@ -19,6 +19,7 @@ html {
 a {
     color: blue;
     cursor: pointer;
+    text-decoration: none;
 }
 
 a:hover {
@@ -171,9 +172,12 @@ main {
 
 #app {
     grid-template-areas: 
-    "btn-back btn-back"
-    "canvas-container editor-menu";
-    grid-template-columns: 2fr 1fr;
+    "btn-back"
+    "canvas-container"
+    "editor-menu";
+    grid-template-rows: auto auto auto;
+    justify-content: center;
+    grid-row-gap: 5px;
 }
 
 .btn-go-gallery {
@@ -195,20 +199,27 @@ main {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
+.editor-menu {
+    grid-area: editor-menu;
+    background-color: #636e72;
+    border-radius: 5px;
+}
 
 #appCanvas {
  border: 1px solid black;
  border-radius: 2px;
 }
 
-    /* Editor */
-
-.editor-menu {
-    grid-area: editor-menu;
-    background-color: #636e72;
-    border-radius: 5px;
-    order: 1;
+@media (min-width: 750px) {
+    #app {
+        grid-template-areas: 
+        "btn-back btn-back"
+        "canvas-container editor-menu";
+        grid-template-columns: 2fr 1fr;
+    }
 }
+    /* Editor items */
+
 
 .editor-menu > * {
     font-family: Lato, sans-serif;
@@ -319,6 +330,11 @@ main {
     color: white;
     background: #10ac84;
     transition: all .3s;
+}
+.btn-export-img::before {
+    content: "⤓";
+    padding-right: 2px;
+    font-size: 1.125em;
 }
 .btn-export-img:hover {
     color: #333;
