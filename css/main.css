@@ -236,13 +236,24 @@ main {
     border-bottom: 1px solid #c8d6e5;
     transition: background-color .3s;
 }
-
 .btn-add-line:hover {
     background-color: #c8d6e5;
     border-bottom: 1px solid #8395a7;
 }
-
 .btn-add-line:active {
+    box-shadow: inset 0px 1px 4px 0px black;
+}
+
+.btn-delete-line {
+    border-radius: 2px;
+    background-color: #ee5253;
+    border-bottom: 1px solid #ff6b6b;
+    transition: background-color .3s;
+}
+.btn-delete-line:hover {
+    background-color: #ff6b6b;
+}
+.btn-delete-line:active {
     box-shadow: inset 0px 1px 4px 0px black;
 }
 
