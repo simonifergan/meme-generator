@@ -34,10 +34,12 @@
                 <div class="form-link-container flex" style="display: none;">
                     <form class="form-link-image flex column justify-content-center align-center">
                         <label for="inputURL">URL:
-                            <input id="inputURL" type="text" class="input-link" placeholder="http://www.yourwebsite.com/imagefile.jpg">
+                            <input id="inputURL" type="text" class="input-link"
+                                placeholder="http://www.yourwebsite.com/imagefile.jpg">
                         </label>
                         <label for="inputKeywords">Keywords:
-                            <input id="inputKeywords" type="text" class="input-link" placeholder="Separate with commas, e.g.: banana, lemon, ninja turtle...">
+                            <input id="inputKeywords" type="text" class="input-link"
+                                placeholder="Separate with commas, e.g.: banana, lemon, ninja turtle...">
                         </label>
                         <button class="btn btn-continue" onclick="onLinkImageFromURL(event)">
                             <i class="fas fa-link"></i> Link
@@ -64,7 +66,7 @@
             </nav>
 
             <button class="btn btn-offscreen-toggle" onclick="onOffscreenToggle()">
-                    <i class="fas fa-bars"></i>
+                <i class="fas fa-bars"></i>
             </button>
 
             <!-- Mobile offscreen nav bar -->
@@ -97,11 +99,12 @@
                     <button title="Search" class="btn btn-search-bar search" onclick="">
                         <i class="fas fa-search"></i>
                     </button>
-                    <button title="Most Frequent Searches" class="btn btn-search-bar tags" onclick="onToggleSearchModal()">
-                            <i class="fab fa-slack-hash"></i>
+                    <button title="Most Frequent Searches" class="btn btn-search-bar tags"
+                        onclick="onToggleSearchModal()">
+                        <i class="fab fa-slack-hash"></i>
                     </button>
                     <button title="Link External Image" class="btn btn-search-bar link" onclick="onLinkImageModal()">
-                            <i class="fas fa-link"></i>
+                        <i class="fas fa-link"></i>
                     </button>
                 </div>
 
@@ -189,9 +192,21 @@
                         <p class="profile-text">
                             It's time to kick some ass and chew some bubble gum, and I am all out of gum.<br />
                             p.s. Screw flex, go grid.
-
-
                         </p>
+                        <div class="about-social-container flex">
+                            <a href="">
+                                <i class="fab fa-facebook-square"></i>
+                            </a>
+                            <a href="">
+                                <i class="fab fa-twitter-square"></i>
+                            </a>
+                            <a href="">
+                                <i class="fab fa-git-square"></i>
+                            </a>
+                            <a href="">
+                                <i class="fab fa-google-plus-square"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </article>
