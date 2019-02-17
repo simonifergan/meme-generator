@@ -1,4 +1,5 @@
-function onOffscreenToggle() {
+function onOffscreenToggle(ev) {
+    ev.stopPropagation();
     document.querySelector('.trigram-container').classList.toggle('show');
 }
 

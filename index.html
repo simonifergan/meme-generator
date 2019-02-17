@@ -51,7 +51,7 @@
         </div>
     </div>
 
-    <main class="grid justify-items-center">
+    <main class="grid justify-items-center" onclick="onOffscreenClose()">
         <!-- Main Header -->
         <header class="main-header flex justify-content-center align-center">
             <!-- Desktop nav bar -->
@@ -65,7 +65,7 @@
                 <a href="#contact" class="nav-link">Contact</a>
             </nav>
 
-            <button class="btn btn-offscreen-toggle" onclick="onOffscreenToggle()">
+            <button class="btn btn-offscreen-toggle" onclick="onOffscreenToggle(event)">
                 <i class="fas fa-bars"></i>
             </button>
 
