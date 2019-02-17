@@ -176,7 +176,7 @@ main {
 
 #searchBar {
     cursor: text;
-    width: 300px;
+    max-width: 300px;
     height: 2rem;
     border-radius: 3px;
     border: 1px solid #222f3e;
@@ -192,8 +192,8 @@ main {
     cursor: pointer;
     transition: background-color .3s;
     position: relative;
-    height: 150px;
-    width: 130px;
+    height: 120px;
+    width: 100px;
 }
 
 .hexagon-before {
@@ -219,8 +219,8 @@ main {
 @media (max-width: 750px) {
    
     .gallery-container {
-        grid-template-columns: repeat(6, 65px);
-        grid-auto-rows: 130px;
+        grid-template-columns: repeat(6, 50px);
+        grid-auto-rows: 100px;
         margin: 30px 0;
         justify-content: center;
     }
@@ -253,6 +253,9 @@ main {
     }
     .gallery-item:nth-child(9n) {
         grid-column-start: 1;
+    }
+    #searchBar { 
+        width: 300px;
     }
 }
 @media (min-width: 980px) {
@@ -396,6 +399,7 @@ main {
     outline: none;
     padding-left: 5px;
     grid-column: span 2;
+    grid-row-start: 1;
 }
 
 #currTextInput:focus {
@@ -448,6 +452,8 @@ main {
 }
 
 .keypad-container {
+    grid-column-start: 3;
+    grid-row-start: 1;
     grid-template: repeat(3, 48px) / repeat(3,48px);
 }
     .btn-move-text {
@@ -480,6 +486,8 @@ main {
     }
 
 .btn-export-img {
+    grid-column-start: 3;
+    grid-row-start: 3;
     border-radius: 2px;
     color: white;
     background: #10ac84;
