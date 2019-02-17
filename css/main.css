@@ -342,7 +342,6 @@ main {
 .editor-menu {
     display: grid;
     grid-template-columns: 1fr .5fr 1fr; 
-    grid-column-gap: 5px;
     justify-items: center;
     margin-bottom: 20px;
 }
@@ -357,6 +356,9 @@ main {
     color: white;
 }
 
+.add-remove-container {
+    margin: 5px 0;
+}
 .choose-text-container {
     grid-column: span 2;
 }
@@ -369,6 +371,8 @@ main {
     background: transparent;
     cursor: pointer;
     outline: none;
+    width: 100%;
+    margin-top: 5px;
 }
 
 @media (min-width: 850px) {
