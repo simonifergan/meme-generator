@@ -27,7 +27,7 @@ function createImages() {
     return imgs;
 }
 
-function createImage(src = './img/meme/error.png', keywords = ['Error']) {
+function createImage(src = './img/meme/error.png', keywords = []) {
     return {
         id: generateId(),
         src: src,
@@ -43,6 +43,6 @@ function getImageById(id) {
     return gImages.find(img => img.id === id);
 }
 
-function addImage(src = './img/meme/error.png', keywords = ['Error']) {
+function addImage(src = './img/meme/error.png', keywords = []) {
     gImages.push(createImage(src, keywords));
 }

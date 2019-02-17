@@ -76,8 +76,7 @@ function drawText() {
         gCtx.strokeText(`${txt.txt}`, txt.x, txt.y);
         gCtx.fillStyle = txt.color;
         gCtx.fillText(`${txt.txt}`, txt.x, txt.y);
-
-    })
+    });
 }
 
 function drawToCanvas() {
@@ -160,7 +159,6 @@ function onDragText(ev) {
     ev.preventDefault();
     if (!gDragText) return;
     deSelectAllTexts();
-    
 
     let canvasRect = gCanvas.getBoundingClientRect();
     let mouseX = parseInt(ev.clientX - canvasRect.left);
@@ -260,7 +258,7 @@ function selectTextForEdit() {
     }
 }
 
-// Deselecting texts = returning all to white (default) color;
+// De-selecting texts = returning all to white (default) color;
 function deSelectAllTexts() {
     getTextsToDisplay().forEach(txt => { txt.color = '#fff' });
 }

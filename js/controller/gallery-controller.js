@@ -13,7 +13,6 @@ function renderGallery(gallery = getImagesToDisplay()) {
                 </div>
                 <div class="gallery-item blank-spot">
                 </div>`;
-
     });
     document.querySelector('.gallery-container').innerHTML = strHtmls.join('');
 }
@@ -31,9 +30,7 @@ function renderFrequentSearches() {
                 ${key}
             </button>`
         );
-
-    })
-
+    });
     elContainer.innerHTML = strHtmls.join('');
 }
 
@@ -64,6 +61,7 @@ function onSearchInGallery(value) {
     renderGallery(gallery);
 }
 
+// Start meme editor and hide homepage content
 function onStartEditor(imgId) {
     document.querySelector('#gallery').hidden = true;
     document.querySelector('#about').style.display = 'none';
