@@ -24,12 +24,12 @@ function initCanvas() {
     gCanvas.onselectstart = function () { return false; }
     gCtx = gCanvas.getContext('2d');
     gSelectedImg = getMemeImage();
-    
+
     // Prepare canvas
     resizeCanvas();
     addEventsToCanvas()
     renderTexts();
-    
+
     // create first text top of page
     onAddText();
     gSelectedText.x = parseInt((gCanvas.width / 2) - gCtx.measureText(gSelectedText).width / 2);
@@ -40,16 +40,23 @@ function initCanvas() {
 }
 
 function addEventsToCanvas() {
+    // Click
+    gCanvas.addEventListener('click', onSelectText);
+
     // Mouse events
     gCanvas.addEventListener('mousedown', onStartDrag);
     gCanvas.addEventListener('mousemove', onDragText);
     gCanvas.addEventListener('mouseup', onStopDrag);
-    gCanvas.addEventListener('click', onSelectText);
+
+    // TODO: Touch events
+    // gCanvas.addEventListener("touchstart", onStartDrag, false);
+    // gCanvas.addEventListener("touchmove", onDragText, false);
+    // gCanvas.addEventListener("touchend", onStopDrag, false);
 }
 
 function resizeCanvas() {
     let elCanvasContainer = document.querySelector(".canvas-container");
-    var aspectRatio = gSelectedImg.width / gSelectedImg.height;
+    let aspectRatio = gSelectedImg.width / gSelectedImg.height;
     gCanvas.width = elCanvasContainer.clientWidth;
     gCanvas.height = gCanvas.width / aspectRatio;
     elCanvasContainer.height = gCanvas.height;
@@ -141,7 +148,7 @@ function onDeleteText() {
 // Canvas mouse events
 function onStartDrag(ev) {
     ev.preventDefault();
- 
+
     let canvasRect = gCanvas.getBoundingClientRect();
     gMouseX = ev.clientX - canvasRect.left;
     gMouseY = ev.clientY - canvasRect.top
@@ -153,6 +160,7 @@ function onDragText(ev) {
     ev.preventDefault();
     if (!gDragText) return;
     deSelectAllTexts();
+    
 
     let canvasRect = gCanvas.getBoundingClientRect();
     let mouseX = parseInt(ev.clientX - canvasRect.left);
