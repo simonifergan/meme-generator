@@ -23,11 +23,18 @@
                 <div class="float-search-container flex wrap" style="display: none;">
                     <!-- Generate frequent searches here -->
                 </div>
-    
-                <div class="message-sent-container flex column align-center justify-content-center" style="display: none;">
+
+                <div class="message-sent-container flex column align-center justify-content-center"
+                    style="display: none;">
                     <h2>Your message was successfully sent to Simon.</h2>
                     <h3>Thank you for reaching out!</h3>
                     <button class="btn btn-continue" onclick="onCloseModal()">Continue</button>
+                </div>
+
+                <div class="form-container">
+                    <form class="form-link-image">
+
+                    </form>
                 </div>
             </div>
 
@@ -48,7 +55,9 @@
                 <a href="#contact" class="nav-link">Contact</a>
             </nav>
 
-            <button class="btn btn-offscreen-toggle" onclick="onOffscreenToggle()">☰</button>
+            <button class="btn btn-offscreen-toggle" onclick="onOffscreenToggle()">
+                    <i class="fas fa-bars"></i>
+            </button>
 
             <!-- Mobile offscreen nav bar -->
             <nav class="trigram-container flex column" onclick="event.stopPropagation()">
@@ -68,7 +77,7 @@
 
                 <!-- Gallery Search Bar -->
                 <div class="gallery-search flex justify-content-center align-center">
-                    <label for="searchBar">Search:&nbsp;</label>
+                    <label for="searchBar"></label>
                     <input autofocus oninput="onSearchInGallery(this.value)" id="searchBar" type="text"
                         class="search-box" list="mostFrequentSearch">
                     <datalist id="mostFrequentSearch">
@@ -77,8 +86,15 @@
                         <option value="Zahav">
                         <option value="Banana">
                     </datalist>
-                    <button class="btn btn-search-modal" onclick="onToggleSearchModal()"><i
-                            class="fas fa-search"></i></button>
+                    <button class="btn btn-search-bar search" onclick="">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="btn btn-search-bar tags" onclick="onToggleSearchModal()">
+                            <i class="fab fa-slack-hash"></i>
+                    </button>
+                    <button class="btn btn-search-bar link" onclick="onLinkImageFromURL()">
+                            <i class="fas fa-link"></i>
+                    </button>
                 </div>
 
 
@@ -92,7 +108,10 @@
             <!-- App Container -->
             <div id="app" class="grid" style="display: none">
 
-                <button onclick="onShowGallery()" class="btn btn-go-gallery">Back to Gallery</button>
+                <button onclick="onShowGallery()" class="btn btn-go-gallery">
+                    <i class="far fa-arrow-alt-circle-left"></i>
+                    <span>Back to Gallery</span>
+                </button>
 
                 <!-- Editor Menu -->
                 <aside class="editor-menu flex column justify-content-center align-center">
@@ -176,13 +195,14 @@
                             <input type="text" class="contact-input" placeholder="Name (Required)" required>
                         </label>
                         <label>
-                            <input type="text" class="contact-input" placeholder="E-Mail (Required)" required> 
+                            <input type="text" class="contact-input" placeholder="E-Mail (Required)" required>
                         </label>
                         <label>
                             <input type="text" class="contact-input" placeholder="Subject">
                         </label>
                         <label>
-                            <textarea type="text" class="contact-input message" placeholder="Write your message here..."></textarea>
+                            <textarea type="text" class="contact-input message"
+                                placeholder="Write your message here..."></textarea>
                         </label>
                         <button class="btn btn-send-message" onclick="onSendMessage(event)">Send</button>
                     </form>

@@ -6,10 +6,9 @@ function onOffscreenClose() {
     document.querySelector('.trigram-container').classList.remove('show');
 }
 
-function onToggleModal() {
+function toggleModal() {
     document.querySelector('.modal-screen').classList.toggle('show');
     document.body.classList.toggle('show');
-
 }
 
 function onCloseModal(ev) {
@@ -22,13 +21,12 @@ function onCloseModal(ev) {
 
 function onToggleSearchModal() {
     document.querySelector('.float-search-container').style.display = 'flex';
-    onToggleModal();
+    toggleModal();
 }
 
 // send message will toggle modal for now
 function onSendMessage(ev) {
     ev.preventDefault()
     document.querySelector('.message-sent-container').style.display = 'flex';
-    onToggleModal();
+    toggleModal();
 }
-

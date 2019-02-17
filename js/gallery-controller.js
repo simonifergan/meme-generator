@@ -44,6 +44,10 @@ function onFrequentSearchClick(key) {
     renderFrequentSearches();
 }
 
+// Allows the user to add an image from external sources
+function onLinkImageFromURL() {
+
+}
 
 function onSearchInGallery(value) {
     gCurrPageIdx = 0;
@@ -59,6 +63,5 @@ function onStartEditor(imgId) {
     document.querySelector('#contact').style.display = 'none';
     document.querySelector('.main-header').classList.toggle('editor-mode');
     initMeme(imgId);
-
 }
 

@@ -93,7 +93,7 @@ main {
     margin-right: 10px;
     min-width: 48px;
     min-height: 48px;
-    box-shadow: 0 0px 2px 1px #c8d6e5;
+    /* box-shadow: 0 0px 2px 1px #c8d6e5; */
     transition: all .3s;
 }
 .btn-offscreen-toggle:hover {
@@ -302,13 +302,19 @@ main {
     transition: all .3s;
 }
 
-.btn-go-gallery::before {
+.btn-go-gallery .far {
+    position: absolute;
+    left: 0.3125rem;
+    font-size: 1.25rem;
+}
+
+/* .btn-go-gallery::before {
     content: "⇦";
     position: absolute;
     left: 0.3125rem;
     top: 0.03125rem;
     font-size: 1.25rem;
-}
+} */
 .btn-go-gallery:hover {
     background-color: #feca57;
     color: #333;
@@ -682,9 +688,10 @@ body.show-screen {
     padding: 0 15px;
     font-family: Lato, sans-serif;
     position: fixed;
-    top: 50%;
+    top: 30%;
     width: 100%;
-    background-color: #01a3a4;
+    color: white;
+    background-color: #576574;
     box-shadow: 0 0 6px 1px #1d1d1d;
     justify-content: center;
 }
@@ -693,14 +700,20 @@ body.show-screen {
     margin-top: 25px;
 }
 
-.btn-search-modal {
+.btn-search-bar {
     font-size: 1.25rem;
     color: #ff9f43;
     background: none;
     transition: color .3s;
 }
-.btn-search-modal:hover {
+.btn-search-bar.search:hover {
     color: #feca57 ;
+}
+.btn-search-bar.tags:hover {
+    color: #2e86de ;
+}
+.btn-search-bar.link:hover {
+    color: #ee5253;
 }
 
 .btn-search-keyword {
@@ -731,7 +744,9 @@ body.show-screen {
         padding: 20px;
     }
     .modal-content {
-        position: fixed;
+        position: relative;
+        width: 80%;
+        top: 40%;
         margin: 0 auto;
     }
 }
