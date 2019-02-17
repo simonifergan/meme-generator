@@ -739,6 +739,13 @@ body.show-screen {
     color: #ff6b6b;
 }
 
+.input-link {
+    width: 400px;
+    margin-top: 10px;
+}
+.input-link:last-child {
+    margin-bottom: 10px;
+}
 @media (min-width: 750px) {
     .float-search-container  {
         padding: 20px;

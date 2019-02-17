@@ -13,9 +13,10 @@ function toggleModal() {
 
 function onCloseModal(ev) {
     document.querySelector('.modal-screen').classList.remove('show');
-    // Hide modal content
+    // Hide modal's content
     document.querySelector('.message-sent-container').style.display = 'none';
     document.querySelector('.float-search-container').style.display = 'none';
+    document.querySelector('.form-link-container').style.display = 'none';
     document.body.classList.remove('show');
 }
 
@@ -28,5 +29,10 @@ function onToggleSearchModal() {
 function onSendMessage(ev) {
     ev.preventDefault()
     document.querySelector('.message-sent-container').style.display = 'flex';
+    toggleModal();
+}
+
+function onLinkImageModal() {
+    document.querySelector('.form-link-container').style.display = 'flex';
     toggleModal();
 }

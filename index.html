@@ -31,9 +31,17 @@
                     <button class="btn btn-continue" onclick="onCloseModal()">Continue</button>
                 </div>
 
-                <div class="form-container">
-                    <form class="form-link-image">
-
+                <div class="form-link-container flex" style="display: none;">
+                    <form class="form-link-image flex column justify-content-center align-center">
+                        <label for="inputURL">URL:
+                            <input id="inputURL" type="text" class="input-link" placeholder="http://www.yourwebsite.com/imagefile.jpg">
+                        </label>
+                        <label for="inputKeywords">Keywords:
+                            <input id="inputKeywords" type="text" class="input-link" placeholder="Separate with commas, e.g.: banana, lemon, ninja turtle...">
+                        </label>
+                        <button class="btn btn-continue" onclick="onLinkImageFromURL(event)">
+                            <i class="fas fa-link"></i> Link
+                        </button>
                     </form>
                 </div>
             </div>
@@ -86,13 +94,13 @@
                         <option value="Zahav">
                         <option value="Banana">
                     </datalist>
-                    <button class="btn btn-search-bar search" onclick="">
+                    <button title="Search" class="btn btn-search-bar search" onclick="">
                         <i class="fas fa-search"></i>
                     </button>
-                    <button class="btn btn-search-bar tags" onclick="onToggleSearchModal()">
+                    <button title="Most Frequent Searches" class="btn btn-search-bar tags" onclick="onToggleSearchModal()">
                             <i class="fab fa-slack-hash"></i>
                     </button>
-                    <button class="btn btn-search-bar link" onclick="onLinkImageFromURL()">
+                    <button title="Link External Image" class="btn btn-search-bar link" onclick="onLinkImageModal()">
                             <i class="fas fa-link"></i>
                     </button>
                 </div>

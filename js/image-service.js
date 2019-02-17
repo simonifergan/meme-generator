@@ -50,3 +50,7 @@ function getImagesToDisplay() {
 function getImageById(id) {
     return gImages.find(img => img.id === id);
 }
+
+function addImage(src = './img/meme/error.png', keywords = ['Error']) {
+    gImages.push(createImage(src, keywords));
+}

@@ -25,7 +25,7 @@ function renderFrequentSearches() {
     let strHtmls = [];
     frequentSearches.forEach((value, key) => {
         let rotateChance = (Math.random()*1 < 0.2 && value < 22)? 'transform: rotate(-90deg);' : '';
-        let fontSize = (value >= 16) ? value : 16;  // minimum font-size will be 16, the rest will get font-size through count.
+        let fontSize = (value >= 16) ? value : 16;  // minimum font-size will be 16, the rest will get font-size by count value.
         strHtmls.push(
             `<button class="btn btn-search-keyword" style="font-size: ${fontSize}px; ${rotateChance}" onclick="onFrequentSearchClick('${key}')">
                 ${key}
@@ -45,8 +45,15 @@ function onFrequentSearchClick(key) {
 }
 
 // Allows the user to add an image from external sources
-function onLinkImageFromURL() {
-
+function onLinkImageFromURL(ev) {
+    ev.preventDefault();
+    let src = document.querySelector('#inputURL').value;
+    let keywords = document.querySelector('#inputKeywords').value;
+    keywords = keywords.split(/[, ]/g);
+    keywords = keywords.filter(word => word.length > 0);
+    addImage(src, keywords);
+    renderGallery();
+    onCloseModal();
 }
 
 function onSearchInGallery(value) {
