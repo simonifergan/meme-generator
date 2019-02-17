@@ -349,10 +349,16 @@ main {
 
 .editor-menu > * {
     font-family: Lato, sans-serif;
-    margin-bottom: 0.625rem;
 }
 .editor-menu > label {
+    grid-row-start: 3;
+    grid-column-start: 1;
+    grid-column: span 2;
     color: white;
+}
+
+.choose-text-container {
+    grid-column: span 2;
 }
 
 #selectTextBox, .select-box-label {
@@ -371,6 +377,9 @@ main {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+    .editor-menu > * {
+        margin-bottom: 0.625rem;
     }
     .select-box-label {
         display: block;
