@@ -24,7 +24,7 @@ function renderFrequentSearches() {
     let elContainer = document.querySelector('.float-search-container');
     let strHtmls = [];
     frequentSearches.forEach((value, key) => {
-        let rotateChance = (Math.random()*1 < 0.2)? 'transform: rotate(-90deg);' : '';
+        let rotateChance = (Math.random()*1 < 0.2 && value < 22)? 'transform: rotate(-90deg);' : '';
         let fontSize = (value >= 16) ? value : 16;  // minimum font-size will be 16, the rest will get font-size through count.
         strHtmls.push(
             `<button class="btn btn-search-keyword" style="font-size: ${fontSize}px; ${rotateChance}" onclick="onFrequentSearchClick('${key}')">
