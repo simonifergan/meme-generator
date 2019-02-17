@@ -7,27 +7,21 @@ function initImages() {
 function createImages() {
     let imgs = [];
     imgs.push(createImage());
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 8; i++) {
         let src = `./img/meme/${i}.jpg`;
-        let keywords = ['Pukimonster', 'Lichmit', 'Banana'];
+        let keywords = ['Monster', 'Awkward', 'Animal'];
         let img = createImage(src, keywords)
         imgs.push(img);
     }
-    for (let i = 0; i < 9; i++) {
+    for (let i = 8; i < 16; i++) {
         let src = `./img/meme/${i}.jpg`;
-        let keywords = ['Abadi', 'Chalumi', 'Zahav'];
+        let keywords = ['Funny', 'Dangerous', 'Addicted'];
         let img = createImage(src, keywords)
         imgs.push(img);
     }
-    for (let i = 0; i < 9; i++) {
+    for (let i = 16; i < 23; i++) {
         let src = `./img/meme/${i}.jpg`;
-        let keywords = ['Abadi', 'Chalumi', 'Zahav'];
-        let img = createImage(src, keywords)
-        imgs.push(img);
-    }
-    for (let i = 0; i < 9; i++) {
-        let src = `./img/meme/${i}.jpg`;
-        let keywords = ['Abadi', 'Chalumi', 'Zahav'];
+        let keywords = ['Happy', 'Sad', 'Terror'];
         let img = createImage(src, keywords)
         imgs.push(img);
     }

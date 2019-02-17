@@ -71,7 +71,7 @@ main {
     width: 60vw;
     top: 100px;
     right: 0;
-    background-color: #576574de;
+    background-color: #576574e5;
     transform: translate(200%,0);
     z-index: 2;
     font-size: 1.125rem;
@@ -107,7 +107,6 @@ main {
 .header-nav > * {
     margin: 0 5px;
 }
-
 
 .nav-link {
     display: none;
@@ -580,11 +579,24 @@ section.appendix-container {
     }
     .about-social-container {
         float: right;
-        font-size: 1.45rem;
         margin-top: 20px;
     }
-    .about-social-container > .btn {
-        margin: 0;
+    .about-social-container .fab {
+        font-size: 2rem;
+        color: #323232;
+        transition: color .3s;
+    }
+    .about-social-container .fa-facebook-square:hover {
+        color: #3b5998;
+    }
+    .about-social-container .fa-twitter-square:hover{
+        color: #1da1f2;
+    }
+    .about-social-container .fa-git-square:hover {
+        color: #f05033;
+    }
+    .about-social-container .fa-google-plus-square:hover {
+        color: #db4437;
     }
 @media (min-width: 650px) {
     .about-text {
@@ -748,7 +760,7 @@ body.show-screen {
 }
 
 .input-link {
-    width: 400px;
+    width: 150px;
     margin-top: 10px;
 }
 .input-link:last-child {
@@ -763,5 +775,8 @@ body.show-screen {
         width: 80%;
         top: 40%;
         margin: 0 auto;
+    }
+    .input-link {
+        width: 400px;
     }
 }

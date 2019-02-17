@@ -165,11 +165,6 @@ function onDragText(ev) {
     if (!gDragText) return;
     deSelectAllTexts();
 
-    // let offsetX = gCanvas.offsetLeft;
-    // let offsetY = gCanvas.offsetTop;
-    // let mouseX = parseInt(ev.clientX - offsetX);
-    // let mouseY = parseInt(ev.clientY - offsetY);
-    
     let canvasRect = gCanvas.getBoundingClientRect();
 
     let mouseX = parseInt(ev.clientX - canvasRect.left);
@@ -246,11 +241,10 @@ function onChangeFontSize(fontSize) {
 // If text was passed through selectBox/buttons - find it by id, otherwise find it with mouse click
 function onSelectText(ev) {
     deSelectAllTexts();
-    let offsetX = gCanvas.offsetLeft;
-    let offsetY = gCanvas.offsetTop;
+    let canvasRect = gCanvas.getBoundingClientRect();
 
-    let mouseX = parseInt(ev.clientX - offsetX);
-    let mouseY = parseInt(ev.clientY - offsetY);
+    let mouseX = parseInt(ev.clientX - canvasRect.left);
+    let mouseY = parseInt(ev.clientY - canvasRect.top);
 
     gSelectedText = getTextByLocation(mouseX, mouseY);
     if (gSelectedText) gSelectedText.color = '#0abde3';
@@ -265,7 +259,7 @@ function selectTextForEdit() {
         gSelectedText.color = '#0abde3';
     }
     else {
-        elInput.value = 'Click on text to edit.'
+        elInput.value = 'Select text to edit.';
         deSelectAllTexts();
     }
 }
