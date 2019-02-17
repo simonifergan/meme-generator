@@ -21,11 +21,9 @@ var gPrevTextColor;
 function initCanvas() {
     document.querySelector('#app').style.display = 'grid';
     gCanvas = document.getElementById("appCanvas");
-    // gCanvas.addEventListener('selectstart', function (e) { e.preventDefault(); return false; }, false);
     gCanvas.onselectstart = function () { return false; }
     gCtx = gCanvas.getContext('2d');
     gSelectedImg = getMemeImage();
-
     
     // Prepare canvas
     resizeCanvas();
@@ -143,21 +141,12 @@ function onDeleteText() {
 // Canvas mouse events
 function onStartDrag(ev) {
     ev.preventDefault();
-    // let offsetX = gCanvas.offsetLeft;
-    // let offsetY = gCanvas.offsetTop;
-
-    // gMouseX = parseInt(ev.clientX - offsetX);
-    // gMouseY = parseInt(ev.clientY - offsetY);
-
+ 
     let canvasRect = gCanvas.getBoundingClientRect();
-
     gMouseX = ev.clientX - canvasRect.left;
     gMouseY = ev.clientY - canvasRect.top
 
     gDragText = getTextByLocation(gMouseX, gMouseY);
-
-    // log vars
-    // console.log(offsetX, offsetY, gMouseX, gMouseY, gDragText);
 }
 
 function onDragText(ev) {
@@ -166,18 +155,17 @@ function onDragText(ev) {
     deSelectAllTexts();
 
     let canvasRect = gCanvas.getBoundingClientRect();
-
     let mouseX = parseInt(ev.clientX - canvasRect.left);
     let mouseY = parseInt(ev.clientY - canvasRect.top);
-    
+    let dragDistanceX = mouseX - gMouseX;
+    let dragDistanceY = mouseY - gMouseY;
 
-    var dragDistanceX = mouseX - gMouseX;
-    var dragDistanceY = mouseY - gMouseY;
     gMouseX = mouseX;
     gMouseY = mouseY;
 
     gDragText.x += dragDistanceX;
     gDragText.y += dragDistanceY;
+
     gDragText.color = '#ee5253';
 }
 
@@ -275,6 +263,8 @@ function onChangeText(val) {
     gSelectedText.txt = val;
     renderTexts();
 }
+
+// Export image to user
 function onExportImg(ev) {
     // Make sure all text is white regardless of selected or moved/dragged
     getTextsToDisplay().forEach(txt => { txt.color = '#fff'; });
@@ -282,7 +272,6 @@ function onExportImg(ev) {
     let imgData = gCanvas.toDataURL();
     ev.target.href = `${imgData}`;
 }
-
 
 // Switch back from gallery to editor
 function onShowGallery() {

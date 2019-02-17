@@ -6,7 +6,6 @@ function initImages() {
 
 function createImages() {
     let imgs = [];
-    imgs.push(createImage());
     for (let i = 0; i < 8; i++) {
         let src = `./img/meme/${i}.jpg`;
         let keywords = ['Monster', 'Awkward', 'Animal'];
@@ -25,7 +24,6 @@ function createImages() {
         let img = createImage(src, keywords)
         imgs.push(img);
     }
-
     return imgs;
 }
 
