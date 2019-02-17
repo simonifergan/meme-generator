@@ -19,7 +19,6 @@ var gPrevTextColor;
 
 // Editor Functions
 function initCanvas() {
-    gIsEditing = true;
     document.querySelector('#app').style.display = 'grid';
     gCanvas = document.getElementById("appCanvas");
     gCanvas.addEventListener('selectstart', function (e) { e.preventDefault(); return false; }, false);
@@ -27,9 +26,13 @@ function initCanvas() {
     gSelectedImg = getMemeImage();
 
 
+    // Prepare canvas
     resizeCanvas();
     addListenersToCanvas()
     renderTexts();
+
+    // Start rendering
+    gIsEditing = true;
     requestAnimationFrame(drawToCanvas);
 }
 
@@ -148,6 +151,7 @@ function onStartDrag(ev) {
     gMouseY = parseInt(ev.clientY - offsetY);
 
     gDragText = getTextByLocation(gMouseX, gMouseY);
+    
 }
 
 function onDragText(ev) {
@@ -217,7 +221,7 @@ function onTextMove(dir) {
     }
     gPrevTextColor = gSelectedText.color;
     gSelectedText.color = '#ee5253';
-    setTimeout((txt, color) => { txt.color = color; }, 150, gSelectedText, gPrevTextColor);
+    setTimeout((txt, color) => { txt.color = color; }, 100, gSelectedText, gPrevTextColor);
 }
 
 function onChangeFontSize(fontSize) {
