@@ -21,33 +21,32 @@ var gPrevTextColor;
 function initCanvas() {
     document.querySelector('#app').style.display = 'grid';
     gCanvas = document.getElementById("appCanvas");
-    gCanvas.addEventListener('selectstart', function (e) { e.preventDefault(); return false; }, false);
+    // gCanvas.addEventListener('selectstart', function (e) { e.preventDefault(); return false; }, false);
+    gCanvas.onselectstart = function () { return false; }
     gCtx = gCanvas.getContext('2d');
     gSelectedImg = getMemeImage();
 
-
+    
     // Prepare canvas
     resizeCanvas();
-    addListenersToCanvas()
+    addEventsToCanvas()
     renderTexts();
-
+    
+    // create first text top of page
+    onAddText();
+    gSelectedText.x = parseInt((gCanvas.width / 2) - gCtx.measureText(gSelectedText).width / 2);
+    gSelectedText.y = 40;
     // Start rendering
     gIsEditing = true;
     requestAnimationFrame(drawToCanvas);
 }
 
-function addListenersToCanvas() {
+function addEventsToCanvas() {
     // Mouse events
     gCanvas.addEventListener('mousedown', onStartDrag);
     gCanvas.addEventListener('mousemove', onDragText);
     gCanvas.addEventListener('mouseup', onStopDrag);
-    gCanvas.addEventListener('dblclick', onSelectText);
-
-    // TODO: Touch events
-    // gCanvas.addEventListener('touchstart', onStartDrag);
-    // gCanvas.addEventListener('touchmove', onDragText);
-    // gCanvas.addEventListener('touchend', onStopDrag);
-    // gCanvas.addEventListener('dblclick', onSelectText);
+    gCanvas.addEventListener('click', onSelectText);
 }
 
 function resizeCanvas() {
@@ -144,14 +143,21 @@ function onDeleteText() {
 // Canvas mouse events
 function onStartDrag(ev) {
     ev.preventDefault();
-    let offsetX = gCanvas.offsetLeft;
-    let offsetY = gCanvas.offsetTop;
+    // let offsetX = gCanvas.offsetLeft;
+    // let offsetY = gCanvas.offsetTop;
 
-    gMouseX = parseInt(ev.clientX - offsetX);
-    gMouseY = parseInt(ev.clientY - offsetY);
+    // gMouseX = parseInt(ev.clientX - offsetX);
+    // gMouseY = parseInt(ev.clientY - offsetY);
+
+    let canvasRect = gCanvas.getBoundingClientRect();
+
+    gMouseX = ev.clientX - canvasRect.left;
+    gMouseY = ev.clientY - canvasRect.top
 
     gDragText = getTextByLocation(gMouseX, gMouseY);
-    
+
+    // log vars
+    // console.log(offsetX, offsetY, gMouseX, gMouseY, gDragText);
 }
 
 function onDragText(ev) {
@@ -159,10 +165,16 @@ function onDragText(ev) {
     if (!gDragText) return;
     deSelectAllTexts();
 
-    let offsetX = gCanvas.offsetLeft;
-    let offsetY = gCanvas.offsetTop;
-    let mouseX = parseInt(ev.clientX - offsetX);
-    let mouseY = parseInt(ev.clientY - offsetY);
+    // let offsetX = gCanvas.offsetLeft;
+    // let offsetY = gCanvas.offsetTop;
+    // let mouseX = parseInt(ev.clientX - offsetX);
+    // let mouseY = parseInt(ev.clientY - offsetY);
+    
+    let canvasRect = gCanvas.getBoundingClientRect();
+
+    let mouseX = parseInt(ev.clientX - canvasRect.left);
+    let mouseY = parseInt(ev.clientY - canvasRect.top);
+    
 
     var dragDistanceX = mouseX - gMouseX;
     var dragDistanceY = mouseY - gMouseY;
@@ -177,7 +189,6 @@ function onDragText(ev) {
 function onStopDrag(ev) {
     ev.preventDefault();
     gDragText = false;
-    onSelectText(ev);
 }
 
 // Movement controls for keypad
@@ -216,6 +227,7 @@ function onTextMove(dir) {
         gSelectedText.x += xDistance;
         gSelectedText.y += yDistance;
     } else {
+        // If center button was pressed skip the above and center text
         gSelectedText.x = parseInt((gCanvas.width / 2) - gCtx.measureText(gSelectedText).width / 2);
         gSelectedText.y = parseInt((gCanvas.height / 2) + gSelectedText.fontSize);
     }

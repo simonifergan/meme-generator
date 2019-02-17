@@ -1,4 +1,3 @@
-const MEME_KEY = 'lastMeme';
 var gMeme;
 
 function initMeme(imgId) {
@@ -11,7 +10,6 @@ function initMeme(imgId) {
     gMeme.selectedImg.onload = initCanvas;
 }
 
-
 function addText(x = parseInt(gCanvas.width / 2), y = parseInt(gCanvas.height / 2)) {
     let txt = {
         id: generateId(),
@@ -19,20 +17,17 @@ function addText(x = parseInt(gCanvas.width / 2), y = parseInt(gCanvas.height / 
         x: x - gCtx.measureText('Enter Text Here').width / 2,
         y: y,
         color: '#fff',
-        fontSize: 20,
+        fontSize: 24,
         isSelected: true,
     };
     gMeme.txts.push(txt)
     return txt;
-    // // save meme to SESSION storage only on ADDTEXT
-    // setToStorage(MEME_KEY, gMeme, true);
 }
 
 function deleteText(id) {
     let idx = gMeme.txts.findIndex(txt => txt.id === id);
     if (idx !== -1) gMeme.txts.splice(idx, 1);
 }
-
 
 function getAllTexts() {
     return gMeme.txts;
@@ -46,15 +41,9 @@ function getTextById(id) {
 function getTextByLocation(x, y) {
     return gMeme.txts.find(txt => {
         let txtWidth = txt.x + gCtx.measureText(txt.txt).width;
-        let txtHeight = txt.y - txt.fontSize;
+        let txtHeight = txt.y - txt.fontSize+2;
         return x >= txt.x && x <= txtWidth && y <= txt.y && y >= txtHeight;
     });
-}
-
-function moveText(xD, yD) {
-    console.log('hello');
-    gMeme.txts[0].x += xD;
-    gMeme.txts[0].y += yD;
 }
 
 function getMemeImage() {
