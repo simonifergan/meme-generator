@@ -48,7 +48,7 @@ main {
     "appendix-content"
     "main-footer";
     grid-template-columns: 1fr;
-    grid-template-rows: 100px 1fr auto auto;
+    grid-template-rows: 100px 1fr auto 40px;
     overflow: hidden;
 }
 
@@ -124,6 +124,10 @@ main {
 }
 
 @media (max-width: 750px) {
+    .main-content {
+        /* Prevent mobile from scrolling left or right */
+        overflow-x: hidden;
+    }
     .main-header.editor-mode {
         height: 60px
     }
@@ -729,7 +733,5 @@ body.show-screen {
     .modal-content {
         position: fixed;
         margin: 0 auto;
-        
     }
-   
 }

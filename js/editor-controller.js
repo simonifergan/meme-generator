@@ -38,7 +38,7 @@ function addListenersToCanvas() {
     gCanvas.addEventListener('mousedown', onStartDrag);
     gCanvas.addEventListener('mousemove', onDragText);
     gCanvas.addEventListener('mouseup', onStopDrag);
-    gCanvas.addEventListener('click', onSelectText);
+    gCanvas.addEventListener('dblclick', onSelectText);
 
     // TODO: Touch events
     // gCanvas.addEventListener('touchstart', onStartDrag);
@@ -118,13 +118,16 @@ function renderMobileTextSelectors() {
 }
 
 function onChangeSelectedText(id) {
+    deSelectAllTexts();
     gSelectedText = getTextById(id);
     selectTextForEdit();
 }
 // END OF SELECT TEXT FUNCS ------------ //
 
 function onAddText() {
-    addText();
+    deSelectAllTexts();
+    gSelectedText = addText();
+    selectTextForEdit();
     renderTexts();
 }
 
@@ -150,6 +153,7 @@ function onStartDrag(ev) {
 function onDragText(ev) {
     ev.preventDefault();
     if (!gDragText) return;
+    deSelectAllTexts();
 
     let offsetX = gCanvas.offsetLeft;
     let offsetY = gCanvas.offsetTop;
@@ -163,13 +167,13 @@ function onDragText(ev) {
 
     gDragText.x += dragDistanceX;
     gDragText.y += dragDistanceY;
-    gPrevTextColor = gDragText.color;
     gDragText.color = '#ee5253';
 }
 
 function onStopDrag(ev) {
     ev.preventDefault();
     gDragText = false;
+    onSelectText(ev);
 }
 
 // Movement controls for keypad
@@ -225,7 +229,7 @@ function onChangeFontSize(fontSize) {
 
 // If text was passed through selectBox/buttons - find it by id, otherwise find it with mouse click
 function onSelectText(ev) {
-
+    deSelectAllTexts();
     let offsetX = gCanvas.offsetLeft;
     let offsetY = gCanvas.offsetTop;
 
@@ -242,13 +246,17 @@ function selectTextForEdit() {
     let elInput = document.querySelector('#currTextInput');
     if (gSelectedText) {
         elInput.value = gSelectedText.txt;
+        gSelectedText.color = '#0abde3';
     }
     else {
         elInput.value = 'Click on text to edit.'
-        getTextsToDisplay().forEach(txt => { txt.color = '#fff' });
+        deSelectAllTexts();
     }
+}
 
-
+// Deselecting texts = returning all to white (default) color;
+function deSelectAllTexts() {
+    getTextsToDisplay().forEach(txt => { txt.color = '#fff' });
 }
 
 // On input change - update text
