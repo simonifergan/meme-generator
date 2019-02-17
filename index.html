@@ -23,6 +23,12 @@
                 <!-- Generate frequent searches here -->
             </div>
 
+            <div class="message-sent-container">
+                <h2>Your message was successfully sent to Simon.</h2>
+                <h3>Thank you for reaching out!</h3>
+                <button onclick="onCloseMsgSent()">Continue</button>
+            </div>
+
         </div>
     </div>
 
@@ -176,7 +182,7 @@
                         <label>
                             <textarea type="text" class="contact-input message" placeholder="Write your message here..."></textarea>
                         </label>
-                        <button class="btn btn-send-message" onclick="event.preventDefault()">Send</button>
+                        <button class="btn btn-send-message" onclick="onSendMessage(event)">Send</button>
                     </form>
                 </div>
             </article>
@@ -184,8 +190,8 @@
 
 
         <footer class="main-footer">
-            <h2>Ini-Meme-Mine-Mo Footer</h2>
-            <h5>Meme Rights &copy;</h5>
+            <h2>&copy; Simon Ron Ifergan, CodingAcademy Student 2019</h2>
+
         </footer>
     </main>
 

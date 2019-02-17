@@ -16,3 +16,7 @@ function onCloseModal(ev) {
     document.querySelector('.modal-screen').classList.remove('show');
     document.body.classList.remove('show');
 }
+
+function onSendMessage(ev) {
+    ev.preventDefault()
+}

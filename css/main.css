@@ -48,7 +48,7 @@ main {
     "appendix-content"
     "main-footer";
     grid-template-columns: 1fr;
-    grid-template-rows: 100px 1fr auto 100px;
+    grid-template-rows: 100px 1fr auto auto;
     overflow: hidden;
 }
 
@@ -609,6 +609,10 @@ section.appendix-container {
         height: 150px;
         font-family: Lato, sans-serif;
         padding-top: 10px;
+        min-height: 150px;
+        min-width: 100px;
+        max-width: 280px; 
+        max-height: 300px;;
     }
     .btn-send-message {
         align-self: flex-end;
@@ -626,6 +630,9 @@ section.appendix-container {
         .contact-input {
             width: 580px;
         }
+        .contact-input.message {
+            max-width: 580px;
+        }
     }
 
 /* Start Main-Footer */
@@ -634,6 +641,9 @@ section.appendix-container {
     grid-area: main-footer;
     width: 100%;
     background-color: #222222;
+    color: #454545;
+    padding: 10px 0;
+    padding-left: 10px;
 }
 
 
