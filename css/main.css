@@ -40,9 +40,6 @@ a:hover {
 
 /* Page layout */
 
-.wrapper {
-    margin: 0 auto;
-}
 
 main {
     grid-template-areas: 
@@ -243,7 +240,7 @@ main {
         width: 140px;
     }
     .gallery-container {
-        grid-template-columns: repeat(12, 70px);
+        grid-template-columns: repeat(10, 70px);
         grid-auto-rows: 140px;
         margin: 30px 0;
         justify-content: center;
@@ -264,7 +261,7 @@ main {
         width: 180px;
     }
     .gallery-container {
-        grid-template-columns: repeat(12, 90px);
+        grid-template-columns: repeat(10, 90px);
         grid-auto-rows: 180px;
         margin: 30px 0;
     }
@@ -465,14 +462,16 @@ main {
 }
 
 .keypad-container {
+    margin-top: 5px;
     grid-column-start: 3;
     grid-row-start: 1;
     grid-template: repeat(3, 48px) / repeat(3,48px);
 }
     .btn-move-text {
         font-size: 1.25rem;
-        border-radius: 2px;
+        border-radius: 3px  ;
         background-color: #222f3e;
+        margin: 0;
         transition: all .3s;
     }
     .btn-move-text:hover{
@@ -495,6 +494,10 @@ main {
     }
     .btn-move-text.right {
         grid-column: 3;
+        grid-row: 2;
+    }
+    .btn-move-text.center {
+        grid-column: 2;
         grid-row: 2;
     }
 
@@ -574,18 +577,63 @@ section.appendix-container {
         margin-left: 20px;
     }
 }
-
-#contact {
-    background-color: #636e72;
-    content: "hi";
-}
+    /* Contact Form */
+    #contact {
+        background-color: #323232;
+        width: 100%;
+        padding: 70px 0;
+    }
+    .contact-container {
+        max-width: 820px;
+    }
+    .contact-title {
+        font-family: Maven Pro, sans-serif;
+        color: #e3e3e3;
+        font-size: 1.875rem;
+        margin-bottom: 45px;
+    }
+    .contact-form {
+        font-family: Lato, sans-serif;
+    }
+    .contact-input {
+        height: 40px;
+        width: 280px;
+        margin-bottom: 15px;
+        background-color: #454545;
+        border: none;
+        outline: none;
+        padding-left: 15px;
+        color: #bebebe;
+    }
+    .contact-input.message {
+        height: 150px;
+        font-family: Lato, sans-serif;
+        padding-top: 10px;
+    }
+    .btn-send-message {
+        align-self: flex-end;
+        width: 90px;
+        height: 50px;
+        background-color: #2eb398;
+        text-transform: uppercase;
+        color: #e3e3e3;
+    }
+    .btn-send-message:hover {
+        background-color: #feca57;
+        color: #333;
+    }
+    @media (min-width: 650px) {
+        .contact-input {
+            width: 580px;
+        }
+    }
 
 /* Start Main-Footer */
 
 .main-footer {
     grid-area: main-footer;
     width: 100%;
-    background-color: #2d3436;
+    background-color: #222222;
 }
 
 
@@ -673,4 +721,5 @@ body.show-screen {
         height: 50%;
         justify-content: space-around;
     }
+   
 }

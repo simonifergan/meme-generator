@@ -13,16 +13,17 @@ function initMeme(imgId) {
 
 
 function addText(x = parseInt(gCanvas.width / 2), y = parseInt(gCanvas.height / 2)) {
-    gMeme.txts.push({
+    let txt = {
         id: generateId(),
         txt: 'Enter Text Here',
-        x: x - gCtx.measureText('Enter Text Here').width,
+        x: x - gCtx.measureText('Enter Text Here').width / 2,
         y: y,
         color: '#fff',
         fontSize: 20,
         isSelected: true,
-    });
-
+    };
+    gMeme.txts.push(txt)
+    return txt;
     // // save meme to SESSION storage only on ADDTEXT
     // setToStorage(MEME_KEY, gMeme, true);
 }

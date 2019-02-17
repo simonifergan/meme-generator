@@ -177,6 +177,7 @@ function onTextMove(dir) {
     if (!gSelectedText) return;
     let xDistance = 0;
     let yDistance = 0;
+    let centerText = false;
     switch (dir) {
         case 'up':
             yDistance -= 10;
@@ -190,19 +191,26 @@ function onTextMove(dir) {
         case 'right':
             xDistance += 10;
             break;
+        case 'center':
+            centerText = true;
+            break;
     }
 
-    // Check borders pre-assignment
-    let newX = gSelectedText.x + xDistance;
-    let newY = gSelectedText.y + yDistance;
-    if (newX <= 0 ||
-        newX + gCtx.measureText(gSelectedText.txt).width >= gCanvas.width ||
-        newY - gSelectedText.fontSize <= 0
-        || newY >= gCanvas.height) return;
-
     // Assign new location
-    gSelectedText.x += xDistance;
-    gSelectedText.y += yDistance;
+    if (!centerText) {
+        // Check borders pre-assignment
+        let newX = gSelectedText.x + xDistance;
+        let newY = gSelectedText.y + yDistance;
+        if (newX <= 0 ||
+            newX + gCtx.measureText(gSelectedText.txt).width >= gCanvas.width ||
+            newY - gSelectedText.fontSize <= 0
+            || newY >= gCanvas.height) return;
+        gSelectedText.x += xDistance;
+        gSelectedText.y += yDistance;
+    } else {
+        gSelectedText.x = parseInt((gCanvas.width / 2) - gCtx.measureText(gSelectedText).width / 2);
+        gSelectedText.y = parseInt((gCanvas.height / 2) + gSelectedText.fontSize);
+    }
     gPrevTextColor = gSelectedText.color;
     gSelectedText.color = '#ee5253';
     setTimeout((txt, color) => { txt.color = color; }, 150, gSelectedText, gPrevTextColor);

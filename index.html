@@ -15,7 +15,9 @@
     <!-- Modal, because every project needs one -->
     <div class="modal-screen" onclick="onToggleModal()">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="btn btn-close-modal flex" onclick="onCloseModal()"><i class="fas fa-times"></i></button>
+            <button class="btn btn-close-modal flex" onclick="onCloseModal()">
+                <i class="fas fa-times"></i>
+            </button>
 
             <div class="float-search-container flex wrap space-between align-center">
                 <!-- Generate frequent searches here -->
@@ -67,7 +69,8 @@
                         <option value="Zahav">
                         <option value="Banana">
                     </datalist>
-                    <button class="btn btn-search-modal" onclick="onToggleModal()"><i class="fas fa-search"></i></button>
+                    <button class="btn btn-search-modal" onclick="onToggleModal()"><i
+                            class="fas fa-search"></i></button>
                 </div>
 
 
@@ -87,20 +90,33 @@
                 <aside class="editor-menu flex column justify-content-center align-center">
                     <div class="add-remove-container">
                         <button class="btn btn-add-line" onclick="onAddText()"><i class="fas fa-plus"></i></button>
-                        <button class="btn btn-delete-line" onclick="onDeleteText()"><i class="fas fa-trash-alt"></i></button>
+                        <button class="btn btn-delete-line" onclick="onDeleteText()"><i
+                                class="fas fa-trash-alt"></i></button>
                     </div>
                     <div class="choose-text-container flex wrap">
                         <!-- generate text buttons here for mobile -->
                     </div>
-                    <label class="select-box-label flex align-center justify-content-center" for="selectTextBox">Choose Text to Edit:</label>
+                    <label class="select-box-label flex align-center justify-content-center" for="selectTextBox">Choose
+                        Text to Edit:</label>
                     <select id="selectTextBox" onchange="onChangeSelectedText(this.value)">
                         <!-- Render options here -->
                     </select>
                     <div class="keypad-container grid">
-                        <button class="btn btn-move-text up" onclick="onTextMove('up')">⇧</button>
-                        <button class="btn btn-move-text down" onclick="onTextMove('down')">⇩</button>
-                        <button class="btn btn-move-text left" onclick="onTextMove('left')">⇦</button>
-                        <button class="btn btn-move-text right" onclick="onTextMove('right')">⇨</button>
+                        <button class="btn btn-move-text up" onclick="onTextMove('up')">
+                            <i class="fas fa-arrow-up"></i>
+                        </button>
+                        <button class="btn btn-move-text down" onclick="onTextMove('down')">
+                            <i class="fas fa-arrow-down"></i>
+                        </button>
+                        <button class="btn btn-move-text center" onclick="onTextMove('center')">
+                            <i class="fas fa-compress-arrows-alt"></i>
+                        </button>
+                        <button class="btn btn-move-text left" onclick="onTextMove('left')">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <button class="btn btn-move-text right" onclick="onTextMove('right')">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
                     <label for="fontSlider">Font Size: <span class="span-font-slider">20px</span>
                         <input onchange="onChangeFontSize(this.value)" type="range" id="fontSlider" min="16" max="64"
@@ -144,8 +160,25 @@
                     </div>
                 </div>
             </article>
-            <article id="contact" class="flex">
-                <h1>contact form</h1>
+            <article id="contact" class="flex justify-content-center align-center">
+                <div class="contact-container">
+                    <h2 class="contact-title"><i class="fas fa-user-friends"></i> Get In Touch</h2>
+                    <form class="contact-form flex column">
+                        <label>
+                            <input type="text" class="contact-input" placeholder="Name (Required)" required>
+                        </label>
+                        <label>
+                            <input type="text" class="contact-input" placeholder="E-Mail (Required)" required> 
+                        </label>
+                        <label>
+                            <input type="text" class="contact-input" placeholder="Subject">
+                        </label>
+                        <label>
+                            <textarea type="text" class="contact-input message" placeholder="Write your message here..."></textarea>
+                        </label>
+                        <button class="btn btn-send-message" onclick="event.preventDefault()">Send</button>
+                    </form>
+                </div>
             </article>
         </section>
 
