@@ -766,6 +766,11 @@ body.show-screen {
 .input-link:last-child {
     margin-bottom: 10px;
 }
+.message-sent-container > * {
+    margin: 10px 0;
+    padding: 10px 0;
+    font-size: 0.9rem;
+}
 @media (min-width: 750px) {
     .float-search-container  {
         padding: 20px;

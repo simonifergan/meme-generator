@@ -212,7 +212,7 @@ function onTextMove(dir) {
     } else {
         // If center button was pressed skip the above and center text
         gSelectedText.x = parseInt((gCanvas.width / 2) - gCtx.measureText(gSelectedText).width / 2);
-        gSelectedText.y = parseInt((gCanvas.height / 2) + gSelectedText.fontSize);
+        gSelectedText.y = parseInt(gCanvas.height / 2);
     }
     gPrevTextColor = gSelectedText.color;
     gSelectedText.color = '#ee5253';
