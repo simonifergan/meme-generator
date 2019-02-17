@@ -298,7 +298,6 @@ main {
     transition: all .3s;
 }
 
-
 .btn-go-gallery::before {
     content: "⇦";
     position: absolute;
@@ -321,8 +320,6 @@ main {
     background-color: #636e72;
     border-radius: 5px;
 }
-
-
 
 @media (min-width: 850px) {
     #app {
@@ -614,17 +611,22 @@ section.appendix-container {
         max-width: 280px; 
         max-height: 300px;;
     }
-    .btn-send-message {
-        align-self: flex-end;
+    .btn-send-message, .btn-continue {
         width: 90px;
         height: 50px;
         background-color: #2eb398;
         text-transform: uppercase;
         color: #e3e3e3;
     }
-    .btn-send-message:hover {
+    .btn-send-message:hover, .btn-continue:hover {
         background-color: #feca57;
         color: #333;
+    }
+    .btn-send-message {
+        align-self: flex-end;
+    }
+    .btn-continue {
+        border-radius: 3px;
     }
     @media (min-width: 650px) {
         .contact-input {
@@ -676,8 +678,8 @@ body.show-screen {
     padding: 0 15px;
     font-family: Lato, sans-serif;
     position: fixed;
-    width: 100vw;
-    height: 100vh;
+    top: 50%;
+    width: 100%;
     background-color: #01a3a4;
     box-shadow: 0 0 6px 1px #1d1d1d;
     justify-content: center;
@@ -725,11 +727,9 @@ body.show-screen {
         padding: 20px;
     }
     .modal-content {
-        position: static;
-        margin: 30px auto;
-        width: 50%;
-        height: 50%;
-        justify-content: space-around;
+        position: fixed;
+        margin: 0 auto;
+        
     }
    
 }
